@@ -1,24 +1,207 @@
-# README
+## 機能一覧（仮）
+### 必須機能
+-ユーザー新規登録 → Users#create
+-ログイン・ログアウト機能 → device?
+-マイページ表示機能 → Profiles#index
+-マイページ編集機能 → Profiles#edit
+-商品一覧表示 → Items#index
+-商品出品 → Items#create
+-商品購入 → Items#update
+-商品詳細表示 → Items#show
+-商品削除 → Items#destroy
+-カテゴリー機能 → Items#category_index(新しく作る)？
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### 追加機能(候補)
+-ブランド機能
+-クレジットカード登録・支払い機能
+-商品検索機能
+-お気に入り
+-商品についての質問・コメント機能
+-ユーザー新規登録・ログイン（SNS連携）
+-パンくず
 
-Things you may want to cover:
+## テーブル一覧（仮）
+＊は必須機能に紐付きそうなテーブル
+### Users table＊
+|Column|Type|Options|
+|------|----|-------|
+|nickname|string|null:false|
+|password|string|null:false|
+|email|string|null:false, unique: true, index:true|
 
-* Ruby version
+### Association
+-has_many :Comments, dependent: :destroy
+-has_many :Favorites, dependent: :destroy
+-has_many :Todo_lists
+-has_many :User_evaluations
+-has_many :seller_items, foreign_key: "seller_id", class_name: "Items"
+-has_many :buyer_items, foreign_key: "buyer_id", class_name: "Items"
+-has_one :Point_sales
+-has_one :Profile, dependent: :destroy
+-has_one :Sending_destination, dependent: :destroy
+-has_one :Credit_card, dependent: :destroy
 
-* System dependencies
+### Profiles table＊
+|Column|Type|Options|
+|------|----|-------|
+|first_name|string|null:false|
+|family_name|string|null:false|
+|first_name_kana|string|null:false|
+|family_name_kana|string|null:false|
+|birth_year|date|null:false|
+|birth_month|date|null:false|
+|birth_day|date|null:false|
+|introduction|text||
+|avatar|string||
+|user|references|null: false, foreign_key: true|
 
-* Configuration
+### Association
+-belongs_to :User
 
-* Database creation
+### Items table＊
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|introduction|text|null: false|
+|price|integer|null: false|
+|brand|references|foreign_key: true|
+|item_condition|references|null: false,|foreign_key: true|
+|shipping_charge_players|references|null: false,foreign_key: |true|
+|prefecture_code|integer|null: false|
+|size|references|null: false, foreign_key: true|
+|preparation_day|references|null: false, |foreign_key: true|
+|delivery_type|references|null: false, foreign_key: |true|
+|item_image|references|null: false, foreign_key: true|
+|category|references|null: false, foreign_key: true|
+|trading_status|enum|null: false|
+|seller|references|null: false, foreign_key: true|
+|buyer|references|foreign_key: true|
+|deal_closed_date|timestamp|
 
-* Database initialization
+### Association
+-has_many :comments, dependent: :destroy
+-has_many :favorites
+-has_many :item_images, dependent: :destroy
+-has_one :user_evaluation
+-belongs_to :category
+-belongs_to_active_hash :size
+-belongs_to_active_hash :item_condition
+-belongs_to_active_hash :shipping_charge_players
+-belongs_to_active_hash :preparation_day
+-belongs_to_active_hash :delivery_type
+-belongs_to :brand
+-belongs_to :seller, class_name: "User"
+-belongs_to :buyer, class_name: "User"
+-Gem：jp_prefectureを使用して都道府県コードを取得
 
-* How to run the test suite
+### Categories table＊
+多階層なのでancestryを使うと便利らしい
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null:false|
+|ancestry|string|null:false|
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
+-has_many :Items
+-has_ancestry
 
-* Deployment instructions
+### Sending_destinations table＊
+|Column|Type|Options|
+|------|----|-------|
+|destination_first_name|string|null: false|
+|destination_family_name|string|null: false|
+|destination_first_name_kana|string|null: false|
+|destination_family_name_kana|string|null: false|
+|post_code|integer(7)|null:false|
+|prefecture_code|integer|null:false|
+|city|string|null:false|
+|house_number|string|null:false|
+|building_name|string||
+|phone_number|integer|unique: true|
+|user|references|null: false, foreign_key: true|
 
-* ...
+### Association
+-belongs_to :User
+
+### Todo_lists table＊
+|Column|Type|Options|
+|------|----|-------|
+|list|text|null:false|
+|user|references|null: false, foreign_key: true|
+
+### Association
+-belongs_to:User
+
+### Point_sales table＊
+|Column|Type|Options|
+|------|----|-------|
+|point|integer||
+|user|references|null: false, foreign_key: true|
+
+### Association
+-belongs_to:User
+
+### Item_images table＊
+|Column|Type|Options|
+|------|----|-------|
+|url|string|null:false|
+|item|references|null: false, foreign_key: true|
+
+### Association
+-belongs_to :Item
+
+### User_evaluations table
+|Column|Type|Options|
+|------|----|-------|
+|review|text|null: false|
+|user|references|null: false, foreign_key: true|
+|item|references|null: false, foreign_key: true|
+|evaluation|references|null: false, foreign_key: true|
+
+### Association
+-belongs_to_active_hash :evaluation
+-belongs_to :User
+-belongs_to :Item
+
+### Brands table
+|Column|Type|Options|
+|------|----|-------|
+|name|string||
+
+### Association
+-has_many :Items
+
+### Credit_cards table
+-Payjpで実装
+|Column|Type|Options|
+|------|----|-------|
+|card_number|integer|null:false, unique: true|
+|expiration_year|integer|null:false|
+|expiration_month|integer|null:false|
+|security_code|integer|null:false|
+|user|references|null: false, foreign_key: true|
+
+### Association
+-belongs_to:User
+
+### Favorites table
+|Column|Type|Options|
+|------|----|-------|
+|user|references|null: false, foreign_key: true|
+|item|references|null: false, foreign_key: true|
+
+### Association
+-belongs_to :User
+-belongs_to :Item
+
+### Comments table
+|Column|Type|Options|
+|------|----|-------|
+|comment|text|null: false|
+|user|references|null: false, foreign_key: true|
+|item|references|null: false, foreign_key: true|
+|created_at|timestamp|null: false|
+
+### Association
+-belongs_to :User
+-belongs_to :Item
