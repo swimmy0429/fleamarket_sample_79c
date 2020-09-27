@@ -4,6 +4,7 @@
 - ログイン・ログアウト機能 → device?
 - マイページ表示機能 → Profiles#index
 - マイページ編集機能 → Profiles#edit
+
 - 商品一覧表示 → Items#index
 - 商品出品 → Items#create
 - 商品購入 → Items#update
@@ -135,7 +136,7 @@
 ### Point_sales table＊
 |Column|Type|Options|
 |------|----|-------|
-|point|integer||
+|point|integer|null: false|
 |user|references|null: false, foreign_key: true|
 
 ### Association
@@ -166,7 +167,7 @@
 ### Brands table
 |Column|Type|Options|
 |------|----|-------|
-|name|string||
+|name|string|null: false|
 
 ### Association
 - has_many :Items
@@ -175,10 +176,8 @@
 - Payjpで実装
 |Column|Type|Options|
 |------|----|-------|
-|card_number|integer|null:false, unique: true|
-|expiration_year|integer|null:false|
-|expiration_month|integer|null:false|
-|security_code|integer|null:false|
+|customer_id|string|null: false|
+|card_id|string|null: false|
 |user|references|null: false, foreign_key: true|
 
 ### Association
