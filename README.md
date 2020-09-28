@@ -31,16 +31,16 @@
 |email|string|null:false, unique: true, index:true|
 
 ### Association
-- has_many :Comments, dependent: :destroy
-- has_many :Favorites, dependent: :destroy
-- has_many :Todo_lists
-- has_many :User_evaluations
+- has_many :comments, dependent: :destroy
+- has_many :favorites, dependent: :destroy
+- has_many :todo_lists
+- has_many :user_evaluations
 - has_many :seller_items, foreign_key: "seller_id", class_name: "Items"
 - has_many :buyer_items, foreign_key: "buyer_id", class_name: "Items"
-- has_one :Point_sales
-- has_one :Profile, dependent: :destroy
-- has_one :Sending_destination, dependent: :destroy
-- has_one :Credit_card, dependent: :destroy
+- has_one :point_sales
+- has_one :profile, dependent: :destroy
+- has_one :sending_destination, dependent: :destroy
+- has_one :credit_card, dependent: :destroy
 
 ### Profiles table＊
 |Column|Type|Options|
@@ -49,15 +49,13 @@
 |family_name|string|null:false|
 |first_name_kana|string|null:false|
 |family_name_kana|string|null:false|
-|birth_year|date|null:false|
-|birth_month|date|null:false|
-|birth_day|date|null:false|
+|birth_year_month_day|date|null:false|
 |introduction|text||
 |avatar|string||
 |user|references|null: false, foreign_key: true|
 
 ### Association
-- belongs_to :User
+- belongs_to :user
 
 ### Items table＊
 |Column|Type|Options|
@@ -66,13 +64,12 @@
 |introduction|text|null: false|
 |price|integer|null: false|
 |brand|references|foreign_key: true|
-|item_condition|references|null: false,|foreign_key: true|
-|shipping_charge_players|references|null: false,foreign_key: |true|
+|item_condition|integer|null: false|
+|shipping_charge_players|integer|null: false|
 |prefecture_code|integer|null: false|
-|size|references|null: false, foreign_key: true|
-|preparation_day|references|null: false, |foreign_key: true|
-|delivery_type|references|null: false, foreign_key: |true|
-|item_image|references|null: false, foreign_key: true|
+|size|integer|null: false|
+|preparation_day|integer|null: false|
+|delivery_type|integer|null: false|
 |category|references|null: false, foreign_key: true|
 |trading_status|enum|null: false|
 |seller|references|null: false, foreign_key: true|
@@ -103,7 +100,7 @@
 |ancestry|string|null:false|
 
 ### Association
-- has_many :Items
+- has_many :items
 - has_ancestry
 
 ### Sending_destinations table＊
@@ -113,16 +110,16 @@
 |destination_family_name|string|null: false|
 |destination_first_name_kana|string|null: false|
 |destination_family_name_kana|string|null: false|
-|post_code|integer(7)|null:false|
+|post_code|string(7)|null:false|
 |prefecture_code|integer|null:false|
 |city|string|null:false|
 |house_number|string|null:false|
 |building_name|string||
-|phone_number|integer|unique: true|
+|phone_number|string|unique: true|
 |user|references|null: false, foreign_key: true|
 
 ### Association
-- belongs_to :User
+- belongs_to :user
 
 ### Todo_lists table＊
 |Column|Type|Options|
@@ -131,7 +128,7 @@
 |user|references|null: false, foreign_key: true|
 
 ### Association
--belongs_to:User
+-belongs_to:user
 
 ### Point_sales table＊
 |Column|Type|Options|
@@ -149,7 +146,7 @@
 |item|references|null: false, foreign_key: true|
 
 ### Association
-- belongs_to :Item
+- belongs_to :item
 
 ### User_evaluations table
 |Column|Type|Options|
@@ -161,8 +158,8 @@
 
 ### Association
 - belongs_to_active_hash :evaluation
-- belongs_to :User
-- belongs_to :Item
+- belongs_to :user
+- belongs_to :item
 
 ### Brands table
 |Column|Type|Options|
@@ -181,7 +178,7 @@
 |user|references|null: false, foreign_key: true|
 
 ### Association
-- belongs_to:User
+- belongs_to:user
 
 ### Favorites table
 |Column|Type|Options|
@@ -190,8 +187,8 @@
 |item|references|null: false, foreign_key: true|
 
 ### Association
-- belongs_to :User
-- belongs_to :Item
+- belongs_to :user
+- belongs_to :item
 
 ### Comments table
 |Column|Type|Options|
@@ -202,5 +199,5 @@
 |created_at|timestamp|null: false|
 
 ### Association
-- belongs_to :User
-- belongs_to :Item
+- belongs_to :user
+- belongs_to :item
