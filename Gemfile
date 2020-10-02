@@ -63,3 +63,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 group :production do
   gem 'unicorn'
 end
+
+gem "haml-rails"
+gem 'devise'
+#ユーザー認証を扱うときに非常に便利なgem
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+gem 'erb2haml'
