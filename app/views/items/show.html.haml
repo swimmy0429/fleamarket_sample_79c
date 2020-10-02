@@ -1,0 +1,59 @@
+%div.main
+  %div.showMain
+    %div.item
+      %h2.item__name
+        =@items_show[0][:name]
+      %div.item__body
+        %ul
+          %li
+            = image_tag "Railsの処理の流れ_0409.png",size: "560x346"
+            -# - @item.images.each do |image|
+            -#   .iamge
+            -#     = image.name 
+          %ul
+          -@item_images_detail.each_with_index do |item,index|
+            -if index == 0
+            -else
+              %li=item[:url]
+      %div.item__price
+        =@items_show[0][:price]
+        %span 
+        %div.item__price-detail
+      %div.item__detail
+      %div.table
+        %table
+          %tbody
+          -@items_show.each do |item|
+            %tr
+              %th 出品者
+              %td aaa
+            %tr
+              %th カテゴリー
+              %td aaa
+            %tr
+              %th ブランド
+              %td aaa
+            %tr
+              %th 商品のサイズ
+              %td=item.size
+            %tr
+              %th 商品の状態
+              %td=item.item_condition
+            %tr
+              %th 配送料の負担
+              %td=item.shipping_charge_players
+            %tr
+              %th 配送元の地域
+              %td=item.prefecture_code
+            %tr
+              %th 発送日の目安
+              %td=item.preparation_day
+      %div.option
+    %div.comment
+      %ul.commentContents
+      %form.comment__new
+        %textarea
+        %p 
+          相手のことを考え丁寧なコメントを心がけましょう。
+          %br 不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        %button.comentButton

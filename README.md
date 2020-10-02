@@ -137,7 +137,7 @@
 |user|references|null: false, foreign_key: true|
 
 ### Association
-- belongs_to:User
+- belongs_to:user
 
 ### Item_images table＊
 |Column|Type|Options|
@@ -167,7 +167,7 @@
 |name|string|null: false|
 
 ### Association
-- has_many :Items
+- has_many :items
 
 ### Credit_cards table
 - Payjpで実装

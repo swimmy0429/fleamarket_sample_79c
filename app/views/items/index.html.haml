@@ -1,5 +1,5 @@
 %h1 Items#index
 %p Find me in app/views/items/index.html.erb
--@item_images.each do |item|
-  =item.url
+-@item_images_top.each do |item_image|
+  =link_to "商品詳細へ移動", item_path(id: item_image.item_id)
 
