@@ -170,12 +170,13 @@
 - has_many :Items
 
 ### Credit_cards table
+Payjpで実装
 |Column|Type|Options|
 |------|----|-------|
 |customer_id|string|null: false|
 |card_id|string|null: false|
 |user|references|null: false, foreign_key: true|
-- Payjpで実装
+
 
 ### Association
 - belongs_to:user
