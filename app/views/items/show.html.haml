@@ -19,6 +19,7 @@
         =@items_show[0][:price]
         %span 
         %div.item__price-detail
+          =@items_show[0][:introduction]
       %div.item__detail
       %div.table
         %table
@@ -48,6 +49,8 @@
             %tr
               %th 発送日の目安
               %td=item.preparation_day
+      =link_to  do
+        %button.purchese__btn 購入画面に進む
       %div.option
     %div.comment
       %ul.commentContents
@@ -56,4 +59,4 @@
         %p 
           相手のことを考え丁寧なコメントを心がけましょう。
           %br 不快な言葉遣いなどは利用制限や退会処分となることがあります。
-        %button.comentButton
+        %button.comentButton コメントする

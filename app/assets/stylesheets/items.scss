@@ -42,14 +42,53 @@ td {
 .item {
   background-color: #fff;
   padding: 24px 40px 40px;
+  width: 600px;
+  margin: 0 auto;
 }
+.item__name {
+  text-align: center;
+}
+.item__price-detail {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
 .showMain {
   padding: 40px;
   margin: 0 auto;
 }
+
 .comment__new {
-  padding: 24px;
+  padding: 24px 40px 40px;
   background-color: #fff;
-  margin: 10px 0;
+  margin: 10px auto;
   text-align: center;
+  width: 600px;
+}
+
+.purchese__btn {
+  width: 600px;
+  margin: 40px 0 0 0;
+  padding: 20px;
+  text-align: center;
+  background-color: #3CCACE;
+  border: none;
+  font-size: 18px;
+  color: white;
+}
+textarea {
+  width: 100%;
+  height: 100px;
+}
+
+.comentButton {
+  line-height: 48px;
+  background: #3CCACE;
+  border: 1px solid #3CCACE;
+  color: #fff;
+  width: 60%;
+  height: 50px;
+  font-size: 18px;
+  border-radius: 100px;
+  margin-top: 20px;
 }
