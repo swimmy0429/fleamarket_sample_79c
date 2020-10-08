@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PutUpItemsControllerTest < ActionDispatch::IntegrationTest
+class ItemTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

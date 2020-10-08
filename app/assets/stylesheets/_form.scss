@@ -1,0 +1,77 @@
+$section-color: rgb(245,245,245);
+
+.Upper {
+  background-color: $section-color;
+  height: 128px;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+
+  &__icon {
+    height: 49px;
+    width: 185px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.Body {
+ background-color: $section-color;
+ height: 150vh;
+ width: 100vw;
+ display: flex;
+ flex-direction: column;
+
+  .Item {
+    background-color: white;
+    height: 200px;
+    width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+
+    &__name {
+      background-color: white;
+      height: 200px;
+      width: 700px;
+      border-bottom: 1px solid grey;
+      margin: 0 auto;
+    }
+
+    &__detail {
+      background-color: white;
+      height: 300px;
+      width: 700px;
+      border-bottom: 1px solid grey;
+      margin: 0 auto;
+    }
+
+    &__delivery {
+      background-color: white;
+      height: 300px;
+      width: 700px;
+      border-bottom: 1px solid grey;
+      margin: 0 auto;
+    }
+
+    &__price {
+      background-color: white;
+      height: 300px;
+      width: 700px;
+      margin: 0 auto;
+    }
+  }
+}
+.Bottom {
+  background-color: $section-color;
+  height: 220px;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__icon {
+  }
+}
