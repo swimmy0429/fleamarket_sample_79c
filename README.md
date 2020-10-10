@@ -97,7 +97,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null:false|
-|ancestry|string|null:false|
+|ancestry|string||
 
 ### Association
 - has_many :items
@@ -170,7 +170,7 @@
 - has_many :items
 
 ### Credit_cards table
-- Payjpで実装
+Payjpで実装
 |Column|Type|Options|
 |------|----|-------|
 |customer_id|string|null: false|
