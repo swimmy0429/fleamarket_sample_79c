@@ -8,7 +8,8 @@
     %br 最大10枚までアップロードできます
     = form_for @item do |f| 
       = f.fields_for :item_images, {} do |i|
-        = i.file_field :src, {}
+        = i.file_field :src
+        
            
       .Item__name
         商品名
