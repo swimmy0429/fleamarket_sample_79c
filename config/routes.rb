@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
-  root 'items#new'
+
+  devise_for :users
+  root 'items#index'
   resources :items, expcept: :show
+
 end
