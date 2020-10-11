@@ -58,15 +58,24 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog-aws'
+gem 'font-awesome-sass'
+gem "haml-rails", ">= 1.0", '<= 2.0.1'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'active_hash'
 
 group :production do
   gem 'unicorn'
 end
 
-gem "haml-rails"
 gem 'devise'
-#ユーザー認証を扱うときに非常に便利なgem
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'erb2haml'
+gem 'payjp'
+gem 'jquery-rails'
+
+
+
