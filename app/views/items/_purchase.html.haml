@@ -84,3 +84,17 @@
         %label.products-purchase-btn-default.btn-red.bold
           購入する
           -# = form.submit '購入する'
+  
+  .footer
+    %ul.footer-link
+      =link_to "#",class: "クラス名" do
+        %li プライバシーポリシー
+      =link_to "#",class: "クラス名" do
+        %li FURIMA利用規約
+      =link_to "#",class: "クラス名" do
+        %li 特定商取引に関する表記
+    .footer-logo
+      =link_to "#",class: "クラス名" do
+        = image_tag 'logo.png', alt: 'footer-logo', height: '65px', width: '80px'
+    %p.footer-comment
+      © Furima, Inc.
