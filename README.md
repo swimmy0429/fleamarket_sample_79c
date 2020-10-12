@@ -29,6 +29,14 @@
 |nickname|string|null:false|
 |password|string|null:false|
 |email|string|null:false, unique: true, index:true|
+|first_name|string|null:false|
+|family_name|string|null:false|
+|first_name_kana|string|null:false|
+|family_name_kana|string|null:false|
+|birth_year_month_day|date|null:false|
+|introduction|text||
+|avatar|string||
+|user|references|null: false, foreign_key: true|
 
 ### Association
 - has_many :comments, dependent: :destroy
@@ -45,14 +53,7 @@
 ### Profiles table＊
 |Column|Type|Options|
 |------|----|-------|
-|first_name|string|null:false|
-|family_name|string|null:false|
-|first_name_kana|string|null:false|
-|family_name_kana|string|null:false|
-|birth_year_month_day|date|null:false|
-|introduction|text||
-|avatar|string||
-|user|references|null: false, foreign_key: true|
+
 
 ### Association
 - belongs_to :user
