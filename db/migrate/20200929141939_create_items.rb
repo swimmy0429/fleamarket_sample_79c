@@ -5,10 +5,10 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.text :introduction,null: false
       t.integer :price,null: false
       # t.references :brand,foreign_key: true
-      t.integer :item_condition,null: false
+      t.integer :item_condition_id
       t.integer :shipping_charge_players,null: false
       t.integer :prefecture_code,null: false
-      t.integer :size,null: false
+      t.integer :size_id
       t.integer :preparation_day,null: false
       t.integer :delivery_type,null: false
       # t.references :category,null: false,foreign_key: true

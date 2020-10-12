@@ -6,7 +6,7 @@
       %div.item__body
         %ul
           %li
-            =image_tag "/uploads/item_image/src/1/#{@item_images_detail[0][:src]}"
+            =image_tag "/uploads/item_image/src/1/#{@item_images_detail[0][:src]}",size: "560x346"
             -# = image_tag "Railsの処理の流れ_0409.png",size: "560x346"
             -# - @item.images.each do |image|
             -#   .iamge
@@ -40,7 +40,7 @@
               %td=item.size
             %tr
               %th 商品の状態
-              %td=item.item_condition
+              %td=item.item_condition_id
             %tr
               %th 配送料の負担
               %td=item.shipping_charge_players

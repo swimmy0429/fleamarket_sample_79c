@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_29_142153) do
+ActiveRecord::Schema.define(version: 2020_10_11_070300) do
 
   create_table "item_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "url", null: false
+    t.string "url"
+    t.string "src"
     t.bigint "item_id", null: false
     t.index ["item_id"], name: "index_item_images_on_item_id"
   end
@@ -22,14 +23,16 @@ ActiveRecord::Schema.define(version: 2020_09_29_142153) do
     t.string "name", null: false
     t.text "introduction", null: false
     t.integer "price", null: false
-    t.integer "item_condition", null: false
     t.integer "shipping_charge_players", null: false
     t.integer "prefecture_code", null: false
-    t.integer "size", null: false
     t.integer "preparation_day", null: false
     t.integer "delivery_type", null: false
     t.integer "trading_status", default: 0, null: false
     t.datetime "deal_closed_date"
+    t.string "brand"
+    t.string "category"
+    t.integer "size_id"
+    t.integer "item_condition_id"
   end
 
   add_foreign_key "item_images", "items"
