@@ -15,11 +15,13 @@ ActiveRecord::Schema.define(version: 2020_10_03_223209) do
   create_table "item_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "url"
     t.string "src"
+
     t.bigint "item_id", null: false
     t.index ["item_id"], name: "index_item_images_on_item_id"
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+
     t.string "name", null: false
     t.text "introduction", null: false
     t.integer "price", null: false
@@ -31,6 +33,7 @@ ActiveRecord::Schema.define(version: 2020_10_03_223209) do
     t.integer "delivery_type", null: false
     t.integer "trading_status", default: 0, null: false
     t.datetime "deal_closed_date"
+
     t.string "brand"
     t.string "category"
   end
@@ -38,6 +41,21 @@ ActiveRecord::Schema.define(version: 2020_10_03_223209) do
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+
+  end
+
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "nickname", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "first_name", null: false
+    t.string "family_name", null: false
+    t.string "first_name_kana", null: false
+    t.string "family_name_kana", null: false
+    t.date "birth_year_month_day", null: false
+    t.text "introduction"
+    t.string "avator"
+
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
