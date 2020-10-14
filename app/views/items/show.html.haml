@@ -10,7 +10,7 @@
             -# = image_tag "Railsの処理の流れ_0409.png",size: "560x346"
             -# - @item.images.each do |image|
             -#   .iamge
-            -#     = image.name 
+            -#     = image.name
           %ul
           -@item_images_detail.each_with_index do |item,index|
             -if index == 0
@@ -18,7 +18,7 @@
               %li=item[:url]
       %div.item__price
         =@items_show[0][:price]
-        %span 
+        %span
         %div.item__price-detail
           =@items_show[0][:introduction]
       %div.item__detail
@@ -57,7 +57,7 @@
       %ul.commentContents
       %form.comment__new
         %textarea
-        %p 
+        %p
           相手のことを考え丁寧なコメントを心がけましょう。
           %br 不快な言葉遣いなどは利用制限や退会処分となることがあります。
         %button.comentButton コメントする
