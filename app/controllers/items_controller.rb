@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
   def show
     @items_show = Item.all.where(id:params[:id])
     @item_images_detail = ItemImage.all.includes(:item).where(item_id:params[:id])
-    # @seller = User.all.where(id:@items_show.seller_id).nickname
+    @seller = Item.find(params[:id]).seller.nickname
 
   end
 
