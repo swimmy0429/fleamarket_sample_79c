@@ -10,22 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_03_223209) do
-
-  create_table "item_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "url"
-    t.string "src"
+ActiveRecord::Schema.define(version: 2020_10_14_045855) do
 
   create_table "item_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "url"
-    t.string "src"
+    t.string "url", limit: 255
+    t.string "src", limit: 255
     t.bigint "item_id", null: false
     t.index ["item_id"], name: "index_item_images_on_item_id"
   end
 
-  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-
-    t.string "name", null: false
+  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "name", limit: 255, null: false
     t.text "introduction", null: false
     t.integer "price", null: false
     t.integer "shipping_charge_players", null: false
@@ -34,17 +29,12 @@ ActiveRecord::Schema.define(version: 2020_10_03_223209) do
     t.integer "delivery_type", null: false
     t.integer "trading_status", default: 0, null: false
     t.datetime "deal_closed_date"
-
-    t.string "brand"
-    t.string "category"
+    t.string "brand", limit: 255
+    t.string "category", limit: 255
     t.integer "size_id"
     t.integer "item_condition_id"
-  end
-
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-
+    t.integer "seller_id", null: false
+    t.integer "buyer_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -58,7 +48,6 @@ ActiveRecord::Schema.define(version: 2020_10_03_223209) do
     t.date "birth_year_month_day", null: false
     t.text "introduction"
     t.string "avator"
-
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

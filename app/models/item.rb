@@ -11,8 +11,8 @@ class Item < ApplicationRecord
   # belongs_to_active_hash :preparation_day
   # belongs_to_active_hash :delivery_type
   # belongs_to :brand
-  # belongs_to :seller, class_name: "User"
-  # belongs_to :buyer, class_name: "User"
+  belongs_to :seller, class_name: "User"
+  belongs_to :buyer, class_name: "User"
   # Gem：jp_prefectureを使用して都道府県コードを取得
 
 
