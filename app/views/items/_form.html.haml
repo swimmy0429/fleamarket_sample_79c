@@ -33,11 +33,11 @@
         %br
         サイズ
         %br
-        = f.text_field :size, class: 'Form__size', placeholder: ''
+        = f.text_field :size_id, class: 'Form__size', placeholder: ''
         %br
         商品の状態
         %br
-        = f.text_field :item_condition, class: 'Form__condition', placeholder: ''
+        = f.text_field :item_condition_id, class: 'Form__condition', placeholder: ''
         %br
 
       .Item__delivery
@@ -55,14 +55,14 @@
         %br
         = f.number_field :preparation_day, class: 'Form__preparation', placeholder: ''
         %br
-        配送状況 仮で追加
-        %br
-        = f.text_field :trading_status, class: 'Form__trading', placeholder: ''
-        %br
+        -# 配送状況 仮で追加
+        -# %br
+        -# = f.text_field :trading_status, class: 'Form__trading', placeholder: ''
+        -# %br
         配送方法 仮で追加
         %br
         = f.text_field :delivery_type, class: 'Form__delivery', placeholder: ''
-
+        = f.hidden_field :seller_id, :value => 1
       .Item__price
         価格
         %br

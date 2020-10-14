@@ -12,7 +12,7 @@ class Item < ApplicationRecord
   # belongs_to_active_hash :delivery_type
   # belongs_to :brand
   belongs_to :seller, class_name: "User"
-  belongs_to :buyer, class_name: "User"
+  belongs_to :buyer, class_name: "User", optional: true
   # Gem：jp_prefectureを使用して都道府県コードを取得
 
 
@@ -23,7 +23,7 @@ class Item < ApplicationRecord
   validates :price, presence: true
   validates :shipping_charge_players, presence: true
   validates :prefecture_code, presence: true
-  validates :size, presence: true
+  # validates :size, presence: true
   validates :preparation_day, presence: true
   validates :delivery_type, presence: true
   validates :category, presence: true
