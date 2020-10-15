@@ -3,4 +3,5 @@
 = link_to '出品', new_item_path
 
 -@item_images_top.each do |item_image|
+  =image_tag("#{item_image.src}", class: '#', size: '300x300')
   =link_to "商品詳細へ移動", item_path(id: item_image.item_id)
