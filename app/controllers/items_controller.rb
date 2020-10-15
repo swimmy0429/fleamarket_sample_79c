@@ -2,14 +2,14 @@ class ItemsController < ApplicationController
   def index
 
     @items = Item.includes(:item_images).order('created_at DESC')
-    @items = Item.all.where.not(trading_status:2)
-    @item_images_top = ItemImage.all.includes(:item).group(:item_id)
+    @items = Item.where.not(trading_status:2)
+    @item_images_top = ItemImage.includes(:item).group(:item_id)
   end
 
   def show
-    @items_show = Item.all.where(id:params[:id])
+    @items_show = Item.where(id:params[:id])
     @item_images_detail = ItemImage.all.includes(:item).where(item_id:params[:id])
-    @seller = Item.find(params[:id]).seller.nickname
+    @nickname = Item.find(params[:id]).seller.nickname
   end
 
   def new

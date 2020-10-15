@@ -9,12 +9,6 @@
             -@item_images_detail.each_with_index do |item,index|
               -if index == 0
                 =image_tag("#{item.src}", class: '#', size: '560x346')
-            -# =image_tag @item_images_detail[0][:src]
-            -# =image_tag("#{@item_images_top.src}", class: '#', size: '300x300')
-            -# = image_tag "Railsの処理の流れ_0409.png",size: "560x346"
-            -# - @item.images.each do |image|
-            -#   .iamge
-            -#     = image.name
           %ul
             -@item_images_detail.each_with_index do |item,index|
               -if index == 0
@@ -36,7 +30,7 @@
           -@items_show.each do |item|
             %tr
               %th 出品者
-              %td= @seller
+              %td= @nickname
             %tr
               %th カテゴリー
               %td=item.category
