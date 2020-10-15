@@ -10,7 +10,6 @@ class ItemsController < ApplicationController
     @items_show = Item.all.where(id:params[:id])
     @item_images_detail = ItemImage.all.includes(:item).where(item_id:params[:id])
     @seller = Item.find(params[:id]).seller.nickname
-
   end
 
   def new

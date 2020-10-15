@@ -65,7 +65,7 @@
         配送方法 仮で追加
         %br
         = f.text_field :delivery_type, class: 'Form__delivery', placeholder: ''
-        = f.hidden_field :seller_id, :value => 1
+        = f.hidden_field :seller_id, :value => current_user.id
       .Item__price
         価格
         %br
