@@ -1,15 +1,21 @@
 class ItemsController < ApplicationController
   def index
-
+    @parents = Category.where(ancestry: nil)
     @items = Item.includes(:item_images).order('created_at DESC')
     @items = Item.where.not(trading_status:2)
     @item_images_top = ItemImage.includes(:item).group(:item_id)
+    
   end
 
   def show
     @items_show = Item.where(id:params[:id])
     @item_images_detail = ItemImage.all.includes(:item).where(item_id:params[:id])
     @nickname = Item.find(params[:id]).seller.nickname
+    
+    @category_id = @items_show.pluck(:category)[0]
+    @category_parent = Category.find(@category_id).parent.parent
+    @category_child = Category.find(@category_id).parent
+    @category_grandchild = Category.find(@category_id)
   end
 
   def new
