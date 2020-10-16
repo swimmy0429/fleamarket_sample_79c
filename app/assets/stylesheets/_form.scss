@@ -39,6 +39,14 @@ $section-color: rgb(245,245,245);
       border-bottom: 1px solid grey;
       margin: 0 auto;
     }
+      .Form__name {
+
+      }
+
+      .Form__introduction {
+        height: 100px;
+        width: 500px;
+      }
 
     &__detail {
       background-color: white;

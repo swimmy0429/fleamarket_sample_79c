@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
+
   # has_many :comments, dependent: :destroy
   # has_many :favorites
   has_many :item_images, dependent: :destroy
@@ -25,6 +26,8 @@ class Item < ApplicationRecord
   validates :preparation_day, presence: true
   validates :delivery_type, presence: true
   validates :category, presence: true
+
+  validates_length_of :item_images, minimum: 1
 
   enum trading_status: { waiting: 0, working: 1, completed: 2 }
 end

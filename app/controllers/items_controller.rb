@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.item_images.new
+    @address = Prefecture.all
   end
 
   def create

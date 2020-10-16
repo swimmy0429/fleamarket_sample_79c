@@ -77,5 +77,6 @@ gem 'devise-i18n-views'
 gem 'erb2haml'
 gem 'jquery-rails'
 
+gem 'jp_prefecture'
 
 
