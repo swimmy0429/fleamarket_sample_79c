@@ -15,6 +15,7 @@ class Item < ApplicationRecord
   # belongs_to :buyer, class_name: "User"
   # Gem：jp_prefectureを使用して都道府県コードを取得
 
+
   accepts_nested_attributes_for :item_images, allow_destroy: true
 
   validates :name, presence: true
