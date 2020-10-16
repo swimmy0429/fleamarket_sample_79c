@@ -15,8 +15,8 @@ console.log('change');
   // file_fieldのnameに動的なindexをつける為の配列
   let fileIndex = [1,2,3,4,5,6,7,8,9,10];
   
-  $('#image-box').on('change', '.js-file', function (e) {
-      console.log('test');
+  $('#image-box').on('change', '.js-file', function(e)  {
+    
       // fileIndexの先頭の数字を使ってinputを作る
       $('#image-box').append(buildFileField(fileIndex[0]));
       fileIndex.shift();

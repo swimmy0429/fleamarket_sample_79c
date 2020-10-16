@@ -8,11 +8,11 @@
     %br 最大10枚までアップロードできます
     = form_for @item do |f| 
       %div{id: "image-box"}
-      = f.fields_for :item_images do |item_image|
-        %div{data_index: "item_image.index", class: 'js-file_group'}
-          = item_image.file_field :src, class: 'js-file'
-          %span{class: "js-remove"}
-            削除
+        = f.fields_for :item_images do |item_image|
+          %div{data_index: "item_image.index", class: 'js-file_group'}
+            = item_image.file_field :src, class: 'js-file'
+            %span{class: "js-remove"}
+              削除
           
       .Item__name
         商品名 必須
@@ -28,7 +28,7 @@
         %br
         カテゴリー
         %br
-        = f.text_field :category, class: 'Form__category', placeholder: ''
+        = f.collection_select :category_id, @parents, :id, :name, { include_blank: "選択して下さい", selected:"" }, id: "category_form"
         %br
         ブランド
         %br

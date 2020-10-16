@@ -4,7 +4,9 @@ class Item < ApplicationRecord
   # has_many :favorites
   has_many :item_images, dependent: :destroy
   # has_one :user_evaluation
-  # belongs_to :category
+
+  # belongs_to user, foreign_key: 'user_id'
+  belongs_to :category
   # belongs_to_active_hash :size
   # belongs_to_active_hash :item_condition
   # belongs_to_active_hash :shipping_charge_players

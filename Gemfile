@@ -80,4 +80,5 @@ gem 'jquery-rails'
 
 gem 'jp_prefecture'
 
+gem 'ancestry'
 
