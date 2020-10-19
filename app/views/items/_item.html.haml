@@ -1,5 +1,4 @@
-%div{class: "content"}
-  %p.item.name
-  %p.item.price
-    - item.item_images.each do |item_iamge|
+= link_to '編集', edit_item_path(item)
+
+= link_to '削除', product_path(product), method: :delete
      

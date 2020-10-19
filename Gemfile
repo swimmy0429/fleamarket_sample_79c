@@ -73,8 +73,8 @@ group :production do
 end
 
 #ユーザー認証を扱うときに非常に便利なgem
-gem 'devise-i18n'
-gem 'devise-i18n-views'
+# gem 'devise-i18n'
+# gem 'devise-i18n-views'
 gem 'erb2haml'
 gem 'jquery-rails'
 

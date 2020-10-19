@@ -8,12 +8,22 @@
     %br 最大10枚までアップロードできます
     = form_for @item do |f| 
       %div{id: "image-box"}
+        %div{id: "previews"}
+          - if @item.persisted?
+            - @item.item_images.each_with_index do |item_image, i|
+              = image_tag "item_image.src.url", data: { index: i }, width: "100", height: '100' 
         = f.fields_for :item_images do |item_image|
-          %div{data_index: "item_image.index", class: 'js-file_group'}
+          %div{"data-index": "item_image.index", class: 'js-file_group'}
             = item_image.file_field :src, class: 'js-file'
-            %span{class: "js-remove"}
-              削除
-          
+            %span{class: "js-remove"} 削除
+          - if @item.persisted?
+            = item_image.check_box :_destroy, data:{ index: item_image.index }, class: 'hidden-destory'
+        - if @item.persisted?
+          %div{"data-index": "@item.item_images.count", class: 'js.file_group'} 
+            = file_field_tag :src, name: "item[item_images_attributes][#{@item.item_images.count}][src]", class: 'js-file'
+            .js-remove 削除
+
+
       .Item__name
         商品名 必須
         %br
@@ -27,20 +37,20 @@
         商品の詳細
         %br
         カテゴリー
-        %br
-        = f.collection_select :category_id, @parents, :id, :name, { include_blank: "選択して下さい", selected:"" }, id: "category_form"
-        %br
-        ブランド
-        %br
-        = f.text_field :brand, class: 'Form__brand', placeholder: ''
+        %div{id: "category_form"}
+        = f.collection_select :category_id, @parents, :id, :name, { include_blank: "選択して下さい", selected:"" }, {class: "js-file2"}
         %br
         サイズ
         %br
         = f.text_field :size, class: 'Form__size', placeholder: ''
         %br
+        ブランド
+        %br
+        = f.text_field :brand, class: 'Form__brand', placeholder: ''
+        %br
         商品の状態
         %br
-        = f.text_field :item_condition, class: 'Form__condition', placeholder: ''
+        = f.collection_select :item_condition_id, ItemCondition.all, :id, :name, {prompt:"選択してください"}, {class:""}
         %br
 
       .Item__delivery
@@ -48,7 +58,7 @@
         %br
         配送料の負担
         %br
-        = f.text_field :shipping_charge_players, class: 'Form__shipping', placeholder: ''
+        = f.collection_select :shipping_charge_players, ShippingChargePlayers.all, :id, :name, {prompt:"選択してください"}, {class:""}
         %br
         配送元の地域
         %br
@@ -56,7 +66,7 @@
         %br
         配送までの日数
         %br
-        = f.number_field :preparation_day, class: 'Form__preparation', placeholder: ''
+        = f.collection_select :preparation_day, PreparationDay.all, :id, :name, {prompt:"選択してください"}, {class:""}
         %br
         配送状況 仮で追加
         %br

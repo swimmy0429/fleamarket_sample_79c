@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
-  def index
 
+  before_action :set_parents, only: [:new, :create]
+
+  def index
     @items = Item.includes(:item_images).order('created_at DESC')
     @items = Item.all.where.not(trading_status:2)
     @item_images_top = ItemImage.all.includes(:item).group(:item_id)
@@ -22,10 +24,11 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @item = Item.new(item_params)
   end
 
   def update
-    if @itme.update(item_params)
+    if @item.update(item_params)
       redirect_to root_path
     else
       render :edit
@@ -33,7 +36,24 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    @product.destroy
+    redirect_to root_path
   end
+
+  def set_parents
+    @parents = Category.where(ancestry: nil)
+  end
+
+  def search
+    respond_to do |format|
+      format.html
+      format.json do
+        #子カテゴリーを探して変数@childrensに代入します！
+        @childrens = Category.find(params[:parent_id]).children
+      end
+    end
+  end
+
 
   private
 

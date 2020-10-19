@@ -1,4 +1,3 @@
-
 # 親階層
 lady                         = Category.create(name: "レディース")
 men                          = Category.create(name: "メンズ")
