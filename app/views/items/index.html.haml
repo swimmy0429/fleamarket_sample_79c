@@ -1,6 +1,6 @@
 %h1 Items#index
 %p Find me in app/views/items/index.html.erb
-
+= link_to "ログイン", user_session_path
 = link_to '出品', new_item_path
 
 -#-@item_images.each do |item|
@@ -10,3 +10,8 @@
   -# = render "top-main"
   -#= render "top-footer"
   -#= render "top-camera"
+
+  -@item_images_top.each do |item_image|
+    =image_tag("#{item_image.src}", class: '#', size: '80x80')
+    =link_to "商品詳細へ移動", item_path(id: item_image.item_id)
+  = link_to "ログアウト", destroy_user_session_path, method: :delete
