@@ -6,12 +6,23 @@ class Item < ApplicationRecord
   accepts_nested_attributes_for :item_images, allow_destroy: true
 
   # has_one :user_evaluation
+  # belongs_to :category
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :size
+  belongs_to_active_hash :item_condition
+  # belongs_to_active_hash :shipping_charge_players
+  # belongs_to_active_hash :preparation_day
+  # belongs_to_active_hash :delivery_type
+  # belongs_to :brand
+  belongs_to :seller, class_name: "User"
+  belongs_to :buyer, class_name: "User", optional: true
+  # Gem：jp_prefectureを使用して都道府県コードを取得
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   # Gem：jp_prefectureを使用して都道府県コードを取得
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :item_condition
- 
+
   belongs_to :category
   belongs_to_active_hash :shipping_charge_players
   belongs_to_active_hash :preparation_day
@@ -28,8 +39,8 @@ class Item < ApplicationRecord
   # belongs_to_active_hash :size
   # belongs_to :brand
   # validates :delivery_type, presence: true
-  
-  
+
+
   validates :name, presence: true, length: { maximum: 40 }
   validates :introduction, presence: true, length: { maximum: 1000 }
   validates :category, presence: true
@@ -39,9 +50,9 @@ class Item < ApplicationRecord
   validates :item_condition_id, presence: true
   validates :size, presence: true
   validates :preparation_day_id, presence: true
- 
 
-  validates_length_of :item_images, minimum: 1  
+
+  validates_length_of :item_images, minimum: 1
 
   # enum trading_status: { waiting: 0, working: 1, completed: 2 }
 end

@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2020_10_23_123451) do
     t.integer "preparation_day_id", null: false
     t.integer "delivery_type"
     t.integer "trading_status", default: 0, null: false
+    t.datetime "deal_closed_date"
     t.bigint "buyer_id"
     t.string "brand"
     t.string "category"

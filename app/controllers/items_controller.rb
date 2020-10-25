@@ -7,8 +7,14 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.includes(:item_images).order('created_at DESC')
-    @items = Item.all.where.not(trading_status:2)
-    @item_images_top = ItemImage.all.includes(:item).group(:item_id)
+    @items = Item.where.not(trading_status:2)
+    @item_images_top = ItemImage.includes(:item).group(:item_id)
+  end
+
+  def show
+    @items_show = Item.where(id:params[:id])
+    @item_images_detail = ItemImage.all.includes(:item).where(item_id:params[:id])
+    @nickname = Item.find(params[:id]).seller.nickname
   end
 
   def new
@@ -20,10 +26,10 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to root_path      
+      redirect_to root_path
     else
       render :new
- 
+
     end
   end
 
@@ -82,6 +88,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  
-end
 
+    #@items = Item.all.where.not(trading_status:2)
+    #@item_images_top = ItemImage.all.includes(:item).group(:item_id)
+end
