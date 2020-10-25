@@ -19,17 +19,16 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    # binding.pry
     if @item.save
       redirect_to root_path      
     else
       render :new
-      # redirect_to new_item_path, data: { turbolinks: false }
+ 
     end
   end
 
   def edit
-    @item = Item.new(item_params)
+    @item = Item.find(params[:id])
   end
 
   def update
@@ -41,7 +40,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @product.destroy
+    @item.destroy
     redirect_to root_path
   end
 
@@ -83,16 +82,6 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  # def set_current_user_items
-  #   if user_signed_in? 
-  #     @items = current_user.products.includes(:seller,:buyer,:item_images)
-  #   else
-  #     redirect_to new_user_session_path
-  #   end
-  # end
   
-  # def set_user
-  #   @user = User.find(current_user.id)
-  # end
 end
 

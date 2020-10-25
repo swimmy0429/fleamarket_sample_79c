@@ -18,11 +18,12 @@ $section-color: rgb(245,245,245);
 }
 
 .Body {
- background-color: $section-color;
- height: 150vh;
- width: 100vw;
- display: flex;
- flex-direction: column;
+  position: relative;
+  min-height: 100%;
+  color: rgb(51, 51, 51);
+  background-color: rgb(245, 245, 245);
+  font-family: Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
+  font-size: 14px;
 
   .Item {
     background-color: white;
