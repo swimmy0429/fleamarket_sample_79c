@@ -33,13 +33,17 @@ $section-color: rgb(245,245,245);
     display: flex;
     flex-direction: column;
 
-    #image-box {
+    .Form_camera {
 
     }
 
       #previews {
         display: flex;
       }
+
+        // .js-file {
+        //   display: none;
+        // }
 
     &__name {
       background-color: white;

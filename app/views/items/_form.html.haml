@@ -19,7 +19,10 @@
               = image_tag "item_image.src.url", data: { index: i }, width: "100", height: '100'
         = f.fields_for :item_images do |item_image|
           %div{"data-index": item_image.index, class: 'js-file_group'}
+            = item_image.label :src, class: "camera" do
+              %i.fa.fa-image
             = item_image.file_field :src, class: 'js-file'
+            
             -# %span{class: "js-remove", style: "display:none"}
             -# %div 削除
           - if @item.persisted?
@@ -111,11 +114,12 @@
         %ul
           - @item.errors.full_messages_for(:price).each do |message|
             %li= message
-        %i.fa.fa-image
-          = f.submit 'Send', class: 'Form__submit'
+        .Item__price__send
+          = f.submit '出品する', class: 'Form__submit'
 
 
 .Bottom
   .Bottom__icon
     %span.image
       = image_tag 'logo.png', size: '250x100', class: 'image'
+
