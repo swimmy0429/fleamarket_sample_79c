@@ -10,31 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_12_060429) do
+ActiveRecord::Schema.define(version: 2020_10_14_090414) do
 
-  create_table "item_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "url", null: false
+  create_table "item_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "url", limit: 255
+    t.string "src", limit: 255
     t.bigint "item_id", null: false
     t.index ["item_id"], name: "index_item_images_on_item_id"
   end
 
-  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
+  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "name", limit: 255, null: false
     t.text "introduction", null: false
     t.integer "price", null: false
-    t.integer "item_condition", null: false
     t.integer "shipping_charge_players", null: false
     t.integer "prefecture_code", null: false
-    t.integer "size", null: false
     t.integer "preparation_day", null: false
     t.integer "delivery_type", null: false
     t.integer "trading_status", default: 0, null: false
     t.datetime "deal_closed_date"
-    t.string "brand"
-    t.string "category"
+    t.string "brand", limit: 255
+    t.string "category", limit: 255
+    t.integer "size_id"
+    t.integer "item_condition_id"
+    t.bigint "seller_id", null: false
+    t.integer "buyer_id"
+    t.index ["seller_id"], name: "index_items_on_seller_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "nickname", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -55,4 +59,5 @@ ActiveRecord::Schema.define(version: 2020_10_12_060429) do
   end
 
   add_foreign_key "item_images", "items"
+  add_foreign_key "items", "users", column: "seller_id"
 end
