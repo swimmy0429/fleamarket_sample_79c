@@ -4,14 +4,15 @@ class Item < ApplicationRecord
   has_many :item_images, dependent: :destroy
   # has_one :user_evaluation
   # belongs_to :category
-  # belongs_to_active_hash :size
-  # belongs_to_active_hash :item_condition
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :size
+  belongs_to_active_hash :item_condition
   # belongs_to_active_hash :shipping_charge_players
   # belongs_to_active_hash :preparation_day
   # belongs_to_active_hash :delivery_type
   # belongs_to :brand
-  # belongs_to :seller, class_name: "User"
-  # belongs_to :buyer, class_name: "User"
+  belongs_to :seller, class_name: "User"
+  belongs_to :buyer, class_name: "User", optional: true
   # Gem：jp_prefectureを使用して都道府県コードを取得
 
 
@@ -22,7 +23,7 @@ class Item < ApplicationRecord
   validates :price, presence: true
   validates :shipping_charge_players, presence: true
   validates :prefecture_code, presence: true
-  validates :size, presence: true
+  # validates :size, presence: true
   validates :preparation_day, presence: true
   validates :delivery_type, presence: true
   validates :category, presence: true
