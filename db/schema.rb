@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_12_060429) do
+ActiveRecord::Schema.define(version: 2020_10_23_123451) do
+
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
+  end
 
   create_table "item_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "url"
@@ -23,16 +36,21 @@ ActiveRecord::Schema.define(version: 2020_10_12_060429) do
     t.string "name", null: false
     t.text "introduction", null: false
     t.integer "price", null: false
-    t.integer "item_condition_id"
-    t.integer "shipping_charge_players", null: false
+    t.integer "shipping_charge_players_id", null: false
     t.integer "prefecture_code", null: false
-    t.integer "size_id"
-    t.integer "preparation_day", null: false
-    t.integer "delivery_type", null: false
-    t.integer "buyer_id"
+    t.integer "size", null: false
+    t.integer "preparation_day_id", null: false
+    t.integer "delivery_type"
+    t.integer "trading_status", default: 0, null: false
     t.datetime "deal_closed_date"
+    t.bigint "buyer_id"
     t.string "brand"
     t.string "category"
+    t.integer "item_condition_id"
+    t.integer "auction"
+    t.integer "category_id"
+    t.integer "seller_id"
+    t.index ["buyer_id"], name: "index_items_on_buyer_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
