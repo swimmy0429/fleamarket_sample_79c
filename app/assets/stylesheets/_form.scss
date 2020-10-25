@@ -18,19 +18,28 @@ $section-color: rgb(245,245,245);
 }
 
 .Body {
- background-color: $section-color;
- height: 150vh;
- width: 100vw;
- display: flex;
- flex-direction: column;
+  position: relative;
+  min-height: 100%;
+  color: rgb(51, 51, 51);
+  background-color: rgb(245, 245, 245);
+  font-family: Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
+  font-size: 14px;
 
   .Item {
     background-color: white;
-    height: 200px;
+    height: 500px;
     width: 700px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+
+    #image-box {
+
+    }
+
+      #previews {
+        display: flex;
+      }
 
     &__name {
       background-color: white;
@@ -39,6 +48,14 @@ $section-color: rgb(245,245,245);
       border-bottom: 1px solid grey;
       margin: 0 auto;
     }
+      .Form__name {
+
+      }
+
+      .Form__introduction {
+        height: 100px;
+        width: 500px;
+      }
 
     &__detail {
       background-color: white;
