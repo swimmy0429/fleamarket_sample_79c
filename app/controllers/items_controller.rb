@@ -6,9 +6,9 @@ class ItemsController < ApplicationController
   before_action :set_user,only:[:i_transaction,:i_exhibiting,:i_soldout]
 
   def index
-    @items = Item.includes(:item_images).order('created_at DESC')
-    @items = Item.where.not(trading_status:2)
+    @items = Item.all
     @item_images_top = ItemImage.includes(:item).group(:item_id)
+    @items_last_five = @items.last(5)
   end
 
   def show
@@ -81,7 +81,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :introduction, :price, :item_condition_id, :shipping_charge_players_id, :prefecture_code, :size, :preparation_day_id, :category_id, :brand, :delivery_type, item_images_attributes: [:src, :_destroy, :id]).merge(seller_id: current_user.id)
+    params.require(:item).permit(:name, :introduction, :price, :item_condition_id, :shipping_charge_players_id, :prefecture_code, :size_id, :preparation_day_id, :category_id, :brand, :delivery_type, item_images_attributes: [:src, :_destroy, :id]).merge(seller_id: current_user.id)
   end
 
   def set_item

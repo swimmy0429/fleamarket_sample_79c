@@ -5,11 +5,11 @@
 
 -# -@item_images.each do |item|
 -#   =item.url
--# .wrapper
--#   = render "top-header"
--#   = render "top-main"
--#   = render "top-footer"
--#   = render "top-camera"
+.wrapper
+  -# = render "top-header"
+  = render "top-main"
+  -# = render "top-footer"
+  -# = render "top-camera"
 
   -@item_images_top.each do |item_image|
     =image_tag("#{item_image.src}", class: '#', size: '80x80')
