@@ -79,7 +79,7 @@
         =link_to "#" ,class: "text" do
           %h3.title 新規投稿商品
       .main__pic5__box__lists
-        -@item_images_top.each_with_index do |item_image,index|
+        -@item_images_top_last_five.each_with_index do |item_image,index|
           -if index <= 5
             .main__pic5__box__lists__list
               =link_to "#" do
