@@ -9,5 +9,7 @@
     = javascript_include_tag 'application'
     -# %script{:src => "https://code.jquery.com/jquery-1.11.3.min.js", :type => "text/javascript"}
   %body
+    = render "items/top-header"
     = yield
-    
+    = render "items/top-footer"
+    = render "items/top-camera"

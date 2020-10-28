@@ -53,13 +53,13 @@
               %td=item.item_condition_id
             %tr
               %th 配送料の負担
-              %td=item.shipping_charge_players
+              %td=item.shipping_charge_players_id
             %tr
               %th 配送元の地域
               %td=item.prefecture_code
             %tr
               %th 発送日の目安
-              %td=item.preparation_day
+              %td=item.preparation_day_id
       -if current_user.present? && current_user.id == @items_show[0][:seller_id] then
         =link_to edit_item_path do
           %button.purchese__btn 編集

@@ -9,6 +9,14 @@ Rails.application.routes.draw do
       get 'parent'
       get 'child'
       get 'grandchild'
+
+  resources :items, except: :show
+
+  #ajax用のルーティングを定義
+  resources :items do
+    collection do
+      get :search
+
     end
   end
 
