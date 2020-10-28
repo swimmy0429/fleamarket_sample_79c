@@ -1,7 +1,14 @@
+.pankuzu
+  - if @category.root?
+    - breadcrumb :parent_category
+  - elsif @category.has_children?
+    - breadcrumb :child_category
+  - else
+    - breadcrumb :grandchild_category
+  = render "items/breadcrumbs"
 .category_main
   = "#{@category.name}の商品一覧"
   - @items.each do |item|
-    - category = Category.find(item.category)
-    = category.name
+    - category = Category.find(item.category_id)
     = item.name
     = item.price
