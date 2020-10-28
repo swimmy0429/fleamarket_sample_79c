@@ -1,6 +1,7 @@
-= "#{@category.name}の商品一覧"
-- @items.each do |item|
-  - category = Category.find(item.category)
-  = category.name
-  = item.name
-  = item.price
+.category_main
+  = "#{@category.name}の商品一覧"
+  - @items.each do |item|
+    - category = Category.find(item.category)
+    = category.name
+    = item.name
+    = item.price

@@ -4,6 +4,13 @@
 
 .category__search{
   text-decoration: none;
+  color: #333333;
+  &:hover{
+    color: skyblue;
+  }
+}
+.category_main{
+  height: 560px;
 }
 
 .category__icon,.brands__icon{
@@ -31,6 +38,9 @@
   font-size: 11px;
   letter-spacing: 2px;
   text-decoration: none;
+  &:hover{
+    color: skyblue;
+  }
   // @include hover__color(black, lightgray, 1);
 }
 
@@ -49,6 +59,9 @@
         padding: 10px 20px;
         font-size: 13px;
         letter-spacing: 2px;
+        &:hover{
+          color: skyblue;
+        }
         // @include hover__color(white, skyblue, 1);
       }
       li {
