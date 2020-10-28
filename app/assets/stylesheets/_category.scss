@@ -2,16 +2,24 @@
   display: none;
 }
 
+.category__search{
+  text-decoration: none;
+}
+
 .category__icon,.brands__icon{
-  
+  text-decoration: none;
 }
 
 // カテゴリーの大枠の要素の共通項
 .category__list{
   position: absolute;
-  height: 560px;
+  height: 820px;
   background-color: white;
   border-right: 1px solid whitesmoke;
+}
+
+.category__parent--name{
+  text-decoration: none;
 }
 
 // 子要素はカテゴリー名の共通項
@@ -22,14 +30,17 @@
   padding: 3px 15px;
   font-size: 11px;
   letter-spacing: 2px;
+  text-decoration: none;
   // @include hover__color(black, lightgray, 1);
 }
 
 .categories{
+  z-index: 1001;
+  position: relative;
   padding-bottom: 10px;
   &:hover{
     .category__parent{
-      top: 100px;
+      top: 40px;
       display: block;
       &--name{
         width: 100%;
@@ -46,14 +57,14 @@
             width: 100%;
             display: block;
             top: 0;
-            left: 221px;
+            left: 179px;
             li {
               &:hover{
                 .category__grandchild{
-                  width: 300px;
+                  width: 200px;
                   display: block;
                   top: 0;
-                  left: 220px;
+                  left: 178px;
                 }
               }
             }

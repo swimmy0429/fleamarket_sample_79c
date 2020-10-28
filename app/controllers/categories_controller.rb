@@ -21,6 +21,7 @@ class CategoriesController < ApplicationController
 
   def find_category
     @category = Category.find(params[:id])
+    @parents = Category.where(ancestry: nil)
   end
 
   def category_present(category_item)

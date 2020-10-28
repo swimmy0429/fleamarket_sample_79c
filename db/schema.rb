@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_26_141236) do
+ActiveRecord::Schema.define(version: 2020_10_28_060348) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2020_10_26_141236) do
   end
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "ancestry"
@@ -36,17 +36,20 @@ ActiveRecord::Schema.define(version: 2020_10_26_141236) do
     t.string "name", null: false
     t.text "introduction", null: false
     t.integer "price", null: false
+    t.integer "item_condition_id"
     t.integer "shipping_charge_players_id", null: false
     t.integer "prefecture_code", null: false
-    t.integer "size_id", null: false
-    t.integer "preparation_day_id", null: false
+    t.integer "size_id"
     t.integer "delivery_type", null: false
-    t.string "brand"
-    t.string "category_id"
+    t.integer "trading_status", default: 0, null: false
+    t.bigint "seller_id", null: false
     t.integer "buyer_id"
-    t.integer "item_condition_id"
+    t.datetime "deal_closed_date"
+    t.string "brand"
     t.integer "auction"
-    t.integer "seller_id"
+    t.integer "category_id"
+    t.integer "preparation_day_id", null: false
+    t.index ["seller_id"], name: "fk_rails_62a5ac8242"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -70,4 +73,5 @@ ActiveRecord::Schema.define(version: 2020_10_26_141236) do
   end
 
   add_foreign_key "item_images", "items"
+  add_foreign_key "items", "users", column: "seller_id"
 end

@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_action :set_parents, only: [:new, :create]
+  before_action :set_parents, only: [:index, :new, :create]
 
   before_action :set_current_user_products,only:[:i_transaction,:i_exhibiting,:i_soldout]
   before_action :set_user,only:[:i_transaction,:i_exhibiting,:i_soldout]
@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
     @item_images_top = ItemImage.includes(:item).group(:item_id)
     @item_images_top_last_five = @item_images_top.last(5)
     @items_last_five = @items.last(5)
+
   end
 
   def show
