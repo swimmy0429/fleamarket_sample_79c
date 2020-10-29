@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
-  before_action :set_parents, only: [:index, :new, :create]
-
+  before_action :set_parents, only: [:index, :new, :create,:show]
+  before_action :set_category, only: [:show]
   before_action :set_current_user_products,only:[:i_transaction,:i_exhibiting,:i_soldout]
   before_action :set_user,only:[:i_transaction,:i_exhibiting,:i_soldout]
 
@@ -18,10 +18,11 @@ class ItemsController < ApplicationController
     @item_images_detail = ItemImage.all.includes(:item).where(item_id:params[:id])
     @nickname = Item.find(params[:id]).seller.nickname
 
-    @category_id = @items_show.pluck(:category)[0]
+    @category_id = @items_show.pluck(:category_id)[0]
     @category_parent = Category.find(@category_id).parent.parent
     @category_child = Category.find(@category_id).parent
     @category_grandchild = Category.find(@category_id)
+    # binding.pry
   end
 
   def new
@@ -59,6 +60,10 @@ class ItemsController < ApplicationController
 
   def set_parents
     @parents = Category.where(ancestry: nil)
+  end
+
+  def set_category
+    @category = Category.find(params[:id])
   end
 
   def search
