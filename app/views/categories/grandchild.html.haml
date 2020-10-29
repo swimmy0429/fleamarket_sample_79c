@@ -7,9 +7,22 @@
     - breadcrumb :grandchild_category
   = render "items/breadcrumbs"
 .category_main
-  = "#{@category.name}の商品一覧"
-  - @items.each do |item|
-    - category = Category.find(item.category)
-    = category.name
-    = item.name
-    = item.price
+  .main__pic5__box__lists
+    -@item_images_top.each_with_index do |item_image,index|
+      .main__pic5__box__lists__list
+        -if @items[index].present?
+          -if @items[index][:buyer_id].present?
+            .main__pic5__box__lists__list_photo__sold
+              .main__pic5__box__lists__list_photo__sold__inner
+                SOLD
+          =link_to image_tag("#{item_image.src}",width:"220px",height:"150px"),item_path(id: item_image.item_id)
+          .main__pic5__box__lists__list__name
+            %h3.text 
+              =@items[index][:name]
+            %h4.data
+              %ul.ul
+                %li.li 
+                  =@items[index][:price]
+                %li
+                = icon('fas', 'star')
+              %p.zei (税込)

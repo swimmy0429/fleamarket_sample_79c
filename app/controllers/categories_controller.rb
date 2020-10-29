@@ -4,6 +4,7 @@ class CategoriesController < ApplicationController
   def parent
     grandchildren_id = @category.indirect_ids 
     find_category_item(grandchildren_id)
+    # binding.pry
   end
 
   def child
@@ -13,13 +14,15 @@ class CategoriesController < ApplicationController
 
   def grandchild
     @items = []
-    category_item = Item.includes(:images).where(category: params[:id])
+    category_item = Item.includes(:item_images).where(category: params[:id])
     category_present(category_item)
   end
 
   private
 
   def find_category
+    @items = Item.all
+    @item_images_top = ItemImage.includes(:item).group(:item_id)
     @category = Category.find(params[:id])
     @parents = Category.where(ancestry: nil)
   end
