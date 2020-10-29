@@ -16,7 +16,9 @@
 .category__icon,.brands__icon{
   text-decoration: none;
 }
-
+.serect_field{
+  width: 200px;
+}
 // カテゴリーの大枠の要素の共通項
 .category__list{
   position: absolute;
@@ -48,6 +50,7 @@
   z-index: 1001;
   position: relative;
   padding-bottom: 10px;
+  width: auto;
   &:hover{
     .category__parent{
       top: 40px;

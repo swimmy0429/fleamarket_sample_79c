@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2020_10_21_105927) do
     t.text "introduction", null: false
     t.integer "price", null: false
     t.integer "item_condition_id"
-    t.integer "shipping_charge_players", null: false
+    t.integer "shipping_charge_players_id", null: false
     t.integer "prefecture_code", null: false
     t.integer "size_id"
     t.integer "preparation_day_id", null: false

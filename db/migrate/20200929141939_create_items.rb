@@ -6,7 +6,7 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.integer :price,null: false
       # t.references :brand,foreign_key: true
       t.integer :item_condition_id
-      t.integer :shipping_charge_players,null: false
+      t.integer :shipping_charge_players_id,null: false
       t.integer :prefecture_code,null: false
       t.integer :size_id
       t.integer :preparation_day_id,null: false
