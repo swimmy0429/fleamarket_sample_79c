@@ -1,3 +1,11 @@
+.pankuzu
+  - if @category.root?
+    - breadcrumb :parent_category
+  - elsif @category.has_children?
+    - breadcrumb :child_category
+  - else
+    - breadcrumb :grandchild_category
+  = render "items/breadcrumbs"
 %div.main
   %div.showMain
     %div.item
@@ -33,7 +41,15 @@
               %td= @nickname
             %tr
               %th カテゴリー
-              %td=item.category
+              - if [46, 74, 134, 142, 147, 150, 158].include?(@category_id)
+                %td
+                  = link_to "#{@category_child.name}","#"
+                  %br= link_to "#{@category_grandchild.name}","#" 
+              -else
+                %td
+                  = link_to "#{@category_parent.name}","#"
+                  %br= link_to "#{@category_child.name}","#"
+                  = link_to "#{@category_grandchild.name}","#"
             -# %tr
             -#   %th ブランド
             -#   %td aaa
@@ -45,13 +61,13 @@
               %td=item.item_condition_id
             %tr
               %th 配送料の負担
-              %td=item.shipping_charge_players
+              %td=item.shipping_charge_players_id
             %tr
               %th 配送元の地域
               %td=item.prefecture_code
             %tr
               %th 発送日の目安
-              %td=item.preparation_day
+              %td=item.preparation_day_id
       -if current_user.present? && current_user.id == @items_show[0][:seller_id] then
         =link_to edit_item_path do
           %button.purchese__btn 編集

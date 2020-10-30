@@ -1,20 +1,26 @@
 class ItemsController < ApplicationController
 
-  before_action :set_parents, only: [:new, :create]
-
+  before_action :set_parents, only: [:index, :new, :create,:show]
+  before_action :set_category, only: [:show]
   before_action :set_current_user_products,only:[:i_transaction,:i_exhibiting,:i_soldout]
   before_action :set_user,only:[:i_transaction,:i_exhibiting,:i_soldout]
 
   def index
-    @items = Item.includes(:item_images).order('created_at DESC')
-    @items = Item.where.not(trading_status:2)
+    @items = Item.all
     @item_images_top = ItemImage.includes(:item).group(:item_id)
+    @item_images_top_last_five = @item_images_top.last(5)
+    @items_last_five = @items.last(5)
   end
 
   def show
     @items_show = Item.where(id:params[:id])
     @item_images_detail = ItemImage.all.includes(:item).where(item_id:params[:id])
     @nickname = Item.find(params[:id]).seller.nickname
+
+    @category_id = @items_show.pluck(:category_id)[0]
+    @category_parent = Category.find(@category_id).parent.parent
+    @category_child = Category.find(@category_id).parent
+    @category_grandchild = Category.find(@category_id)
   end
 
   def new
@@ -54,6 +60,18 @@ class ItemsController < ApplicationController
     @parents = Category.where(ancestry: nil)
   end
 
+  def get_category_children
+    @category_children = Category.find("#{params[:parent_id]}").children
+  end
+
+  def get_category_grandchildren
+    @category_grandchildren = Category.find("#{params[:child_id]}").children
+  end
+
+  def set_category
+    @category = Category.find(params[:id])
+  end
+
   def search
     respond_to do |format|
       format.html
@@ -81,14 +99,11 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :introduction, :price, :item_condition_id, :shipping_charge_players_id, :prefecture_code, :size, :preparation_day_id, :category_id, :brand, :delivery_type, item_images_attributes: [:src, :_destroy, :id]).merge(seller_id: current_user.id)
+    params.require(:item).permit(:name, :introduction, :price, :item_condition_id, :shipping_charge_players_id, :prefecture_code, :size_id,:seller_id, :preparation_day_id, :category_id, :brand, :delivery_type, item_images_attributes: [:src, :_destroy, :id]).merge(seller_id: 1)
   end
 
   def set_item
     @item = Item.find(params[:id])
   end
 
-
-    #@items = Item.all.where.not(trading_status:2)
-    #@item_images_top = ItemImage.all.includes(:item).group(:item_id)
 end
