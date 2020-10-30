@@ -1,23 +1,6 @@
 $section-color: rgb(245,245,245);
 
-.Upper {
-  background-color: $section-color;
-  height: 128px;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-
-  &__icon {
-    height: 49px;
-    width: 185px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-.Body {
+.Item {
   position: relative;
   min-height: 100%;
   color: rgb(51, 51, 51);
@@ -25,25 +8,42 @@ $section-color: rgb(245,245,245);
   font-family: Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
   font-size: 14px;
 
-  .Item {
+  &__box {
     background-color: white;
-    height: 500px;
+    height: 416px;
     width: 700px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
 
-    .Form_camera {
-
+    &__filed {
+      display: flex;
+      flex-wrap: wrap;
     }
 
-      #previews {
-        display: flex;
-      }
+      .image-box {
+        height: 150px;
+        // width: 100%;
+        }
 
-        // .js-file {
-        //   display: none;
-        // }
+        #previews {
+          display: flex;
+          flex-wrap: wrap;
+          height: 190px
+        }
+
+          .js-file {
+            display: none;
+          }
+      
+    // .image-box__under {
+    //   height: 150px;
+    //   width: 100%;
+    // }
+    //   #previews__under {
+    //     display: flex;
+    //     height: 190px
+    //   }
 
     &__name {
       background-color: white;

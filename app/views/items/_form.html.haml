@@ -1,37 +1,32 @@
-.Upper
-  .Upper__icon
-    %span.image
-      = image_tag 'logo.png', size: '250x100', class: 'image'
-.Body
-  .Item
+
+.Item
+  .Item__box
+    .Item__box__field
     出品画像
     %br 最大10枚までアップロードできます
-    = form_for @item do |f|
+    = form_with model: @item do |f|
       - if @item.errors.any?
-        .Item__errors
+        .Item__box__errors
           %ul
             - @item.errors.full_messages_for(:item_image).each do |message|
               %li= message
-      %div{id: "image-box"}
-        %div{id: "previews"}
-          - if @item.persisted?
-            - @item.item_images.each_with_index do |item_image, i|
-              = image_tag "item_image.src.url", data: { index: i }, width: "100", height: '100'
-        = f.fields_for :item_images do |item_image|
+    
+      %div#image-box
+        %div#previews
+          %label.item_image{for: "item_item_images_attributes_#{@item.item_images.length-1}_src"}
+            %i.fa.fa-image
+              - if @item.persisted?
+                - @item.item_images.each_with_index do |item_image, i|
+                  = image_tag "item_image.src.url", data: { index: i }, width: "112", height: '112'
+        = f.fields_for :item_images do |item_image| 
           %div{"data-index": item_image.index, class: 'js-file_group'}
-            = item_image.label :src, class: "camera" do
-              %i.fa.fa-image
-            = item_image.file_field :src, class: 'js-file'
-            
-            -# %span{class: "js-remove", style: "display:none"}
-            -# %div 削除
+            = item_image.file_field :src, class: 'js-file'   
           - if @item.persisted?
             = item_image.check_box :_destroy, data:{ index: item_image.index }, class: 'hidden-destory'
-        - if @item.persisted?
-          %div{"data-index": "@item.item_images.count", class: 'js.file_group'}
-            = file_field_tag :src, name: "item[item_images_attributes][#{@item.item_images.count}][src]", class: 'js-file'
-            .js-remove 削除
-
+          - if @item.persisted?
+            %div{"data-index": @item.item_images.count, class: 'js.file_group'}
+              = file_field_tag :src, name: "item[item_images_attributes][#{@item.item_images.count}][src]", class: 'js-file'
+              .js-remove 削除
 
       .Item__name
         商品名 必須
@@ -56,28 +51,28 @@
         %div{id: "category_form"}
         = f.collection_select :category_id, @parents, :id, :name, { include_blank: "選択して下さい", selected:"" }, {class: "js-file2"}
         %ul
-          - @item.errors.full_messages_for(:category).each do |message|
+          - @item.errors.full_messages_for(:category_id).each do |message|
             %li= message
         %br
-        -# サイズ
-        -# %br
-        -# = f.text_field :size, class: 'Form__size', placeholder: ''
-        -# %ul
-        -#   - @item.errors.full_messages_for(:size).each do |message|
-        -#     %li= message
-        -# %br
-        -# ブランド
-        -# %br
-        -# = f.text_field :brand, class: 'Form__brand', placeholder: ''
-        -# %ul
-        -#   - @item.errors.full_messages_for(:brand).each do |message|
-        -#     %li= message
+        サイズ
+        %br
+        = f.text_field :size_id, class: 'Form__size', placeholder: ''
+        %ul
+          - @item.errors.full_messages_for(:size_id).each do |message|
+            %li= message
+        %br
+        ブランド
+        %br
+        = f.text_field :brand, class: 'Form__brand', placeholder: ''
+        %ul
+          - @item.errors.full_messages_for(:brand).each do |message|
+            %li= message
         %br
         商品の状態
         %br
         = f.collection_select :item_condition_id, ItemCondition.all, :id, :name, {prompt:"選択してください"}, {class:""}
         %ul
-          - @item.errors.full_messages_for(:item_condition).each do |message|
+          - @item.errors.full_messages_for(:item_condition_id).each do |message|
             %li= message
 
       .Item__delivery
@@ -87,7 +82,7 @@
         %br
         = f.collection_select :shipping_charge_players_id, ShippingChargePlayers.all, :id, :name, {prompt:"選択してください"}, {class:""}
         %ul
-          - @item.errors.full_messages_for(:shipping_charge_players).each do |message|
+          - @item.errors.full_messages_for(:shipping_charge_players_id).each do |message|
             %li= message
         %br
         配送元の地域
@@ -99,12 +94,12 @@
         %br
         配送までの日数
         %br
-        = f.number_field :preparation_day, class: 'Form__preparation', placeholder: ''
+        = f.number_field :preparation_day_id, class: 'Form__preparation', placeholder: ''
         %br
         配送方法 仮で追加
         %br
-        = f.text_field :delivery_type, class: 'Form__delivery', placeholder: ''
-        = f.hidden_field :seller_id, :value => current_user.id
+        = f.text_field :delivery_type_id, class: 'Form__delivery', placeholder: ''
+        -# = f.hidden_field :seller_id, :value => current_user.id
       .Item__price
         価格
         %br
@@ -113,13 +108,7 @@
         = f.number_field :price, class: 'Form__price', placeholder: ''
         %ul
           - @item.errors.full_messages_for(:price).each do |message|
-            %li= message
+            %li= message  
         .Item__price__send
           = f.submit '出品する', class: 'Form__submit'
-
-
-.Bottom
-  .Bottom__icon
-    %span.image
-      = image_tag 'logo.png', size: '250x100', class: 'image'
 

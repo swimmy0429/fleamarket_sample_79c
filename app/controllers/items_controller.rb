@@ -81,7 +81,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :introduction, :price, :item_condition_id, :shipping_charge_players_id, :prefecture_code, :size, :preparation_day_id, :category_id, :brand, :delivery_type, item_images_attributes: [:src, :_destroy, :id]).merge(seller_id: current_user.id)
+    params.require(:item).permit(:name, :introduction, :price, :item_condition_id, :shipping_charge_players_id, :prefecture_code, :size_id, :preparation_day_id, :category_id, :brand, :delivery_type_id, item_images_attributes: [:src, :_destroy, :id])
   end
 
   def set_item
@@ -92,3 +92,5 @@ class ItemsController < ApplicationController
     #@items = Item.all.where.not(trading_status:2)
     #@item_images_top = ItemImage.all.includes(:item).group(:item_id)
 end
+
+# .merge(seller_id: current_user.id)

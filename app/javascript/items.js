@@ -1,5 +1,6 @@
+console.log(1);
 $(document).on('turbolinks:load', ()=> {
-// console.log('change');
+  console.log('change');
 
   // 画像用のinputを生成する関数
   const buildFileField = (num)=> {
@@ -31,9 +32,9 @@ $(document).on('turbolinks:load', ()=> {
   
 
   $('.hidden-destroy').hide();
-
   $('#image-box').on('change', '.js-file', function(e)  {
     const targetIndex = $(this).parent().data('index');
+    console.log(2);
     // ファイルのブラウザ上でのURLを取得する
     const file = e.target.files[0];
     const blobUrl = window.URL.createObjectURL(file);
@@ -41,16 +42,22 @@ $(document).on('turbolinks:load', ()=> {
     if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
       img.setAttribute('src', blobUrl);
     } else {  // 新規画像追加の処理
+      console.log(3);
+      //プレビュー上段、下段の条件分岐
       $('#previews').append(buildImg(targetIndex, blobUrl));
-      
        // 画像投稿枚数10枚まで
-      if($(".js-file_group").length >= 10 ){
+      if($(".js-file_group").length >= 11){
         return false;
       } else {
+      
+      // attrを使って画像が投稿される度にlabelのfor属性を変える(0→1→2)
+      $('label.item_image').attr("for", `item_item_images_attributes_${targetIndex + 1}_src`);
+      console.log(4);
 
       // fileIndexの先頭の数字を使ってinputを作る
       $('#image-box').append(buildFileField(fileIndex[0]));
       fileIndex.shift();
+      console.log(5);
 
       // 末尾の数に1足した数を追加する
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
@@ -80,4 +87,6 @@ $(document).on('turbolinks:load', ()=> {
 });
 
 
+// `img[data-index="${targetIndex}"]`
 
+//プレビュー上段、下段の条件分岐
