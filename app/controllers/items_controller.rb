@@ -10,6 +10,9 @@ class ItemsController < ApplicationController
     @item_images_top = ItemImage.includes(:item).group(:item_id)
     @item_images_top_last_five = @item_images_top.last(5)
     @items_last_five = @items.last(5)
+    if current_user.id.present?
+      @user_info = User.all.where(id:current_user.id)
+    end
   end
 
   def show
