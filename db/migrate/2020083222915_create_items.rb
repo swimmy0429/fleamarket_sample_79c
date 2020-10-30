@@ -14,7 +14,7 @@ class CreateItems < ActiveRecord::Migration[6.0]
       # t.references :category,null: false,foreign_key: true
       # t.integer :trading_status, null: false, default: 0
       t.references :seller, foreign_key: {to_table: :users}
-      t.references :buyer, foreign_key: {to_table: :users}
+      # t.references :buyer, foreign_key: {to_table: :users}
       # t.references :auction, foreign_key: {to_table: :users}
       # t.datetime :deal_closed_date, foreign_key:
       t.string :brand #出品情報送信のため、暫定的に追加
