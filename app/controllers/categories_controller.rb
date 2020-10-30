@@ -4,7 +4,6 @@ class CategoriesController < ApplicationController
   def parent
     grandchildren_id = @category.indirect_ids 
     find_category_item(grandchildren_id)
-    # binding.pry
   end
 
   def child
