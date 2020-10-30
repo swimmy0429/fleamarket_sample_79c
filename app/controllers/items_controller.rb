@@ -10,7 +10,6 @@ class ItemsController < ApplicationController
     @item_images_top = ItemImage.includes(:item).group(:item_id)
     @item_images_top_last_five = @item_images_top.last(5)
     @items_last_five = @items.last(5)
-
   end
 
   def show
@@ -22,7 +21,6 @@ class ItemsController < ApplicationController
     @category_parent = Category.find(@category_id).parent.parent
     @category_child = Category.find(@category_id).parent
     @category_grandchild = Category.find(@category_id)
-    # binding.pry
   end
 
   def new
@@ -108,7 +106,4 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-
-    #@items = Item.all.where.not(trading_status:2)
-    #@item_images_top = ItemImage.all.includes(:item).group(:item_id)
 end
