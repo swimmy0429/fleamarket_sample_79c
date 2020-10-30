@@ -22,7 +22,7 @@
             = item_image.label :src, class: "camera" do
               %i.fa.fa-image
             = item_image.file_field :src, class: 'js-file'
-            
+
             -# %span{class: "js-remove", style: "display:none"}
             -# %div 削除
           - if @item.persisted?
@@ -50,21 +50,24 @@
         %span
       .Item__detail
         商品の詳細
-        %br
-        カテゴリー
-        %br
-        %div{id: "category_form"}
-        = f.collection_select :category_id, @parents, :id, :name, { include_blank: "選択して下さい", selected:"" }, {class: "js-file2"}
-        %ul
-          - @item.errors.full_messages_for(:category).each do |message|
-            %li= message
-        %br
+        .append__category
+          .category
+            .form__label
+              .lavel__name
+                %br
+                  カテゴリー
+                %br
+              .lavel__Required
+                [必須]
+            =f.collection_select :category_id, @parents, :id, :name,{ include_blank: "選択してください"},class:"serect_field"
+        -# %br
         -# サイズ
         -# %br
         -# = f.text_field :size, class: 'Form__size', placeholder: ''
         -# %ul
         -#   - @item.errors.full_messages_for(:size).each do |message|
         -#     %li= message
+
         -# %br
         -# ブランド
         -# %br
@@ -99,12 +102,13 @@
         %br
         配送までの日数
         %br
-        = f.number_field :preparation_day, class: 'Form__preparation', placeholder: ''
+        = f.number_field :preparation_day_id, class: 'Form__preparation', placeholder: ''
         %br
         配送方法 仮で追加
         %br
         = f.text_field :delivery_type, class: 'Form__delivery', placeholder: ''
         = f.hidden_field :seller_id, :value => current_user.id
+        = f.hidden_field :size_id, :value => current_user.id
       .Item__price
         価格
         %br
@@ -122,4 +126,3 @@
   .Bottom__icon
     %span.image
       = image_tag 'logo.png', size: '250x100', class: 'image'
-
