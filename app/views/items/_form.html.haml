@@ -15,7 +15,6 @@
           %div#previews
             %label.item_image{for: "item_item_images_attributes_#{@item.item_images.length-1}_src"}
               %i.fa.fa-image
-<<<<<<< HEAD
                 - if @item.persisted?
                   - @item.item_images.each_with_index do |item_image, i|
                     = image_tag "item_image.src.url", data: { index: i }, width: "112", height: '112'
@@ -28,19 +27,6 @@
               %div{"data-index": @item.item_images.count, class: 'js.file_group'}
                 = file_field_tag :src, name: "item[item_images_attributes][#{@item.item_images.count}][src]", class: 'js-file'
                 .js-remove 削除
-=======
-            = item_image.file_field :src, class: 'js-file'
-            
-            -# %span{class: "js-remove", style: "display:none"}
-            -# %div 削除
-          - if @item.persisted?
-            = item_image.check_box :_destroy, data:{ index: item_image.index }, class: 'hidden-destory'
-        - if @item.persisted?
-          %div{"data-index": "@item.item_images.count", class: 'js.file_group'}
-            = file_field_tag :src, name: "item[item_images_attributes][#{@item.item_images.count}][src]", class: 'js-file'
-            .js-remove 削除
-
->>>>>>> parent of 6331eae... Merge pull request #20 from swimmy0429/swimmy0429-カテゴリ機能
 
       .Item__name
         .Item__name__title
@@ -58,27 +44,22 @@
         %span
       .Item__detail
         商品の詳細
-        %br
-        カテゴリー
-        %br
-        %div{id: "category_form"}
-        = f.collection_select :category_id, @parents, :id, :name, { include_blank: "選択して下さい", selected:"" }, {class: "js-file2"}
-        %ul
-          - @item.errors.full_messages_for(:category).each do |message|
-            %li= message
-        %br
+        .append__category{id: "category_form"}
+          .category
+            .form__label
+              .lavel__name
+                %br
+                  カテゴリー
+                %br
+              .lavel__Required
+                [必須]
+            =f.collection_select :category_id, @parents, :id, :name,{ include_blank: "選択してください"},class:"serect_field"
+        -# %br
         -# サイズ
         -# %br
         -# = f.text_field :size, class: 'Form__size', placeholder: ''
         -# %ul
         -#   - @item.errors.full_messages_for(:size).each do |message|
-        -#     %li= message
-        -# %br
-        -# ブランド
-        -# %br
-        -# = f.text_field :brand, class: 'Form__brand', placeholder: ''
-        -# %ul
-        -#   - @item.errors.full_messages_for(:brand).each do |message|
         -#     %li= message
         %br
         = f.text_field :size_id, class: 'Form__size', placeholder: ''
@@ -114,7 +95,6 @@
         %ul
           - @item.errors.full_messages_for(:prefecture_code).each do |message|
             %li= message
-<<<<<<< HEAD
         .Item__delivery__preparation_day
         %div 配送までの日数
         = f.number_field :preparation_day_id, class: 'Form__preparation', placeholder: ''
@@ -122,17 +102,6 @@
         %div 配送方法 仮で追加
         = f.text_field :delivery_type_id, class: 'Form__delivery', placeholder: ''
         -# = f.hidden_field :seller_id, :value => current_user.id
-=======
-        %br
-        配送までの日数
-        %br
-        = f.number_field :preparation_day, class: 'Form__preparation', placeholder: ''
-        %br
-        配送方法 仮で追加
-        %br
-        = f.text_field :delivery_type, class: 'Form__delivery', placeholder: ''
-        = f.hidden_field :seller_id, :value => current_user.id
->>>>>>> parent of 6331eae... Merge pull request #20 from swimmy0429/swimmy0429-カテゴリ機能
       .Item__price
         .Item__price__tile
         %div 価格
@@ -145,12 +114,9 @@
         .Item__price__send
           = f.submit '出品する', class: 'Form__submit'
 
-<<<<<<< HEAD
-=======
 
 .Bottom
   .Bottom__icon
     %span.image
       = image_tag 'logo.png', size: '250x100', class: 'image'
 
->>>>>>> parent of 6331eae... Merge pull request #20 from swimmy0429/swimmy0429-カテゴリ機能
