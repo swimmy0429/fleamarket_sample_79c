@@ -43,10 +43,11 @@ $(document).on('turbolinks:load', ()=> {
       img.setAttribute('src', blobUrl);
     } else {  // 新規画像追加の処理
       console.log(3);
-      //プレビュー上段、下段の条件分岐
-      $('#previews').append(buildImg(targetIndex, blobUrl));
+      
+      //appendではなく、prependで要素を前から表示
+      $('#previews').prepend(buildImg(targetIndex, blobUrl));
        // 画像投稿枚数10枚まで
-      if($(".js-file_group").length >= 11){
+      if($(".js-file_group").length >= 10){
         return false;
       } else {
       
@@ -82,7 +83,7 @@ $(document).on('turbolinks:load', ()=> {
     $(this).parent().remove()
     $(`img[data-index="${targetIndex}"]`).remove();
     // 画像入力欄が0個にならないようにしておく
-    if ($('.js-file').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
+    if ($('.js-file').length == 0) $('#image-box').prepend(buildFileField(fileIndex[0]));
   });
 });
 

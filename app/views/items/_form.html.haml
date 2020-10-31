@@ -59,13 +59,13 @@
         %ul
           - @item.errors.full_messages_for(:size_id).each do |message|
             %li= message
-        .Item__detail__brand
-        %div ブランド
-        %br
-        = f.text_field :brand, class: 'Form__brand', placeholder: ''
-        %ul
-          - @item.errors.full_messages_for(:brand).each do |message|
-            %li= message
+        -# .Item__detail__brand
+        -# %div ブランド
+        -# %br
+        -# = f.text_field :brand, class: 'Form__brand', placeholder: ''
+        -# %ul
+        -#   - @item.errors.full_messages_for(:brand).each do |message|
+        -#     %li= message
         .Item__detail__item_condition
         %div 商品の状態
         = f.collection_select :item_condition_id, ItemCondition.all, :id, :name, {prompt:"選択してください"}, {class:""}
