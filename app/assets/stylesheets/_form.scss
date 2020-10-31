@@ -29,21 +29,21 @@ $section-color: rgb(245,245,245);
         #previews {
           display: flex;
           flex-wrap: wrap;
-          height: 190px
+          // flex-direction : row-reverse;
+          height: 190px;
         }
+
+          .item_image {
+            height: 100px;
+            width: 300px;
+          }
+
 
           .js-file {
             display: none;
           }
       
-    // .image-box__under {
-    //   height: 150px;
-    //   width: 100%;
-    // }
-    //   #previews__under {
-    //     display: flex;
-    //     height: 190px
-    //   }
+    
 
     &__name {
       background-color: white;
