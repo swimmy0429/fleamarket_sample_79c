@@ -36,17 +36,16 @@ ActiveRecord::Schema.define(version: 2020_10_30_144839) do
     t.string "name", null: false
     t.text "introduction", null: false
     t.integer "price", null: false
+    t.integer "item_condition", null: false
     t.integer "shipping_charge_players"
-    t.integer "shipping_charge_players_id"
-    t.integer "prefecture_code"
-    t.integer "size_id"
-    t.integer "preparation_day_id"
+    t.integer "prefecture_code", null: false
+    t.integer "size_id", null: false
+    t.integer "delivery_type_id", null: false
     t.bigint "seller_id"
     t.string "brand"
-    t.integer "item_condition_id"
+    t.datetime "deal_closed_date"
+    t.integer "category_id"
     t.integer "auction"
-    t.integer "category_id", null: false
-    t.integer "delivery_type_id"
     t.index ["seller_id"], name: "index_items_on_seller_id"
   end
 
