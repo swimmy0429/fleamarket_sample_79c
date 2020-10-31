@@ -1,4 +1,4 @@
-// 親セレクトを変更したらjQueryが発火する
+console.log('change3');// 親セレクトを変更したらjQueryが発火する
 $("#category_form").on('change', '.js-file2', function (e) {
 console.log('hello')
   // 選択した親の値を取得する

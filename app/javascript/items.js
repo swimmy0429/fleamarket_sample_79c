@@ -1,5 +1,6 @@
 console.log(1);
-$(document).on('turbolinks:load', ()=> {
+// $(document).on('turbolinks:load', ()=> {
+  $(function(){
   console.log('change');
 
   // 画像用のinputを生成する関数
