@@ -59,6 +59,7 @@
         %ul
           - @item.errors.full_messages_for(:size_id).each do |message|
             %li= message
+           //他の機能で使用するためコメントアウト
         -# .Item__detail__brand
         -# %div ブランド
         -# %br
@@ -94,6 +95,7 @@
         .Item__delivery__delivery_type
         %div 配送方法 仮で追加
         = f.text_field :delivery_type_id, class: 'Form__delivery', placeholder: ''
+        //他の機能で使用するためコメントアウト
         -# = f.hidden_field :seller_id, :value => current_user.id
       .Item__price
         .Item__price__tile
