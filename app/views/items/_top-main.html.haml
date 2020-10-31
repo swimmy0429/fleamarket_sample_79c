@@ -79,24 +79,69 @@
         =link_to "#" ,class: "text" do
           %h3.title 新規投稿商品
       .main__pic5__box__lists
-        -@item_images_top_last_five.each_with_index do |item_image,index|
-          -if index <= 5
-            .main__pic5__box__lists__list
-              -if @items_last_five[index][:buyer_id].present? 
-                .main__pic5__box__lists__list_photo__sold
-                  .main__pic5__box__lists__list_photo__sold__inner
-                    SOLD
-              =link_to image_tag("#{item_image.src}",width:"220px",height:"150px"),item_path(id: item_image.item_id)
-              .main__pic5__box__lists__list__name
-                %h3.text 
-                  =@items_last_five[index][:name]
-                %h4.data
-                  %ul.ul
-                    %li.li 
-                      =@items_last_five[index][:price]
-                    %li
-                    = icon('fas', 'star')
-                  %p.zei (税込)
+        .main__pic5__box__lists__list
+          =link_to "#" do
+            %figure.image
+            =link_to image_tag("beef.jpg",width:"220px",height:"150px"),root_path
+          .main__pic5__box__lists__list__name
+            %h3.text テスト
+            %h4.data
+              %ul.ul
+                %li.li 10000円
+                %li
+                = icon('fas', 'star')
+              %p.zei (税込)
+        .main__pic5__box__lists__list
+          =link_to "#" do
+            %figure.image
+          =link_to image_tag("moyasi.jpg",width:"220px",height:"150px"),root_path
+          .main__pic5__box__lists__list__name
+            %h3.text ee
+            %h4.data
+              %ul.ul
+                %li.li 1000円
+                %li
+                = icon('fas', 'star')
+              %p.zei (税込) 
+        .main__pic5__box__lists__list
+          = link_to "#" do
+            %figure.image
+          =link_to image_tag("sishamo.png",width:"220px",height:"150px"),root_path
+          .main__pic5__box__lists__list__name
+            %h3.text product3
+            %h4.data
+              %ul.ul     
+                %li.li 30000円
+                %li
+                = icon('fas', 'star')
+              %p.zei (税込)       
+        .main__pic5__box__lists__list
+          =link_to "#" do
+            %figure.image
+          =link_to image_tag("hanpen.png",width:"220px",height:"150px"),root_path
+          .main__pic5__box__lists__list__name
+            %h3.text product2
+            %h4.data
+              %ul.ul
+                %li.li 20000円
+                %li
+                = icon('fas', 'star')
+              %p.zei (税込) 
+        .main__pic5__box__lists__list
+          = link_to "#" do
+            %figure.image
+          =link_to image_tag("kare-.png",width:"220px",height:"150px"),root_path
+          .main__pic5__box__lists__list__name
+            %h3.text product1
+            %h4.data
+              %ul.ul
+                %li.li 10000円
+                %li
+                = icon('fas', 'star')
+              %p.zei (税込)             text product3
+            %h4.data
+              %ul.ul
+
   .main__pic6
     %h2.title ピックアップブランド
     .main__pic6__box

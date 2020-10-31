@@ -43,17 +43,29 @@
             %li= message
         %span
       .Item__detail
-        .Item__detail__title
-        %div 商品の詳細
-        .Item__detail__category
-        %div カテゴリー
+        商品の詳細
+        %br
+        カテゴリー
+        %br
         %div{id: "category_form"}
         = f.collection_select :category_id, @parents, :id, :name, { include_blank: "選択して下さい", selected:"" }, {class: "js-file2"}
         %ul
-          - @item.errors.full_messages_for(:category_id).each do |message|
+          - @item.errors.full_messages_for(:category).each do |message|
             %li= message
-        .Item__detail__size
-        %div サイズ
+        %br
+        -# サイズ
+        -# %br
+        -# = f.text_field :size, class: 'Form__size', placeholder: ''
+        -# %ul
+        -#   - @item.errors.full_messages_for(:size).each do |message|
+        -#     %li= message
+        -# %br
+        -# ブランド
+        -# %br
+        -# = f.text_field :brand, class: 'Form__brand', placeholder: ''
+        -# %ul
+        -#   - @item.errors.full_messages_for(:brand).each do |message|
+        -#     %li= message
         %br
         = f.text_field :size_id, class: 'Form__size', placeholder: ''
         %ul
@@ -88,13 +100,15 @@
         %ul
           - @item.errors.full_messages_for(:prefecture_code).each do |message|
             %li= message
-        .Item__delivery__preparation_day
-        %div 配送までの日数
-        = f.number_field :preparation_day_id, class: 'Form__preparation', placeholder: ''
-        .Item__delivery__delivery_type
-        %div 配送方法 仮で追加
-        = f.text_field :delivery_type_id, class: 'Form__delivery', placeholder: ''
-        -# = f.hidden_field :seller_id, :value => current_user.id
+        %br
+        配送までの日数
+        %br
+        = f.number_field :preparation_day, class: 'Form__preparation', placeholder: ''
+        %br
+        配送方法 仮で追加
+        %br
+        = f.text_field :delivery_type, class: 'Form__delivery', placeholder: ''
+        = f.hidden_field :seller_id, :value => current_user.id
       .Item__price
         .Item__price__tile
         %div 価格
@@ -106,4 +120,10 @@
             %li= message  
         .Item__price__send
           = f.submit '出品する', class: 'Form__submit'
+
+
+.Bottom
+  .Bottom__icon
+    %span.image
+      = image_tag 'logo.png', size: '250x100', class: 'image'
 

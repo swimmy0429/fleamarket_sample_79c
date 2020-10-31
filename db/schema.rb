@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2020_10_30_144839) do
   end
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "ancestry"
@@ -70,5 +70,4 @@ ActiveRecord::Schema.define(version: 2020_10_30_144839) do
   end
 
   add_foreign_key "item_images", "items"
-  add_foreign_key "items", "users", column: "seller_id"
 end

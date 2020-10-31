@@ -38,7 +38,7 @@ class Item < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 40 }
   validates :introduction, presence: true, length: { maximum: 1000 }
-  # validates :category_id, presence: true
+  validates :category, presence: true
   validates :price, presence: true, length: { maximum: 9999999 }
   validates :shipping_charge_players_id, presence: true
   validates :prefecture_code, presence: true
