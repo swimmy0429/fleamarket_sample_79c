@@ -1,8 +1,5 @@
 class Size < ActiveHash::Base
 
-  # include ActiveHash::Associations
-  # has_many :items
-
   self.data = [
       {id: 1, name: 'XXS以下'}, {id: 2, name: 'XS(SS)'}, {id: 3, name: 'S'},
       {id: 4, name: 'M'}, {id: 5, name: 'L'}, {id: 6, name: 'XL(LL)'},
