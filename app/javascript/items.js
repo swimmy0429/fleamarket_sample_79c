@@ -1,5 +1,8 @@
 console.log(1);
-$(document).on('turbolinks:load', ()=> {
+document.addEventListener("turbolinks:load"
+, function () {
+// $(document).on('turbolinks:load', ()=> {
+  $(function(){
   console.log('change');
 
   // 画像用のinputを生成する関数
@@ -86,7 +89,7 @@ $(document).on('turbolinks:load', ()=> {
     if ($('.js-file').length == 0) $('#image-box').prepend(buildFileField(fileIndex[0]));
   });
 });
-
+})
 
 // `img[data-index="${targetIndex}"]`
 
