@@ -1,3 +1,5 @@
+document.addEventListener("turbolinks:load"
+, function () {
 $(document).on('turbolinks:load', ()=> {
 // console.log('change');
 
@@ -79,5 +81,5 @@ $(document).on('turbolinks:load', ()=> {
   });
 });
 
-
+})
 
