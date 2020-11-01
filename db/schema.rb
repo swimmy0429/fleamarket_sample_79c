@@ -39,14 +39,15 @@ ActiveRecord::Schema.define(version: 2020_10_30_144839) do
     t.integer "item_condition", null: false
     t.integer "shipping_charge_players"
     t.integer "prefecture_code", null: false
-    t.integer "size_id", null: false
-    t.integer "delivery_type_id", null: false
+    t.integer "size_id"
+    t.integer "preparation_day_id", null: false
+    t.integer "delivery_type", null: false
     t.bigint "seller_id"
     t.string "brand"
+    t.string "category_id"
+    t.integer "buyer_id"
     t.datetime "deal_closed_date"
-    t.integer "category_id"
     t.integer "auction"
-    t.index ["seller_id"], name: "index_items_on_seller_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
