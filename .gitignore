@@ -31,3 +31,4 @@ yarn-debug.log*
 .yarn-integrity
 
 public/uploads/
+db/migrate/20201023042550_add_seller_id_to_items.rb
