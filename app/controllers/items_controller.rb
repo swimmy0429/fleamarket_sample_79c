@@ -6,9 +6,9 @@ class ItemsController < ApplicationController
   before_action :set_user,only:[:i_transaction,:i_exhibiting,:i_soldout]
 
   def index
-    @items = Item.includes(:item_images).order('created_at DESC')
-    @items = Item.where.not(trading_status:2)
+    @items = Item.all
     @item_images_top = ItemImage.includes(:item).group(:item_id)
+    @item_images_top_last_five = @item_images_top.order(id: "DESC").limit(5)
   end
 
   def show
