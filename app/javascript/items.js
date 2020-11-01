@@ -86,6 +86,5 @@ $(document).on('turbolinks:load', ()=> {
   });
 });
 
-})
 
 //プレビュー上段、下段の条件分岐
