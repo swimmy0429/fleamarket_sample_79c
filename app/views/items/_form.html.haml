@@ -18,9 +18,9 @@
                 - if @item.persisted?
                   - @item.item_images.each_with_index do |item_image, i|
                     = image_tag "item_image.src.url", data: { index: i }, width: "112", height: '112'
-          = f.fields_for :item_images do |item_image| 
+          = f.fields_for :item_images do |item_image|
             %div{"data-index": item_image.index, class: 'js-file_group'}
-              = item_image.file_field :src, class: 'js-file'   
+              = item_image.file_field :src, class: 'js-file'
             - if @item.persisted?
               = item_image.check_box :_destroy, data:{ index: item_image.index }, class: 'hidden-destory'
             - if @item.persisted?
@@ -53,7 +53,7 @@
                 %br
               .lavel__Required
                 [必須]
-            =f.collection_select :category_id, @parents, :id, :name,{ include_blank: "選択してください"},class:"serect_field"
+            =f.collection_select :category_id, @parents, :id, :name,{ include_blank: "選択してください"},class:"serect_field",id: "item_category_id"
         -# %br
         -# サイズ
         -# %br
@@ -110,7 +110,7 @@
         = f.number_field :price, class: 'Form__price', placeholder: ''
         %ul
           - @item.errors.full_messages_for(:price).each do |message|
-            %li= message  
+            %li= message
         .Item__price__send
           = f.submit '出品する', class: 'Form__submit'
 
@@ -119,4 +119,3 @@
   .Bottom__icon
     %span.image
       = image_tag 'logo.png', size: '250x100', class: 'image'
-

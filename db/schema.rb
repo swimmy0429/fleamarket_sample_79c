@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_21_105927) do
+ActiveRecord::Schema.define(version: 2020_10_31_071921) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2020_10_15_132831) do
     t.string "name", null: false
     t.text "introduction", null: false
     t.integer "price", null: false
+    t.integer "brand_id"
     t.integer "item_condition_id", null: false
     t.integer "shipping_charge_players_id"
     t.integer "prefecture_code", null: false
@@ -57,7 +58,7 @@ ActiveRecord::Schema.define(version: 2020_10_15_132831) do
     t.datetime "deal_closed_date"
     t.string "ancestry"
     t.integer "category_id"
-    t.integer "brand_id"
+    t.integer "brand"
     t.index ["ancestry"], name: "index_items_on_ancestry"
     t.index ["buyer_id"], name: "index_items_on_buyer_id"
     t.index ["seller_id"], name: "index_items_on_seller_id"
