@@ -53,7 +53,7 @@
                 %br
               .lavel__Required
                 [必須]
-            =f.collection_select :category_id, @parents, :id, :name,{ include_blank: "選択してください"},class:"serect_field"
+            =f.collection_select :category_id, @parents, :id, :name,{ include_blank: "選択してください"},class:"serect_field",id: "item_category_id"
         -# %br
         -# サイズ
         -# %br

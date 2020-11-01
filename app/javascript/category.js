@@ -1,8 +1,11 @@
+document.addEventListener("turbolinks:load"
+, function () {
 console.log('change2');
 $(function(){
   function appendOption(category){
     var html = `<option value="${category.id}">${category.name}</option>`;
-    return html;
+    console.log('change3');
+    return html
   }
   function appendChildrenBox(insertHTML){
     var childSelectHtml = "";
@@ -27,6 +30,7 @@ $(function(){
   }
 
   $('#item_category_id').on('change',function(){
+    console.log('change4');
     var parentId = document.getElementById('item_category_id').value;
     if (parentId != ""){
       $.ajax({
@@ -77,3 +81,4 @@ $(function(){
     }
   })
 });
+})

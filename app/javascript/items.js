@@ -1,4 +1,6 @@
 console.log(1);
+document.addEventListener("turbolinks:load"
+, function () {
 // $(document).on('turbolinks:load', ()=> {
   $(function(){
   console.log('change');
@@ -87,7 +89,7 @@ console.log(1);
     if ($('.js-file').length == 0) $('#image-box').prepend(buildFileField(fileIndex[0]));
   });
 });
-
+})
 
 // `img[data-index="${targetIndex}"]`
 
