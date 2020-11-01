@@ -18,9 +18,9 @@
                 - if @item.persisted?
                   - @item.item_images.each_with_index do |item_image, i|
                     = image_tag "item_image.src.url", data: { index: i }, width: "112", height: '112'
-          = f.fields_for :item_images do |item_image| 
+          = f.fields_for :item_images do |item_image|
             %div{"data-index": item_image.index, class: 'js-file_group'}
-              = item_image.file_field :src, class: 'js-file'   
+              = item_image.file_field :src, class: 'js-file'
             - if @item.persisted?
               = item_image.check_box :_destroy, data:{ index: item_image.index }, class: 'hidden-destory'
             - if @item.persisted?
@@ -71,13 +71,14 @@
         %ul
           - @item.errors.full_messages_for(:size_id).each do |message|
             %li= message
-        .Item__detail__brand
-        %div ブランド
-        %br
-        = f.text_field :brand, class: 'Form__brand', placeholder: ''
-        %ul
-          - @item.errors.full_messages_for(:brand).each do |message|
-            %li= message
+           //他の機能で使用するためコメントアウト
+        -# .Item__detail__brand
+        -# %div ブランド
+        -# %br
+        -# = f.text_field :brand, class: 'Form__brand', placeholder: ''
+        -# %ul
+        -#   - @item.errors.full_messages_for(:brand).each do |message|
+        -#     %li= message
         .Item__detail__item_condition
         %div 商品の状態
         = f.collection_select :item_condition_id, ItemCondition.all, :id, :name, {prompt:"選択してください"}, {class:""}
@@ -100,15 +101,14 @@
         %ul
           - @item.errors.full_messages_for(:prefecture_code).each do |message|
             %li= message
-        %br
-        配送までの日数
-        %br
-        = f.number_field :preparation_day, class: 'Form__preparation', placeholder: ''
-        %br
-        配送方法 仮で追加
-        %br
-        = f.text_field :delivery_type, class: 'Form__delivery', placeholder: ''
-        = f.hidden_field :seller_id, :value => current_user.id
+        .Item__delivery__preparation_day
+        %div 配送までの日数
+        = f.number_field :preparation_day_id, class: 'Form__preparation', placeholder: ''
+        .Item__delivery__delivery_type
+        %div 配送方法 仮で追加
+        = f.text_field :delivery_type_id, class: 'Form__delivery', placeholder: ''
+        //他の機能で使用するためコメントアウト
+        -# = f.hidden_field :seller_id, :value => current_user.id
       .Item__price
         .Item__price__tile
         %div 価格
@@ -117,7 +117,7 @@
         = f.number_field :price, class: 'Form__price', placeholder: ''
         %ul
           - @item.errors.full_messages_for(:price).each do |message|
-            %li= message  
+            %li= message
         .Item__price__send
           = f.submit '出品する', class: 'Form__submit'
 
@@ -126,4 +126,3 @@
   .Bottom__icon
     %span.image
       = image_tag 'logo.png', size: '250x100', class: 'image'
-
