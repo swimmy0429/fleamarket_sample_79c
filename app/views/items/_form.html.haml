@@ -17,7 +17,7 @@
               %i.fa.fa-image
                 - if @item.persisted?
                   - @item.item_images.each_with_index do |item_image, i|
-                    = image_tag "item_image.src.url", data: { index: i }, width: "112", height: '112'
+                    = image_tag item_image.src.url, data: { index: i }, width: "112", height: '112'
           = f.fields_for :item_images do |item_image| 
             %div{"data-index": item_image.index, class: 'js-file_group'}
               = item_image.file_field :src, class: 'js-file'   
