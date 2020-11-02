@@ -95,6 +95,9 @@ textarea {
 
 .item__body {
   text-align : center;
+  &_image_detail{
+    display: flex;
+  }
 }
 
 .item__price {

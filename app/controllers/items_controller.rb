@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_action :set_parents, only: [:index, :new, :create,:show]
+  before_action :set_parents, only: [:index, :new, :create,:show,:edit]
   before_action :set_category, only: [:show]
   before_action :set_current_user_products,only:[:i_transaction,:i_exhibiting,:i_soldout]
   before_action :set_user,only:[:i_transaction,:i_exhibiting,:i_soldout]
@@ -41,6 +41,8 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    @item_images_edit = ItemImage.includes(:item).where(id:params[:id])
+    @item.item_images = @item_images_edit
   end
 
   def update

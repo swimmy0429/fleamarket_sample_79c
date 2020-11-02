@@ -53,7 +53,7 @@
                 %br
               .lavel__Required
                 [必須]
-            =f.collection_select :category_id, @parents, :id, :name,{ include_blank: "選択してください"},class:"serect_field",id: "item_category_id"
+            =f.collection_select :category_id, @parents, :id, :name,{include_blank: "選択してください",id: "item_category_id"},class:"serect_field",id: "item_category_id"
         -# %br
         -# サイズ
         -# %br
@@ -66,14 +66,14 @@
         %ul
           - @item.errors.full_messages_for(:size_id).each do |message|
             %li= message
-        .Item__detail__brand
-        %div ブランド
-        %br
-        = f.text_field :brand, class: 'Form__brand', placeholder: ''
-        %ul
-          - @item.errors.full_messages_for(:brand).each do |message|
-            %li= message
-        .Item__detail__item_condition
+        -# .Item__detail__brand
+        -# %div ブランド
+        -# %br
+        -# = f.text_field :brand, class: 'Form__brand', placeholder: ''
+        -# %ul
+        -#   - @item.errors.full_messages_for(:brand).each do |message|
+        -#     %li= message
+        -# .Item__detail__item_condition
         %div 商品の状態
         = f.collection_select :item_condition_id, ItemCondition.all, :id, :name, {prompt:"選択してください"}, {class:""}
         %ul

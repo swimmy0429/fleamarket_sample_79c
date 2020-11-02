@@ -17,7 +17,7 @@
             -@item_images_detail.each_with_index do |item,index|
               -if index == 0
                 =image_tag("#{item.src}", class: '#', size: '560x346')
-          %ul
+          %ul.item__body_image_detail
             -@item_images_detail.each_with_index do |item,index|
               -if index == 0
               -elsif index <=3 then
