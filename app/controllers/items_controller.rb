@@ -41,8 +41,12 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-    # @item_images_edit = ItemImage.includes(:item).where(id:params[:id])
-    # @item.item_images = @item_images_edit
+    @grandchild = @item.category
+    @child = @grandchild.parent
+    @parent  = @child.parent[:id]
+    @children = Category.find(@parent).children
+    # binding.pry
+    @grandchildren = Category.find(@child[:id]).children
   end
 
   def update
