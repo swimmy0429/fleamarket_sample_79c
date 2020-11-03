@@ -45,7 +45,6 @@ class ItemsController < ApplicationController
     @child = @grandchild.parent
     @parent  = @child.parent[:id]
     @children = Category.find(@parent).children
-    # binding.pry
     @grandchildren = Category.find(@child[:id]).children
   end
 
