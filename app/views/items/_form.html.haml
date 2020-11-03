@@ -27,8 +27,8 @@
             - if @item.persisted?
               = item_image.check_box :_destroy, data:{ index: item_image.index }, class: 'hidden-destory'
             - if @item.persisted?
-              -# %div{"data-index": @item.item_images.count, class: 'js.file_group'}
-              -#   = file_field_tag :src, name: "item[item_images_attributes][#{@item.item_images.count}][src]", class: 'js-file'
+              %div{"data-index": @item.item_images.count, class: 'js.file_group'}
+                = file_field_tag :src, name: "item[item_images_attributes][#{@item.item_images.count}][src]", class: 'js-file'
 
       .Item__name
         .Item__name__title

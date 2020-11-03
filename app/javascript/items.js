@@ -15,7 +15,7 @@ document.addEventListener("turbolinks:load"
 
   const buildImg = (index, url)=> {
     const html = `<div class="image-box">
-                    <img data-index="${index}" src="${url}" width="100px" height="100px">
+                    <img data-index="${index}" src="${url}" width="112px" height="112px">
                       <div class="js-remove">削除</div>
                       <div class="js-edit">編集</div>
                   </div>`;
@@ -57,7 +57,7 @@ document.addEventListener("turbolinks:load"
       console.log(4);
 
       // fileIndexの先頭の数字を使ってinputを作る
-      $('#image-box').append(buildFileField(fileIndex[0]));
+      $('#image-box').append(buildFileField(fileIndex[targetIndex]));
       fileIndex.shift();
       console.log(5);
 
@@ -66,21 +66,27 @@ document.addEventListener("turbolinks:load"
       }
     }
 
+  });
 
-
+  $('#image-box').on('click', '.js-edit', function() {
+    console.log("aaa")
+    const targetIndex = $(this).prev().prev().data('index');
+    console.log(targetIndex)
+    $(`#item_item_images_attributes_${targetIndex}_src`).trigger("click");;
   });
 
   $('#image-box').on('click', '.js-remove', function() {
     const targetIndex = $(this).prev().data('index');
     const inputField = $(`#item_item_images_attributes_${targetIndex}_src`)
-    console.log(inputField)
+    console.log(targetIndex)
     inputField.remove();
 
     // 該当indexを振られているチェックボックスを取得する
     const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
     // もしチェックボックスが存在すればチェックを入れる
+    // console.log(hiddenCheck)
     if (hiddenCheck) hiddenCheck.prop('checked', true);
-
+    
     $(this).parent().remove()
     $(`img[data-index="${targetIndex}"]`).remove();
     // 画像入力欄が0個にならないようにしておく
