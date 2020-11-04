@@ -1,0 +1,89 @@
+.pankuzu
+  - if @category.root?
+    - breadcrumb :parent_category
+  - elsif @category.has_children?
+    - breadcrumb :child_category
+  - else
+    - breadcrumb :grandchild_category
+  = render "items/breadcrumbs"
+%div.main
+  %div.showMain
+    %div.item
+      %h2.item__name
+        =@items_show[0][:name]
+      %div.item__body
+        %ul
+          %li
+            -@item_images_detail.each_with_index do |item,index|
+              -if index == 0
+                =image_tag("#{item.src}", class: '#', size: '560x346')
+          %ul
+            -@item_images_detail.each_with_index do |item,index|
+              -if index == 0
+              -elsif index <=3 then
+                %li
+                  =image_tag("#{item.src}", class: '#', size: '75x75')
+      %div.item__price
+        %span
+          ¥
+          =@items_show[0][:price]
+      %div.item__price__sub
+        (税込) 送料込み
+      %div.item__detail
+        =@items_show[0][:introduction]
+      %div.item__detail
+      %div.table
+        %table
+          %tbody
+          -@items_show.each do |item|
+            %tr
+              %th 出品者
+              %td= @nickname
+            %tr
+              %th カテゴリー
+              - if [46, 74, 134, 142, 147, 150, 158].include?(@category_id)
+                %td
+                  = link_to "#{@category_child.name}","#"
+                  %br= link_to "#{@category_grandchild.name}","#" 
+              -else
+                %td
+                  = link_to "#{@category_parent.name}","#"
+                  %br= link_to "#{@category_child.name}","#"
+                  = link_to "#{@category_grandchild.name}","#"
+            -# %tr
+            -#   %th ブランド
+            -#   %td aaa
+            %tr
+              %th 商品のサイズ
+              %td=item.size_id
+            %tr
+              %th 商品の状態
+              %td=item.item_condition_id
+            %tr
+              %th 配送料の負担
+              %td=item.shipping_charge_players_id
+            %tr
+              %th 配送元の地域
+              %td=item.prefecture_code
+            %tr
+              %th 発送日の目安
+              %td=item.preparation_day_id
+      -if current_user.present? && current_user.id == @items_show[0][:seller_id] then
+        =link_to edit_item_path do
+          %button.purchese__btn 編集
+        =link_to item_path, method: :delete do
+          %button.purchese__btn 削除
+      -elsif current_user.present? then
+        =link_to item_path, method: :patch do
+          %button.purchese__btn 購入画面に進む
+      -else
+        
+      %div.option
+    %div.comment
+      %ul.commentContents
+      %form.comment__new
+        %textarea
+        %p
+          相手のことを考え丁寧なコメントを心がけましょう。
+          %br 不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        %button.comentButton コメントする

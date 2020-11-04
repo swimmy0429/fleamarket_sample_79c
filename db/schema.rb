@@ -10,29 +10,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_12_060429) do
+ActiveRecord::Schema.define(version: 2020_10_31_071921) do
 
-  create_table "item_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "url", null: false
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "item_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
+    t.index ["item_id"], name: "index_categories_on_item_id"
+  end
+
+  create_table "item_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "url"
+    t.string "src"
     t.bigint "item_id", null: false
     t.index ["item_id"], name: "index_item_images_on_item_id"
   end
 
-  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.text "introduction", null: false
     t.integer "price", null: false
-    t.integer "item_condition", null: false
-    t.integer "shipping_charge_players", null: false
+    t.integer "brand_id"
+    t.integer "item_condition_id", null: false
+    t.integer "shipping_charge_players_id"
     t.integer "prefecture_code", null: false
-    t.integer "size", null: false
-    t.integer "preparation_day", null: false
-    t.integer "delivery_type", null: false
-    t.integer "trading_status", default: 0, null: false
+    t.integer "size_id", null: false
+    t.integer "preparation_day_id", null: false
+    t.integer "delivery_type_id", null: false
+    t.bigint "seller_id"
+    t.bigint "buyer_id"
     t.datetime "deal_closed_date"
+    t.string "ancestry"
+    t.integer "category_id"
+    t.integer "brand"
+    t.index ["ancestry"], name: "index_items_on_ancestry"
+    t.index ["buyer_id"], name: "index_items_on_buyer_id"
+    t.index ["seller_id"], name: "index_items_on_seller_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "nickname", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -52,5 +76,8 @@ ActiveRecord::Schema.define(version: 2020_10_12_060429) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "categories", "items"
   add_foreign_key "item_images", "items"
+  add_foreign_key "items", "users", column: "buyer_id"
+  add_foreign_key "items", "users", column: "seller_id"
 end
