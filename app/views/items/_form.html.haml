@@ -16,19 +16,28 @@
             - if @item.persisted?
               - @item.item_images.each_with_index do |item_image, i|
                 %div.image-box
-                  = image_tag item_image.src.url, data: { index: i }, width: "112", height: '112', id: "fa-image__num__#{i}"
+                  = image_tag item_image.src.url, data: { index: i }, width: "112", height: '112'
                   .js-remove 削除
                   .js-edit 編集
-            %label.item_image{for: "item_item_images_attributes_#{@item.item_images.length-1}_src"}
-              %i#fa-image__num.fa.fa-image
+            - if @item.persisted?
+              %label.item_image{for: "item_item_images_attributes_#{@item.item_images.length}_src"}
+                %i.fa.fa-image
+            - else
+              %label.item_image{for: "item_item_images_attributes_#{@item.item_images.length-1}_src"}
+                %i.fa.fa-image
+          -# - if @item.persisted?
+          -#   = f.fields_for :item_images do |item_image| 
+          -#     %div{"data-index": item_image.index+1, class: 'js-file_group'}
+          -#       = item_image.file_field :src, class: 'js-file' 
+          -# - else
           = f.fields_for :item_images do |item_image| 
             %div{"data-index": item_image.index, class: 'js-file_group'}
-              = item_image.file_field :src, class: 'js-file'   
+              = item_image.file_field :src, class: 'js-file'
             - if @item.persisted?
               = item_image.check_box :_destroy, data:{ index: item_image.index }, class: 'hidden-destory'
-            - if @item.persisted?
-              %div{"data-index": @item.item_images.count, class: 'js.file_group'}
-                = file_field_tag :src, name: "item[item_images_attributes][#{@item.item_images.count}][src]", class: 'js-file'
+          - if @item.persisted?
+            %div{"data-index": @item.item_images.count, class: 'js-file_group'}
+              = file_field_tag :"item_item_images_attributes_#{@item.item_images.length}_src", name: "item[item_images_attributes][#{@item.item_images.count}][src]", class: 'js-file'
 
       .Item__name
         .Item__name__title

@@ -20,7 +20,7 @@
           %ul.item__body_image_detail
             -@item_images_detail.each_with_index do |item,index|
               -if index == 0
-              -elsif index <=3 then
+              -elsif index <=10 then
                 %li
                   =image_tag("#{item.src}", class: '#', size: '75x75')
       %div.item__price

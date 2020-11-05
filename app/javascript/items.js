@@ -1,11 +1,9 @@
 document.addEventListener("turbolinks:load"
 , function () {
-  console.log('change');
-
   // 画像用のinputを生成する関数
   const buildFileField = (num)=> {
     const html = `<div data-index="${num}" class="js-file_group">
-                    <input class="js-file" type="file"
+                  <input class="js-file" type="file"
                     name="item[item_images_attributes][${num}][src]"
                     id="item_item_images_attributes_${num}_src"><br>
 
@@ -28,14 +26,13 @@ document.addEventListener("turbolinks:load"
   // 既に使われているindexを除外
   lastIndex = $('.js-file_group:last').data('index');
   fileIndex.splice(0, lastIndex);
-
+  console.log(lastIndex,fileIndex)
 
 
 
   $('.hidden-destroy').hide();
   $('#image-box').on('change', '.js-file', function(e)  {
     const targetIndex = $(this).parent().data('index');
-    console.log(2);
     // ファイルのブラウザ上でのURLを取得する
     const file = e.target.files[0];
     const blobUrl = window.URL.createObjectURL(file);
@@ -43,7 +40,6 @@ document.addEventListener("turbolinks:load"
     if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
       img.setAttribute('src', blobUrl);
     } else {  // 新規画像追加の処理
-      console.log(3);
       
       //appendではなく、prependで要素を前から表示
       $('#previews').prepend(buildImg(targetIndex, blobUrl));
@@ -54,39 +50,41 @@ document.addEventListener("turbolinks:load"
 
       // attrを使って画像が投稿される度にlabelのfor属性を変える(0→1→2)
       $('label.item_image').attr("for", `item_item_images_attributes_${targetIndex + 1}_src`);
-      console.log(4);
 
       // fileIndexの先頭の数字を使ってinputを作る
-      $('#image-box').append(buildFileField(fileIndex[targetIndex]));
+      $('#image-box').append(buildFileField(fileIndex[0]));
       fileIndex.shift();
-      console.log(5);
+      console.log(fileIndex);
 
       // 末尾の数に1足した数を追加する
-      fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
+      // fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
+      lastIndex = $('.js-file_group:last').data('index');
+      fileIndex.push(lastIndex);
+      console.log($(".js-file_group").length);
       }
     }
 
   });
 
   $('#image-box').on('click', '.js-edit', function() {
-    console.log("aaa")
     const targetIndex = $(this).prev().prev().data('index');
-    console.log(targetIndex)
     $(`#item_item_images_attributes_${targetIndex}_src`).trigger("click");;
   });
 
   $('#image-box').on('click', '.js-remove', function() {
     const targetIndex = $(this).prev().data('index');
     const inputField = $(`#item_item_images_attributes_${targetIndex}_src`)
-    console.log(targetIndex)
+    inputField.parent().remove();
     inputField.remove();
 
     // 該当indexを振られているチェックボックスを取得する
     const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
     // もしチェックボックスが存在すればチェックを入れる
-    // console.log(hiddenCheck)
     if (hiddenCheck) hiddenCheck.prop('checked', true);
     
+    const hiddenCheckEdit = $(`#item_item_images_attributes_${targetIndex}__destroy`);
+    if (hiddenCheckEdit) hiddenCheckEdit.prop('checked', true);
+
     $(this).parent().remove()
     $(`img[data-index="${targetIndex}"]`).remove();
     // 画像入力欄が0個にならないようにしておく
