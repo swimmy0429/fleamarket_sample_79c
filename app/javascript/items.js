@@ -26,9 +26,6 @@ document.addEventListener("turbolinks:load"
   // 既に使われているindexを除外
   lastIndex = $('.js-file_group:last').data('index');
   fileIndex.splice(0, lastIndex);
-  console.log(lastIndex,fileIndex)
-
-
 
   $('.hidden-destroy').hide();
   $('#image-box').on('change', '.js-file', function(e)  {
@@ -54,13 +51,10 @@ document.addEventListener("turbolinks:load"
       // fileIndexの先頭の数字を使ってinputを作る
       $('#image-box').append(buildFileField(fileIndex[0]));
       fileIndex.shift();
-      console.log(fileIndex);
-
-      // 末尾の数に1足した数を追加する
-      // fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
+      
       lastIndex = $('.js-file_group:last').data('index');
       fileIndex.push(lastIndex);
-      console.log($(".js-file_group").length);
+
       }
     }
 
@@ -89,7 +83,14 @@ document.addEventListener("turbolinks:load"
     $(`img[data-index="${targetIndex}"]`).remove();
     // 画像入力欄が0個にならないようにしておく
     if ($('.js-file').length == 0) $('#image-box').prepend(buildFileField(fileIndex[0]));
+
+    let i = 1;
+    while (i <= 10) {
+      if (fileIndex.includes(i)==false) {
+        fileIndex.push(i)
+        break;
+      }
+      i = i + 1;
+    }
   });
 });
-
-//プレビュー上段、下段の条件分岐
