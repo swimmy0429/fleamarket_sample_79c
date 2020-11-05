@@ -1,8 +1,14 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth, if: :production?
 
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+  #カテゴリー機能
+  before_action :set_parents, only: [:new, :create]
+  def set_parents
+    @parents = Category.where(ancestry: nil)
+  end
 
   protected
 

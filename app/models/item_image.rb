@@ -4,6 +4,4 @@ class ItemImage < ApplicationRecord
 
   validates :src, presence: true
 
-  belongs_to :item
-
 end

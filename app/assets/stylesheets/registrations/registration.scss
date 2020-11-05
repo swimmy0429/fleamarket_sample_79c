@@ -1,0 +1,118 @@
+.NewRegistraion{
+  width: 100%;
+  height: auto;
+  background: #F5F5F5;
+  padding-top: 30px;
+  padding-bottom: 70px;
+}
+
+.AccountInformation{
+  font-size: 18px;
+  text-align: center;
+  padding: 16px;
+  font-weight: bold;
+  border-color: whitesmoke;
+}
+
+.Informationinput{
+  font-size: 25px;
+  width: 700px;
+  height: auto;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: white;
+}
+
+.AccountInformationinput{
+  border-bottom: solid 1px;
+  padding: 8px;
+  border-color: whitesmoke;
+}
+
+.field{
+  font-size: 14px;
+  width: 50%;
+  height: auto;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 15px;
+  padding: 25px 16px 9px 16px;
+  display: block;
+}
+
+.fieldtitle{
+  font-size: 110%;
+  height: auto;
+  margin-left: 20px;
+  margin-right: 10px;
+  float: left;
+  background-color: white;
+}
+
+.form-require{
+  background-color: red;
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
+  width: 10%;
+  height: 19px;
+  float: left;
+}
+
+.fieldinput{
+  width: 90%;
+  height: 30px;
+  margin-left: 5px;
+  margin-right: auto;
+  padding: 9px 16px 9px 16px;
+  display: block;
+}
+
+.fieldsidebyside{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.actions{
+  font-size: 14px;
+  width: 60%;
+  height: 25px;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+}
+
+.actionsinput{
+  font-size: 20px;
+  width: 85%;
+  height: 50px;
+  margin-right: auto;
+  margin-left: 10px;
+  margin-top: 55px;
+  background-color: #A4C6FF;
+  border: none;
+  cursor: pointer;
+}
+
+.login{
+  background: #F5F5F5;
+  padding-top: 105px;
+  height: 50px;
+}
+
+.login_registraions{
+  height: 25px;
+  display: block;
+}
+
+.error{
+  font-size: 14px;
+  width: 343px;
+  height: auto;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 15px;
+}
