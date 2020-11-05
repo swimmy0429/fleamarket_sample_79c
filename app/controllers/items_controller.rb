@@ -8,8 +8,8 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
     @item_images_top = ItemImage.includes(:item).group(:item_id)
-    @item_images_top_last_five = @item_images_top.last(5)
-    @items_last_five = @items.last(5)
+    @item_images_top_last_five = @item_images_top.order(id: "DESC").limit(5)
+    @items_last_five = @items.order(id: "DESC").limit(5)
   end
 
   def show
