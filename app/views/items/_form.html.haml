@@ -125,9 +125,12 @@
         %ul
           - @item.errors.full_messages_for(:price).each do |message|
             %li= message  
+      - if @item.persisted?
+        .Item__price__send
+          = f.submit '編集する', class: 'Form__submit'
+      - else
         .Item__price__send
           = f.submit '出品する', class: 'Form__submit'
-
 
 .Bottom
   .Bottom__icon
