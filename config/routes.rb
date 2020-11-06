@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
-  root "cards#new"
-  resources :items, expcept: :show
-  resources :cards, only: [:new, :create] do
-  end
+  #カードのルーティングは他と紐付いていません
+  # root "cards#new"
+  # resources :items, expcept: :show
+  # resources :cards, only: [:new, :create] do
+  # end
   root 'items#index'
   resources :categories, only: [:index] do
     member do
