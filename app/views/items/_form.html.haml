@@ -2,108 +2,143 @@
 .Item
   .Item__box
     .Item__box__field
-    %div 出品画像
-    %div 最大10枚までアップロードできます
-    = form_with model: @item do |f|
-      - if @item.errors.any?
-        .Item__box__errors
-          %ul
-            - @item.errors.full_messages_for(:item_image).each do |message|
-              %li= message
-      .Outer-image-box
-        %div#image-box
-          %div#previews
-            %label.item_image{for: "item_item_images_attributes_#{@item.item_images.length-1}_src"}
-              %i.fa.fa-image
-                - if @item.persisted?
-                  - @item.item_images.each_with_index do |item_image, i|
-                    = image_tag "item_image.src.url", data: { index: i }, width: "112", height: '112'
-          = f.fields_for :item_images do |item_image| 
-            %div{"data-index": item_image.index, class: 'js-file_group'}
-              = item_image.file_field :src, class: 'js-file'   
-            - if @item.persisted?
-              = item_image.check_box :_destroy, data:{ index: item_image.index }, class: 'hidden-destory'
-            - if @item.persisted?
-              %div{"data-index": @item.item_images.count, class: 'js.file_group'}
-                = file_field_tag :src, name: "item[item_images_attributes][#{@item.item_images.count}][src]", class: 'js-file'
-                .js-remove 削除
+      .Item__box__field__title
+        .title 出品画像
+        .title.require 必須
+      %div
+        .Item__box__filed__numbers 最大10枚までアップロードできます
+      %div
+      .Item__box__field__picture
+      = form_with model: @item do |f|
+        - if @item.errors.any?
+          .Item__box__errors
+            %ul
+              - @item.errors.full_messages_for(:item_image).each do |message|
+                %li= message
+        .Item__box__field__picture__preview
+          %div#image-box
+            %div#previews
+              %label.item_image{for: "item_item_images_attributes_#{@item.item_images.length-1}_src"}
+                %i.fa.fa-camera
+                  - if @item.persisted?
+                    - @item.item_images.each_with_index do |item_image, i|
+                      = image_tag "item_image.src.url", data: { index: i }
+            = f.fields_for :item_images do |item_image| 
+              %div{"data-index": item_image.index, class: 'js-file_group'}
+                = item_image.file_field :src, class: 'js-file'   
+              - if @item.persisted?
+                = item_image.check_box :_destroy, data:{ index: item_image.index }, class: 'hidden-destory'
+              - if @item.persisted?
+                %div{"data-index": @item.item_images.count, class: 'js.file_group'}
+                  = file_field_tag :src, name: "item[item_images_attributes][#{@item.item_images.count}][src]", class: 'js-file'
+                  .js-remove 削除
 
-      .Item__name
-        .Item__name__title
-        %div 商品名 必須
-        = f.text_field :name, class: 'Form__name', placeholder: '40文字まで'
-        %ul
-          - @item.errors.full_messages_for(:name).each do |message|
-            %li= message
-        .Item__name__explanation
-        %div 商品の説明 必須
-        = f.text_area :introduction, class: 'Form__introduction', placeholder: '商品の説明 (必須 1,000文字以内)'
-        %ul
-          - @item.errors.full_messages_for(:introduction).each do |message|
-            %li= message
-        %span
-      .Item__detail
-        .Item__detail__title
-        %div 商品の詳細
-        .Item__detail__category
-        %div カテゴリー
-        %div{id: "category_form"}
-        = f.collection_select :category_id, @parents, :id, :name, { include_blank: "選択して下さい", selected:"" }, {class: "js-file2"}
-        %ul
-          - @item.errors.full_messages_for(:category_id).each do |message|
-            %li= message
-        .Item__detail__size
-        %div サイズ
-        %br
-        = f.text_field :size_id, class: 'Form__size', placeholder: ''
-        %ul
-          - @item.errors.full_messages_for(:size_id).each do |message|
-            %li= message
-        -# .Item__detail__brand
-        -# %div ブランド
-        -# %br
-        -# = f.text_field :brand, class: 'Form__brand', placeholder: ''
-        -# %ul
-        -#   - @item.errors.full_messages_for(:brand).each do |message|
-        -#     %li= message
-        .Item__detail__item_condition
-        %div 商品の状態
-        = f.collection_select :item_condition_id, ItemCondition.all, :id, :name, {prompt:"選択してください"}, {class:""}
-        %ul
-          - @item.errors.full_messages_for(:item_condition_id).each do |message|
-            %li= message
+        .Item__box__field__name
+          .Item__box__field__name__outer
+            .Item__box__field__name__upper
+              .title 商品名
+              .title.require 必須
+            .Item__box__field__name__lower
+              = f.text_field :name, class: 'Form__name', placeholder: '40文字まで'
+              %ul
+                - @item.errors.full_messages_for(:name).each do |message|
+                  %li= message
+        .Item__box__field__explain
+          .Item__box__field__explain__outer
+            .Item__box__field__explain__upper
+              .title 商品の説明
+              .title.require 必須
+            .Item__box__field__explain__lower
+              = f.text_area :introduction, class: 'Form__introduction', placeholder: '商品の説明 (必須 1,000文字以内)'
+            %p.str.length
+              %ul
+                - @item.errors.full_messages_for(:introduction).each do |message|
+                  %li= message
+                %span
+        .Item__box__field__detail
+          .Item__box__field__detail__outer
+            .title 商品の詳細
+          .Item__box__field__detail__upper
+            .title カテゴリー
+            .title.require 必須
+          .Item__box__field__detail__lower
+            %div{id: "category_form"}
+              = f.collection_select :category_id, @parents, :id, :name, { include_blank: "選択して下さい", selected:"" }, {class: "Form__collection"}
+            .p.arrow
+              v
+              %ul
+                - @item.errors.full_messages_for(:category_id).each do |message|
+                  %li= message
+          -# .Item__detail__size サイズ  
+          -# %div 
+          -#   = f.text_field :size_id, class: 'Form__size', placeholder: ''
+          -#   %ul
+          -#     - @item.errors.full_messages_for(:size_id).each do |message|
+          -#       %li= message
+          -# .Item__detail__brand ブランド
+          -# %div 
+          -#   = f.text_field :brand, class: 'Form__brand', placeholder: ''
+          -#   %ul
+          -#     - @item.errors.full_messages_for(:brand).each do |message|
+          -#       %li= message
+          .Item__box__field__detail__item_condition__upper
+            .title 商品の状態
+            .title.require 必須
+          .Item__box__field__detail__item_condition__lower
+            %div 
+              = f.collection_select :item_condition_id, ItemCondition.all, :id, :name, {prompt:"選択してください"}, {class:"Form__collection"}
+            .p.arrow
+              v
+              %ul
+                - @item.errors.full_messages_for(:item_condition_id).each do |message|
+                  %li= message
 
-      .Item__delivery
-        .Item__delibery__title
-        %div 配送について
-        .Item__delivery__shipping_charge_players
-        %div 配送料の負担
-        = f.collection_select :shipping_charge_players_id, ShippingChargePlayers.all, :id, :name, {prompt:"選択してください"}, {class:""}
-        %ul
-          - @item.errors.full_messages_for(:shipping_charge_players_id).each do |message|
-            %li= message
-        .Item__delivery__prefecture_code
-        %div 配送元の地域
-        = f.collection_select :prefecture_code, Prefecture.all, :id, :name, {prompt:"選択してください"}, {class:""}
-        %ul
-          - @item.errors.full_messages_for(:prefecture_code).each do |message|
-            %li= message
-        .Item__delivery__preparation_day
-        %div 配送までの日数
-        = f.number_field :preparation_day_id, class: 'Form__preparation', placeholder: ''
-        .Item__delivery__delivery_type
-        %div 配送方法 仮で追加
-        = f.text_field :delivery_type_id, class: 'Form__delivery', placeholder: ''
-        -# = f.hidden_field :seller_id, :value => current_user.id
-      .Item__price
-        .Item__price__tile
-        %div 価格
-        .Item__price__price
-        %div 販売価格
-        = f.number_field :price, class: 'Form__price', placeholder: ''
-        %ul
-          - @item.errors.full_messages_for(:price).each do |message|
-            %li= message  
+        .Item__box__field__delivery
+          .Item__box__field__delivery__outer
+            .title 配送について
+          .Item__box__field__delivery__upper
+            .title 配送料の負担
+            .title.require 必須
+          .Item__box__field__delivery__lower
+            %div
+            = f.collection_select :shipping_charge_players_id, ShippingChargePlayers.all, :id, :name, {prompt:"選択してください"}, {class:"Form__collection"}
+            .p.arrow
+              v
+            %ul
+              - @item.errors.full_messages_for(:shipping_charge_players_id).each do |message|
+                %li= message
+          .Item__box__field__delivery__prefecture_code__upper
+            .title 発送元の地域
+            .title.require 必須
+          .Item__box__field__delivery__prefecture_code__lower
+            %div 
+            = f.collection_select :prefecture_code, Prefecture.all, :id, :name, {prompt:"選択してください"}, {class:"Form__collection"}
+            .p.arrow
+              v
+            %ul
+              - @item.errors.full_messages_for(:prefecture_code).each do |message|
+                %li= message
+          .Item__box__field__delivery__preparation_day__upper
+            .tile 配送までの日数
+            .tiel.require 必須
+          .Item__box__field__delivery__preparation_day__lower
+            %div 
+            = f.number_field :preparation_day_id, class: 'Form__collection', placeholder: ''
+          -# .Item__delivery__delivery_type 配送方法
+          -# %div 
+          -#   = f.text_field :delivery_type_id, class: 'Form__delivery', placeholder: ''
+            -# = f.hidden_field :seller_id, :value => current_user.id
+        .Item__price
+          .Item__price__tile 価格
+          %div 
+          .Item__price__sell 販売価格
+          .Item__price__require 必須
+          %div
+            = f.number_field :price, class: 'Form__price', placeholder: ''
+            %ul
+              - @item.errors.full_messages_for(:price).each do |message|
+                %li= message  
         .Item__price__send
-          = f.submit '出品する', class: 'Form__submit'
+          %div
+            = f.submit '出品する', class: 'Form__submit'
 
