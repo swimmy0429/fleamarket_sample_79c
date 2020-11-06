@@ -72,10 +72,10 @@ group :production do
   gem 'unicorn'
 end
 
-#ユーザー認証を扱うときに非常に便利なgem
-# gem 'devise-i18n'
-# gem 'devise-i18n-views'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 gem 'erb2haml'
+gem 'payjp'
 gem 'jquery-rails'
 gem 'active_hash'
 gem "haml-rails", ">= 1.0", '<= 2.0.1'
