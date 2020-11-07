@@ -1,11 +1,15 @@
+document.addEventListener("turbolinks:load"
+, function () {
+console.log('change2');
 $(function(){
   function appendOption(category){
     var html = `<option value="${category.id}">${category.name}</option>`;
-    return html;
+    console.log('change3');
+    return html
   }
   function appendChildrenBox(insertHTML){
     var childSelectHtml = "";
-    childSelectHtml = `<div class="child" id="children_wrapper">
+    childSelectHtml = `<div class="child_" id="children_wrapper">
                         <select id="child__category" name="item[category_id]" class="serect_field">
                           <option value="">---</option>
                           ${insertHTML}
@@ -15,7 +19,7 @@ $(function(){
   }
   function appendGrandchildrenBox(insertHTML){
     var grandchildSelectHtml = "";
-    grandchildSelectHtml = `<div class="child" id="grandchildren_wrapper">
+    grandchildSelectHtml = `<div class="child_" id="grandchildren_wrapper">
                               <select id="grandchild__category" name="item[category_id]" class="serect_field">
                                 <option value="">---</option>
                                 ${insertHTML}
@@ -37,6 +41,8 @@ $(function(){
       .done(function(children){
         $('#children_wrapper').remove();
         $('#grandchildren_wrapper').remove();
+        $('#item_category_id2').remove();
+        $('#item_category_id3').remove();
         var insertHTML = '';
         children.forEach(function(child){
           insertHTML += appendOption(child);
@@ -49,6 +55,8 @@ $(function(){
     }else{
       $('#children_wrapper').remove();
       $('#grandchildren_wrapper').remove();
+      $('#item_category_id2').remove();
+      $('#item_category_id3').remove();
     }
   });
   $('.append__category').on('change','#child__category',function(){
@@ -76,3 +84,4 @@ $(function(){
     }
   })
 });
+})
