@@ -1,36 +1,34 @@
 document.addEventListener("turbolinks:load"
 , function () {
-// $(document).on('turbolinks:load', ()=> {
-  $(function(){
 
   // 画像用のinputを生成する関数
   const buildFileField = (num)=> {
     const html = `<div data-index="${num}" class="js-file_group">
-                    <input class="js-file" type="file"
+                  <input class="js-file" type="file"
                     name="item[item_images_attributes][${num}][src]"
                     id="item_item_images_attributes_${num}_src"><br>
-                    
+
                   </div>`;
     return html;
   }
 
   const buildImg = (index, url)=> {
     const html = `<div class="image-box">
-                    <img data-index="${index}" src="${url}" width="120px" height="120px">
-                    <div class="js-remove">削除</div>
+
+                    <img data-index="${index}" src="${url}" width="112px" height="112px">
+                      <div class="js-remove">削除</div>
+                      <div class="js-edit">編集</div>
+
                   </div>`;
     return html;
   }
 
   // file_fieldのnameに動的なindexをつける為の配列
   let fileIndex = [1,2,3,4,5,6,7,8,9,10];
-  
+
   // 既に使われているindexを除外
   lastIndex = $('.js-file_group:last').data('index');
   fileIndex.splice(0, lastIndex);
-
-  
-  
 
   $('.hidden-destroy').hide();
   $('#image-box').on('change', '.js-file', function(e)  {
@@ -51,42 +49,58 @@ document.addEventListener("turbolinks:load"
       if($(".js-file_group").length >= 10){
         return false;
       } else {
-      
+
       // attrを使って画像が投稿される度にlabelのfor属性を変える(0→1→2)
       $('label.item_image').attr("for", `item_item_images_attributes_${targetIndex + 1}_src`);
 
       // fileIndexの先頭の数字を使ってinputを作る
       $('#image-box').append(buildFileField(fileIndex[0]));
       fileIndex.shift();
+
      
       // 末尾の数に1足した数を追加する
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
+
+      // 商品編集
+      lastIndex = $('.js-file_group:last').data('index');
+      fileIndex.push(lastIndex);
+
       }
-    }  
+    }
 
-    
+  });
 
+  $('#image-box').on('click', '.js-edit', function() {
+    const targetIndex = $(this).prev().prev().data('index');
+    $(`#item_item_images_attributes_${targetIndex}_src`).trigger("click");;
   });
 
   $('#image-box').on('click', '.js-remove', function() {
     const targetIndex = $(this).prev().data('index');
     const inputField = $(`#item_item_images_attributes_${targetIndex}_src`)
-    console.log(inputField)
+    inputField.parent().remove();
     inputField.remove();
 
     // 該当indexを振られているチェックボックスを取得する
     const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
     // もしチェックボックスが存在すればチェックを入れる
     if (hiddenCheck) hiddenCheck.prop('checked', true);
+    
+    const hiddenCheckEdit = $(`#item_item_images_attributes_${targetIndex}__destroy`);
+    if (hiddenCheckEdit) hiddenCheckEdit.prop('checked', true);
 
     $(this).parent().remove()
     $(`img[data-index="${targetIndex}"]`).remove();
     // 画像入力欄が0個にならないようにしておく
     if ($('.js-file').length == 0) $('#image-box').prepend(buildFileField(fileIndex[0]));
+
+    let i = 1;
+    while (i <= 10) {
+      if (fileIndex.includes(i)==false) {
+        fileIndex.push(i)
+        break;
+      }
+      i = i + 1;
+    }
   });
 });
-})
-
-// `img[data-index="${targetIndex}"]`
-
-//プレビュー上段、下段の条件分岐

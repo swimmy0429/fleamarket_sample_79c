@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-  before_action :set_parents, only: [:index, :new, :create,:show]
+  before_action :set_parents, only: [:index, :new, :create,:show,:edit,:update]
   before_action :set_category, only: [:show]
   before_action :set_current_user_products,only:[:i_transaction,:i_exhibiting,:i_soldout]
   before_action :set_user,only:[:i_transaction,:i_exhibiting,:i_soldout]
@@ -35,15 +35,20 @@ class ItemsController < ApplicationController
       redirect_to root_path
     else
       render :new
-
     end
   end
 
   def edit
     @item = Item.find(params[:id])
+    @grandchild = @item.category
+    @child = @grandchild.parent
+    @parent  = @child.parent[:id]
+    @children = Category.find(@parent).children
+    @grandchildren = Category.find(@child[:id]).children
   end
 
   def update
+    @item = Item.find(params[:id])
     if @item.update(item_params)
       redirect_to root_path
     else
