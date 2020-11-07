@@ -50,7 +50,6 @@
               .title.require 必須
             .Item__box__field__explain__lower
               = f.text_area :introduction, class: 'Form__introduction', placeholder: '商品の説明 (必須 1,000文字以内)'
-            %p.str.length
               %ul
                 - @item.errors.full_messages_for(:introduction).each do |message|
                   %li= message
@@ -66,9 +65,9 @@
               = f.collection_select :category_id, @parents, :id, :name, { include_blank: "選択して下さい", selected:"" }, {class: "Form__collection"}
             .p.arrow
               v
-              %ul
-                - @item.errors.full_messages_for(:category_id).each do |message|
-                  %li= message
+            %ul
+              - @item.errors.full_messages_for(:category_id).each do |message|
+                %li= message
           -# .Item__detail__size サイズ  
           -# %div 
           -#   = f.text_field :size_id, class: 'Form__size', placeholder: ''
@@ -89,9 +88,9 @@
               = f.collection_select :item_condition_id, ItemCondition.all, :id, :name, {prompt:"選択してください"}, {class:"Form__collection"}
             .p.arrow
               v
-              %ul
-                - @item.errors.full_messages_for(:item_condition_id).each do |message|
-                  %li= message
+            %ul
+              - @item.errors.full_messages_for(:item_condition_id).each do |message|
+                %li= message
 
         .Item__box__field__delivery
           .Item__box__field__delivery__outer
@@ -123,22 +122,32 @@
             .tiel.require 必須
           .Item__box__field__delivery__preparation_day__lower
             %div 
-            = f.number_field :preparation_day_id, class: 'Form__collection', placeholder: ''
+            = f.collection_select :preparation_day_id, PreparationDay.all, :id, :name, {prompt:"選択してください"}, {class:"Form__collection"}
+            .p.arrow
+              v
+            %ul
+              - @item.errors.full_messages_for(:preparation_day_id).each do |message|
+                %li= message
           -# .Item__delivery__delivery_type 配送方法
           -# %div 
           -#   = f.text_field :delivery_type_id, class: 'Form__delivery', placeholder: ''
             -# = f.hidden_field :seller_id, :value => current_user.id
-        .Item__price
-          .Item__price__tile 価格
-          %div 
-          .Item__price__sell 販売価格
-          .Item__price__require 必須
-          %div
-            = f.number_field :price, class: 'Form__price', placeholder: ''
-            %ul
-              - @item.errors.full_messages_for(:price).each do |message|
-                %li= message  
-        .Item__price__send
-          %div
+        .Item__box__field__price
+          .Item__box__field__price__outer
+            .title 価格 （¥0〜9,999,999）
+          .Item__box__field__price__upper
+            .title 販売価格
+            .title.require 必須
+            .yen ￥
+            .Item__box__field__price__lower
+            = f.number_field :price, class: 'Form__price', placeholder: '0'
+          %ul
+            - @item.errors.full_messages_for(:price).each do |message|
+              %li.bottom_error= message  
+        .Item__box__field__send
+          .Item__box__field__send__outer
             = f.submit '出品する', class: 'Form__submit'
+            .Item__box__field__send__return
+              = link_to "もどる", root_path, class:"return"
+        
 

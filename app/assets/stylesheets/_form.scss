@@ -6,6 +6,7 @@ $border-color:rgb(245, 245, 245);
   background-color: #ff0211;
   color: #fff;
   margin-left: 8px;
+  margin-right: auto;
 }
 
 .arrow {
@@ -43,6 +44,7 @@ $border-color:rgb(245, 245, 245);
   background-color: rgb(245, 245, 245);
   font-family: Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
   font-size: 14px;
+  vertical-align: baseline;
 
   &__box {
     background-color: $section-color;
@@ -64,17 +66,14 @@ $border-color:rgb(245, 245, 245);
         margin-left: 20px;
       }
 
-      .style.require {
-        margin-left: 10px;
-      }
-
       &__field__under {
         width: 700px;
       }
 
         .image-box {
+          background-color: rgb(245, 245, 245);
           height: 150px;
-          margin: 20px;
+          margin: 5px;
           position: relative;
           // width: 100%;
           }
@@ -87,10 +86,12 @@ $border-color:rgb(245, 245, 245);
           .js-remove {
             display: flex;
             justify-content: center;
+            color: blue;
           }
 
           #previews {
             display: flex;
+            justify-content: center;
             flex-wrap: wrap;
             overflow: hidden;
             height: 100%;
@@ -157,13 +158,19 @@ $border-color:rgb(245, 245, 245);
             margin: 0;
             outline: none;
             padding: 0 16px;
-            width: inherit;
+            width: 100%;
           }
 
-      &__field__explain__upper {
-        display: flex;
-        padding: 0 20px 20px 20px;
+      &__field__explain {
+        height: 240px;
       }
+
+        &__field__explain__upper {
+          display: flex;
+          padding: 0 20px 20px 20px;
+        }
+
+        
 
         &__field__explain__lower {
           margin-left: 20px;
@@ -181,13 +188,13 @@ $border-color:rgb(245, 245, 245);
           margin: 0;
           outline: none;
           padding: 0 16px;
-          width: inherit;
+          width: 100%;
         }
 
 
     &__field__detail {
       background-color: white;
-      height: 300px;
+      height: 340px;
       width: 700px;
       border-top: 4px solid whitesmoke;
       border-bottom: 2px solid whitesmoke;
@@ -205,14 +212,12 @@ $border-color:rgb(245, 245, 245);
         }
 
         &__field__detail__lower {
-          display: flex;
           padding: 20px;
           position: relative;
           
         }
 
-          #category_form {
-            
+          #category_form {    
             width: 100%;
           }
 
@@ -270,12 +275,110 @@ $border-color:rgb(245, 245, 245);
         position: relative;
       }
 
+    &__field__price {
+    background-color: white;
+    height: 200px;
+    width: 700px;
+    border-top: 2px solid whitesmoke;
+    border-bottom: 2px solid whitesmoke;
+    margin: 0 auto;
+    }
 
-    &__price {
-      background-color: white;
-      height: 300px;
+      &__field__price__outer {
+        display: flex;
+        padding: 20px 20px 0 20px;
+      }
+
+      &__field__price__upper {
+        display: flex;
+        padding: 20px 20px 0px 20px;
+        -webkit-box-align: center;
+        align-items: center;
+        box-sizing: content-box;
+        display: flex;
+        height: 46px;
+      }
+
+      .yen {
+        margin-right: 8px;
+      }
+
+      &__field__price__lower {
+        position: relative;
+        display: flex;
+      }
+
+        .Form__price {
+          appearance: none;
+          background-color: #fff;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          color: #222;
+          font-size: 16px;
+          height: 48px;
+          line-height: 1;
+          margin: 0;
+          outline: none;
+          padding: 0 16px;
+          width: 350px;
+          text-align: right;
+        }
+
+    &__field__send {
       width: 700px;
+      height: 170px;
+      border-bottom: 2px solid whitesmoke;
       margin: 0 auto;
     }
+
+      &__field__send__outer {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center
+      }
+
+        .Form__submit {
+          background-color: #ea352d;
+          color: #fff;
+          width: 50%;
+          color: #fff;
+          font-size: 17px;
+          min-height: 48px;
+          padding: 0 24px;
+          transition-duration: .1s;
+          transition-timing-function: ease-in-out;
+          border-radius: 4px;
+          border: 1px solid transparent;
+          box-sizing: border-box;
+          display: inline-block;
+          font-weight: 600;
+          line-height: 1;
+          overflow: hidden;
+          text-align: center;
+          text-decoration: none;
+          transition-property: background-color,border-color,color;
+          vertical-align: middle;
+          white-space: nowrap;
+          word-break: break-word;
+          cursor: pointer;
+        }
+
+      &__field__send__return {
+
+      }
+
+      .return {
+        color: blue;
+        text-decoration: none;
+        margin-top: 8px;
+        cursor: pointer;
+      }
+
+      .bottom_error {
+        margin-left: 20px;
+      }
   }
 }
