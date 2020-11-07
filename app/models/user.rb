@@ -4,9 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-
   validates :nickname,:email, :password, :first_name, :family_name, :first_name_kana, :family_name_kana, :birth_year_month_day ,presence: true
-
 
   validates :first_name, presence: true, format: { with: /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/, message: 'は漢字、全角ひらがな、全角カタカナで入力して下さい。'}
   validates :family_name, presence: true, format: { with: /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/, message: 'は漢字、全角ひらがな、全角カタカナで入力して下さい。'}
@@ -15,11 +13,8 @@ class User < ApplicationRecord
   validates :first_name_kana, presence: true, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。'}
   validates :family_name_kana, presence: true, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。'}
   validates :password, presence: true, format: { with: /\A[a-zA-Z0-9]+\z/, message: 'は半角アルファベット（大文字・小文字・数値）で入力して下さい。'}
-  # with_options presence :true do
-  #   validates :first_name_kana, :family_name_kana, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/, message: 'はカタカナで入力して下さい。'}
   
-  # end
-
+  has_one :card, dependent: :destroy
   has_many :buyed_items, foreign_key: "buyer_id", class_name: "Item"
   has_many :selling_items, -> { where("buyer_id is NULL") }, foreign_key: "seller_id", class_name: "Item"
   has_many :sold_items, -> { where("buyer_id is not NULL") }, foreign_key: "seller_id", class_name: "Item"
