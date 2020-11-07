@@ -1,5 +1,6 @@
 document.addEventListener("turbolinks:load"
 , function () {
+
   // 画像用のinputを生成する関数
   const buildFileField = (num)=> {
     const html = `<div data-index="${num}" class="js-file_group">
@@ -13,9 +14,11 @@ document.addEventListener("turbolinks:load"
 
   const buildImg = (index, url)=> {
     const html = `<div class="image-box">
+
                     <img data-index="${index}" src="${url}" width="112px" height="112px">
                       <div class="js-remove">削除</div>
                       <div class="js-edit">編集</div>
+
                   </div>`;
     return html;
   }
@@ -30,6 +33,7 @@ document.addEventListener("turbolinks:load"
   $('.hidden-destroy').hide();
   $('#image-box').on('change', '.js-file', function(e)  {
     const targetIndex = $(this).parent().data('index');
+
     // ファイルのブラウザ上でのURLを取得する
     const file = e.target.files[0];
     const blobUrl = window.URL.createObjectURL(file);
@@ -37,6 +41,7 @@ document.addEventListener("turbolinks:load"
     if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
       img.setAttribute('src', blobUrl);
     } else {  // 新規画像追加の処理
+
       
       //appendではなく、prependで要素を前から表示
       $('#previews').prepend(buildImg(targetIndex, blobUrl));
@@ -51,7 +56,12 @@ document.addEventListener("turbolinks:load"
       // fileIndexの先頭の数字を使ってinputを作る
       $('#image-box').append(buildFileField(fileIndex[0]));
       fileIndex.shift();
-      
+
+     
+      // 末尾の数に1足した数を追加する
+      fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
+
+      // 商品編集
       lastIndex = $('.js-file_group:last').data('index');
       fileIndex.push(lastIndex);
 

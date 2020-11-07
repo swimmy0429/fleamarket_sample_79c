@@ -113,4 +113,3 @@ class ItemsController < ApplicationController
 
 end
 
-# .merge(seller_id: current_user.id)
