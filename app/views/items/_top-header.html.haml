@@ -17,8 +17,8 @@
           ブランド
       .header__inner__bar__registration
         - if user_signed_in?
-          -# .header__inner__bar__registration__Rogin
-          -#   = link_to "ログアウト",destroy_user_session_path, method: :delete,class:"header__inner__bar__registration__link"
+          .header__inner__bar__registration__Rogin
+          = link_to "ログアウト",destroy_user_session_path, method: :delete,class:"header__inner__bar__registration__link"
           .header__inner__bar__registration__Touroku
             = link_to "マイページ", root_path,class:"header__inner__bar__registration__link"
         - else

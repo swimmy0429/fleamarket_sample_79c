@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users
   #カードのルーティングは他と紐付いていません
   # root "cards#new"
