@@ -1,6 +1,22 @@
 ---
 ja:
   activerecord:
+    models:
+      item: 
+    attributes:
+      item:
+        name: 商品名
+        category_id: カテゴリー
+        email: メールアドレス
+        introduction: 商品の説明
+        item_condition_id: 商品の状態
+        prefecture_code: 発送元の地域
+        preparation_day_id: 発送までの日数
+        price: 価格
+        shipping_charge_players_id: 配送料の負担
+        size_id: サイズ
+        brand_id: ブランド
+        delivery_type_id: 配送料の負担
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -111,6 +127,7 @@ ja:
     messages:
       accepted: を受諾してください
       blank: を入力してください
+      
       confirmation: と%{attribute}の入力が一致しません
       empty: を入力してください
       equal_to: は%{count}にしてください
@@ -119,16 +136,22 @@ ja:
       greater_than: は%{count}より大きい値にしてください
       greater_than_or_equal_to: は%{count}以上の値にしてください
       inclusion: は一覧にありません
+      
       invalid: は不正な値です
+      
       less_than: は%{count}より小さい値にしてください
       less_than_or_equal_to: は%{count}以下の値にしてください
       model_invalid: 'バリデーションに失敗しました: %{errors}'
+      
       not_a_number: は数値で入力してください
       not_an_integer: は整数で入力してください
       odd: は奇数にしてください
       other_than: は%{count}以外の値にしてください
+      
       present: は入力しないでください
+      
       required: を入力してください
+      
       taken: はすでに存在します
       too_long: は%{count}文字以内で入力してください
       too_short: は%{count}文字以上で入力してください

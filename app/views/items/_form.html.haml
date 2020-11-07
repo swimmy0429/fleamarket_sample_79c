@@ -42,7 +42,7 @@
               = f.text_field :name, class: 'Form__name', placeholder: '40文字まで'
               %ul
                 - @item.errors.full_messages_for(:name).each do |message|
-                  %li= message
+                  %li.alert= message
         .Item__box__field__explain
           .Item__box__field__explain__outer
             .Item__box__field__explain__upper
@@ -52,7 +52,7 @@
               = f.text_area :introduction, class: 'Form__introduction', placeholder: '商品の説明 (必須 1,000文字以内)'
               %ul
                 - @item.errors.full_messages_for(:introduction).each do |message|
-                  %li= message
+                  %li.alert= message
                 %span
         .Item__box__field__detail
           .Item__box__field__detail__outer
@@ -67,19 +67,19 @@
               v
             %ul
               - @item.errors.full_messages_for(:category_id).each do |message|
-                %li= message
+                %li.alert= message
           -# .Item__detail__size サイズ  
           -# %div 
           -#   = f.text_field :size_id, class: 'Form__size', placeholder: ''
           -#   %ul
           -#     - @item.errors.full_messages_for(:size_id).each do |message|
-          -#       %li= message
+          -#       %li.alert= message
           -# .Item__detail__brand ブランド
           -# %div 
           -#   = f.text_field :brand, class: 'Form__brand', placeholder: ''
           -#   %ul
           -#     - @item.errors.full_messages_for(:brand).each do |message|
-          -#       %li= message
+          -#       %li.alert= message
           .Item__box__field__detail__item_condition__upper
             .title 商品の状態
             .title.require 必須
@@ -90,7 +90,7 @@
               v
             %ul
               - @item.errors.full_messages_for(:item_condition_id).each do |message|
-                %li= message
+                %li.alert= message
 
         .Item__box__field__delivery
           .Item__box__field__delivery__outer
@@ -105,7 +105,7 @@
               v
             %ul
               - @item.errors.full_messages_for(:shipping_charge_players_id).each do |message|
-                %li= message
+                %li.alert= message
           .Item__box__field__delivery__prefecture_code__upper
             .title 発送元の地域
             .title.require 必須
@@ -116,7 +116,7 @@
               v
             %ul
               - @item.errors.full_messages_for(:prefecture_code).each do |message|
-                %li= message
+                %li.alert= message
           .Item__box__field__delivery__preparation_day__upper
             .tile 配送までの日数
             .tiel.require 必須
@@ -127,7 +127,7 @@
               v
             %ul
               - @item.errors.full_messages_for(:preparation_day_id).each do |message|
-                %li= message
+                %li.alert= message
           -# .Item__delivery__delivery_type 配送方法
           -# %div 
           -#   = f.text_field :delivery_type_id, class: 'Form__delivery', placeholder: ''

@@ -27,13 +27,17 @@ $border-color:rgb(245, 245, 245);
   border-radius: 4px;
   box-sizing: border-box;
   color: #222;
-  font-size: 16px;
+  font-size: 14px;
   height: 48px;
   line-height: 1;
   margin: 0;
   outline: none;
   padding: 0 56px 0 16px;
   width: 100%;
+}
+
+.alert {
+  color: red
 }
 
 .Item {
@@ -49,7 +53,7 @@ $border-color:rgb(245, 245, 245);
   &__box {
     background-color: $section-color;
     width: 700px;
-    margin: 10px auto;
+    margin: 4px auto;
     display: flex;
     flex-direction: column;
 
@@ -379,6 +383,7 @@ $border-color:rgb(245, 245, 245);
 
       .bottom_error {
         margin-left: 20px;
+        color: red;
       }
   }
 }
