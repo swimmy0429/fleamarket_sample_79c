@@ -30,7 +30,6 @@ $(function(){
   }
 
   $('#item_category_id').on('change',function(){
-    console.log('change4');
     var parentId = document.getElementById('item_category_id').value;
     if (parentId != ""){
       $.ajax({
@@ -42,6 +41,8 @@ $(function(){
       .done(function(children){
         $('#children_wrapper').remove();
         $('#grandchildren_wrapper').remove();
+        $('#item_category_id2').remove();
+        $('#item_category_id3').remove();
         var insertHTML = '';
         children.forEach(function(child){
           insertHTML += appendOption(child);
@@ -54,6 +55,8 @@ $(function(){
     }else{
       $('#children_wrapper').remove();
       $('#grandchildren_wrapper').remove();
+      $('#item_category_id2').remove();
+      $('#item_category_id3').remove();
     }
   });
   $('.append__category').on('change','#child__category',function(){

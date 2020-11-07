@@ -75,6 +75,7 @@ td {
   border: none;
   font-size: 18px;
   color: white;
+  border-radius: 100px;
 }
 textarea {
   width: 100%;
@@ -95,6 +96,9 @@ textarea {
 
 .item__body {
   text-align : center;
+  &_image_detail{
+    display: flex;
+  }
 }
 
 .item__price {
