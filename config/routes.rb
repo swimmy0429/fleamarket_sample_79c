@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # カードのルーティングは他と紐付いていません
   # root "cards#new"
   # resources :items, expcept: :show
-  # resources :cards, only: [:new, :create] do
+  resources :cards, only: [:new, :create]
   resources :users, only: :show
   
   root 'items#index'
