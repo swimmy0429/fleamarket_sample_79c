@@ -1,7 +1,10 @@
 .header
   .header__inner
-    .header__inner__bar
-      .header__inner__bar__registration
-        - if user_signed_in?
-          .header__inner__bar__registration__Rogin
-          = link_to "ログアウト",destroy_user_session_path, method: :delete, class:"my__page__function"
+    %h5.Configuration 設定
+    .header__inner__bar__Configuration
+      - if user_signed_in?
+        .header__inner__bar__registration__Rogin
+        = link_to "ログアウト",destroy_user_session_path, method: :delete, class:"my__page__function"
+        .header__inner__bar__registration
+        .header__inner__bar__registration__Rogin
+        = link_to "クレジットカードを登録する",new_card_path, class:"my__page__function2"
