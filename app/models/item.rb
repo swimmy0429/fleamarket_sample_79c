@@ -49,9 +49,6 @@ class Item < ApplicationRecord
   
   validates :delivery_type_id, presence: true
 
-
-  validates_length_of :item_images, minimum: 1
-
   belongs_to :seller, class_name: "User", foreign_key: "seller_id", optional: true
   # belongs_to :seller, class_name: "user" = （Itemに紐づく） Userモデルをsellerと定義する。　
   # foreign_key: "seller_id" = user_idはItemレコードの『seller_idカラム』のid番号を使う
