@@ -47,9 +47,9 @@
                   %br= link_to "#{@category_grandchild.name}","#" 
               -else
                 %td
-                  = link_to "#{@category_parent.name}","#"
-                  %br= link_to "#{@category_child.name}","#"
-                  = link_to "#{@category_grandchild.name}","#"
+                  = link_to "#{@category_parent.name}",parent_category_path(@category_parent)
+                  %br= link_to "#{@category_child.name}",child_category_path(@category_child)
+                  = link_to "#{@category_grandchild.name}",grandchild_category_path(@category_grandchild)
             -# %tr
             -#   %th ブランド
             -#   %td aaa
