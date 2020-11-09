@@ -30,26 +30,15 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
 
   validates :name, presence: true, length: { maximum: 40 }
-
   validates :introduction, presence: true, length: { maximum: 1000 }
-  
   validates :category_id, presence: true
-  
   validates :price, presence: true, length: { maximum: 9999999 }
-  
   validates :shipping_charge_players_id, presence: true
-  
   validates :prefecture_code, presence: true
-  
   validates :item_condition_id, presence: true
-  
   # validates :size_id, presence: true
-  
   validates :preparation_day_id, presence: true
-  
   validates :delivery_type_id, presence: true
-
-
   validates_length_of :item_images, minimum: 1
 
   belongs_to :seller, class_name: "User", foreign_key: "seller_id", optional: true
