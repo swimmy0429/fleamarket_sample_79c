@@ -8,6 +8,10 @@
           %li
             -@item_images_detail.each_with_index do |item,index|
               -if index == 0
+                -if @items_show[0][:buyer_id].present? 
+                  .main__pic5__box__lists__list_photo__sold
+                    .main__pic5__box__lists__list_photo__sold__inner
+                      SOLD
                 =image_tag("#{item.src}", class: '#', size: '560x346')
           %ul.item__body_image_detail
             -@item_images_detail.each_with_index do |item,index|
@@ -65,7 +69,7 @@
           %button.purchese__btn 編集
         =link_to item_path, method: :delete do
           %button.purchese__btn 削除
-      -elsif current_user.present? then
+      -elsif current_user.present? && @items_show[0][:buyer_id].present? == false then
         =link_to item_purchases_path(params[:id]) do
           %button.purchese__btn 購入画面に進む
       -else
