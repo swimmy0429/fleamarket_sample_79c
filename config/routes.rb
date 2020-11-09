@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   # カードのルーティングは他と紐付いていません
   # root "cards#new"
   # resources :items, expcept: :show
-  resources :cards, only: [:new, :create]
+  resources :cards, only: [:new, :show, :destroy, :create] do
+    collection do
+      post 'pay', to: 'cards#pay'
+    end
+  end
   resources :users, only: :show
   
   root 'items#index'
@@ -16,6 +20,8 @@ Rails.application.routes.draw do
     end
   end
   resources :items, except: :show
+
+  resources :purchases, only: [:index]
 
   #ajax用のルーティングを定義
   resources :items do

@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', function(){
   //id名が"payment_card_submit-button"というボタンが押されたら取得
   let submit = document.getElementById("payment_card_submit-button");
 
-  Payjp.setPublicKey('pk_test_f30377b26059b605063eb684'); //公開鍵の記述
+  Payjp.setPublicKey('pk_test_34af90abbdf1dd334fa81321'); //公開鍵の記述
 
 
     submit.addEventListener('click', function(e){ //ボタンが押されたらトークン作成開始。
@@ -16,7 +16,7 @@ window.addEventListener('DOMContentLoaded', function(){
         exp_month: document.getElementById("payment_card_month").value,
         exp_year: document.getElementById("payment_card_year").value
     };
-
+    
     Payjp.createToken(card, function(status, response) {  // トークンを生成
       if (status === 200) { //成功した場合(status === 200はリクエストが成功している状況です。)
         //データを自サーバにpostしないようにremoveAttr("name")で削除
