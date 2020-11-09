@@ -21,7 +21,14 @@ Rails.application.routes.draw do
   end
   resources :items, except: :show
 
-  resources :purchases, only: [:index]
+  resources :items do
+    resources :purchases, only: [:index] do
+      collection do
+        get 'done', to: 'purchases#done'
+        post 'pay', to: 'purchases#pay'
+      end
+    end
+  end
 
   #ajax用のルーティングを定義
   resources :items do
