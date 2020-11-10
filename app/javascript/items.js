@@ -44,7 +44,7 @@ document.addEventListener("turbolinks:load"
 
       
       //appendではなく、prependで要素を前から表示
-      $('#previews').insertAdjacentHTML(buildImg(targetIndex, blobUrl));
+      $('#previews').prepend(buildImg(targetIndex, blobUrl));
        // 画像投稿枚数10枚まで
       if($(".js-file_group").length >= 10){
         return false;
@@ -54,7 +54,7 @@ document.addEventListener("turbolinks:load"
       $('label.item_image').attr("for", `item_item_images_attributes_${targetIndex + 1}_src`);
 
       // fileIndexの先頭の数字を使ってinputを作る
-      $('#image-box').insertAdjacentHTML(buildFileField(fileIndex[0]));
+      $('#image-box').prepend(buildFileField(fileIndex[0]));
       fileIndex.shift();
 
      

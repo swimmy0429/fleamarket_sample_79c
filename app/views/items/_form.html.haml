@@ -76,7 +76,7 @@
             .title サイズ
             .title.require 必須
           .Item__box__field__detail__lower
-            = f.text_field :size_id, class: 'Form__collection', placeholder: '選択してください'
+            = f.collection_select :size_id, Size.all, :id, :name, {prompt:"選択してください"}, {class:"Form__collection"}
             .p.arrow
               v  
             %ul
@@ -84,11 +84,9 @@
                 %li.alert= message
           .Item__box__field__title
             .title ブランド
-            .title.require 必須
+            .title.optional 任意
           .Item__box__field__detail__lower
-            = f.text_field :brand_id, class: 'Form__collection', placeholder: '選択してください'
-            .p.arrow
-              v  
+            = f.text_field :brand_id, class: 'Form__collection', placeholder: '例）シャネル'
             %ul
               - @item.errors.full_messages_for(:brand_id).each do |message|
                 %li.alert= message
@@ -96,8 +94,7 @@
             .title 商品の状態
             .title.require 必須
           .Item__box__field__detail__lower
-            %div 
-              = f.collection_select :item_condition_id, ItemCondition.all, :id, :name, {prompt:"選択してください"}, {class:"Form__collection"}
+            = f.collection_select :item_condition_id, ItemCondition.all, :id, :name, {prompt:"選択してください"}, {class:"Form__collection"}
             .p.arrow
               v
             %ul
@@ -111,7 +108,6 @@
             .title 配送料の負担
             .title.require 必須
           .Item__box__field__delivery__lower
-            %div
             = f.collection_select :shipping_charge_players_id, ShippingChargePlayers.all, :id, :name, {prompt:"選択してください"}, {class:"Form__collection"}
             .p.arrow
               v
@@ -121,8 +117,7 @@
           .Item__box__field__title
             .title 発送元の地域
             .title.require 必須
-          .Item__box__field__delivery__prefecture_code__lower
-            %div 
+          .Item__box__field__delivery__lower
             = f.collection_select :prefecture_code, Prefecture.all, :id, :name, {prompt:"選択してください"}, {class:"Form__collection"}
             .p.arrow
               v
@@ -132,18 +127,22 @@
           .Item__box__field__title
             .tile 配送までの日数
             .tiel.require 必須
-          .Item__box__field__delivery__preparation_day__lower
-            %div 
+          .Item__box__field__delivery__lower
             = f.collection_select :preparation_day_id, PreparationDay.all, :id, :name, {prompt:"選択してください"}, {class:"Form__collection"}
             .p.arrow
               v
             %ul
               - @item.errors.full_messages_for(:preparation_day_id).each do |message|
                 %li.alert= message
-          .Item__box__field__title 配送方法
-          %div 
-            = f.text_field :delivery_type_id, class: 'Form__delivery', placeholder: ''
+          .Item__box__field__title
+            .tile 配送方法
+            .tiel.require 必須
+          .Item__box__field__delivery__lower  
+            = f.text_field :delivery_type_id, class: 'Form__collection', placeholder: '選択してください'
             -# = f.hidden_field :seller_id, :value => current_user.id
+            .p.arrow
+              v
+            %ul
         .Item__box__field__price
           .Item__box__field__price__outer
             .title 価格 （¥0〜9,999,999）

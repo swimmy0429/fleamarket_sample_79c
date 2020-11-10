@@ -3,7 +3,17 @@ $border-color:rgb(245, 245, 245);
 
 .require {
   width: 30px;
+  border-radius: 4px;
   background-color: #ff0211;
+  color: #fff;
+  margin-left: 8px;
+  margin-right: auto;
+}
+
+.title.optional{
+  width: 30px;
+  border-radius: 4px;
+  background-color: #bfbfbf;
   color: #fff;
   margin-left: 8px;
   margin-right: auto;
@@ -112,6 +122,7 @@ $border-color:rgb(245, 245, 245);
               display: flex;
               border: 1px dashed rgb(204, 204, 204);
               background-color: rgb(245, 245, 245);
+              border-radius: 4px;
               justify-content: center;
               align-items: center;
               cursor: pointer;
@@ -174,7 +185,6 @@ $border-color:rgb(245, 245, 245);
           padding: 0 20px 20px 20px;
         }
 
-        
 
         &__field__explain__lower {
           margin-left: 20px;
@@ -215,9 +225,6 @@ $border-color:rgb(245, 245, 245);
           position: relative;
         }
 
-        
-
-
             .serect_field {
               appearance: none;
               background-color: #fff;
@@ -228,7 +235,7 @@ $border-color:rgb(245, 245, 245);
               font-size: 14px;
               height: 48px;
               line-height: 1;
-              margin: 0;
+              margin: 20px 0 20px 0;
               outline: none;
               padding: 0 56px 0 16px;
               width: 100%;
@@ -245,29 +252,15 @@ $border-color:rgb(245, 245, 245);
 
       &__field__delivery__outer {
         display: flex;
-        padding: 20px 20px 0 20px;
+        padding: 20px;
       }
 
       &__field__delivery__lower {
         padding: 20px;
         position: relative;
-      }
+      } 
 
-      &__field__delivery__prefecture_code__lower {
-        padding: 20px;
-        position: relative;
-      }
-
-      &__field__delivery__preparation_day__upper {
-        display: flex;
-        padding: 0px 20px 0px 20px;
-      }
-
-      &__field__delivery__preparation_day__lower {
-        padding: 20px;
-        position: relative;
-      }
-
+      
     &__field__price {
     background-color: white;
     height: 200px;
