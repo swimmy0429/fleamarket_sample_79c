@@ -32,10 +32,11 @@
                 %div{"data-index": @item.item_images.count, class: 'js.file_group'}
                   = file_field_tag :src, name: "item[item_images_attributes][#{@item.item_images.count}][src]", class: 'js-file'
                   .js-remove 削除
+                  .js-edit 編集
 
         .Item__box__field__name
           .Item__box__field__name__outer
-            .Item__box__field__name__upper
+            .Item__box__field__title
               .title 商品名
               .title.require 必須
             .Item__box__field__name__lower
@@ -45,7 +46,7 @@
                   %li.alert= message
         .Item__box__field__explain
           .Item__box__field__explain__outer
-            .Item__box__field__explain__upper
+            .Item__box__field__title
               .title 商品の説明
               .title.require 必須
             .Item__box__field__explain__lower
@@ -57,33 +58,44 @@
         .Item__box__field__detail
           .Item__box__field__detail__outer
             .title 商品の詳細
-          .Item__box__field__detail__upper
+          .Item__box__field__title
             .title カテゴリー
             .title.require 必須
           .Item__box__field__detail__lower
-            %div{id: "category_form"}
-              = f.collection_select :category_id, @parents, :id, :name, { include_blank: "選択して下さい", selected:"" }, {class: "Form__collection"}
+            %div.append__category
+              =f.collection_select :category_id, @parents, :id, :name,{selected:@parent,include_blank: "選択してください",id: "item_category_id"},class:"serect_field",id: "item_category_id"
+            - if @item[:category_id].present?
+              =f.collection_select :category_id, @children, :id, :name,{selected:@child[:id],include_blank: "選択してください",id: "item_category_id"},class:"serect_field",id: "item_category_id2"
+              =f.collection_select :category_id, @grandchildren, :id, :name,{selected:@grandchild[:id],include_blank: "選択してください",id: "item_category_id"},class:"serect_field",id: "item_category_id3"    
             .p.arrow
               v
             %ul
               - @item.errors.full_messages_for(:category_id).each do |message|
                 %li.alert= message
-          -# .Item__detail__size サイズ  
-          -# %div 
-          -#   = f.text_field :size_id, class: 'Form__size', placeholder: ''
-          -#   %ul
-          -#     - @item.errors.full_messages_for(:size_id).each do |message|
-          -#       %li.alert= message
-          -# .Item__detail__brand ブランド
-          -# %div 
-          -#   = f.text_field :brand, class: 'Form__brand', placeholder: ''
-          -#   %ul
-          -#     - @item.errors.full_messages_for(:brand).each do |message|
-          -#       %li.alert= message
-          .Item__box__field__detail__item_condition__upper
+          .Item__box__field__title
+            .title サイズ
+            .title.require 必須
+          .Item__box__field__detail__lower
+            = f.text_field :size_id, class: 'Form__collection', placeholder: '選択してください'
+            .p.arrow
+              v  
+            %ul
+              - @item.errors.full_messages_for(:size_id).each do |message|
+                %li.alert= message
+          .Item__box__field__title
+            .title ブランド
+            .title.require 必須
+          .Item__box__field__detail__lower
+            = f.text_field :brand_id, class: 'Form__collection', placeholder: '選択してください'
+            .p.arrow
+              v  
+            %ul
+              - @item.errors.full_messages_for(:brand_id).each do |message|
+                %li.alert= message
+          .Item__box__field__title
             .title 商品の状態
             .title.require 必須
-          .Item__box__field__detail__item_condition__lower
+          .Item__box__field__detail__lower
             %div 
               = f.collection_select :item_condition_id, ItemCondition.all, :id, :name, {prompt:"選択してください"}, {class:"Form__collection"}
             .p.arrow
@@ -95,7 +107,7 @@
         .Item__box__field__delivery
           .Item__box__field__delivery__outer
             .title 配送について
-          .Item__box__field__delivery__upper
+          .Item__box__field__title
             .title 配送料の負担
             .title.require 必須
           .Item__box__field__delivery__lower
@@ -106,7 +118,7 @@
             %ul
               - @item.errors.full_messages_for(:shipping_charge_players_id).each do |message|
                 %li.alert= message
-          .Item__box__field__delivery__prefecture_code__upper
+          .Item__box__field__title
             .title 発送元の地域
             .title.require 必須
           .Item__box__field__delivery__prefecture_code__lower
@@ -117,7 +129,7 @@
             %ul
               - @item.errors.full_messages_for(:prefecture_code).each do |message|
                 %li.alert= message
-          .Item__box__field__delivery__preparation_day__upper
+          .Item__box__field__title
             .tile 配送までの日数
             .tiel.require 必須
           .Item__box__field__delivery__preparation_day__lower
@@ -128,14 +140,14 @@
             %ul
               - @item.errors.full_messages_for(:preparation_day_id).each do |message|
                 %li.alert= message
-          -# .Item__delivery__delivery_type 配送方法
-          -# %div 
-          -#   = f.text_field :delivery_type_id, class: 'Form__delivery', placeholder: ''
+          .Item__box__field__title 配送方法
+          %div 
+            = f.text_field :delivery_type_id, class: 'Form__delivery', placeholder: ''
             -# = f.hidden_field :seller_id, :value => current_user.id
         .Item__box__field__price
           .Item__box__field__price__outer
             .title 価格 （¥0〜9,999,999）
-          .Item__box__field__price__upper
+          .Item__box__field__title
             .title 販売価格
             .title.require 必須
             .yen ￥
@@ -149,6 +161,3 @@
             = f.submit '出品する', class: 'Form__submit'
             .Item__box__field__send__return
               = link_to "もどる", root_path, class:"return"
-        
-
-

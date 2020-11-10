@@ -198,7 +198,6 @@ $border-color:rgb(245, 245, 245);
 
     &__field__detail {
       background-color: white;
-      height: 340px;
       width: 700px;
       border-top: 4px solid whitesmoke;
       border-bottom: 2px solid whitesmoke;
@@ -210,34 +209,34 @@ $border-color:rgb(245, 245, 245);
           padding: 20px 20px 0 20px;
         }
 
-        &__field__detail__upper {
-          display: flex;
-          padding: 20px 20px 0 20px;
-        }
-
         &__field__detail__lower {
-          padding: 20px;
-          position: relative;
-          
-        }
-
-          #category_form {    
-            width: 100%;
-          }
-
-        &__field__detail__item_condition__upper {
-          display: flex;
-          padding: 20px 20px 0px 20px;
-        }
-
-        &__field__detail__item_condition__lower {
+          height: auto;
           padding: 20px;
           position: relative;
         }
+
+        
+
+
+            .serect_field {
+              appearance: none;
+              background-color: #fff;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+              box-sizing: border-box;
+              color: #222;
+              font-size: 14px;
+              height: 48px;
+              line-height: 1;
+              margin: 0;
+              outline: none;
+              padding: 0 56px 0 16px;
+              width: 100%;
+            }
 
     &__field__delivery {
       background-color: white;
-      height: 450px;
+      height: auto;
       width: 700px;
       border-top: 2px solid whitesmoke;
       border-bottom: 2px solid whitesmoke;
@@ -249,19 +248,9 @@ $border-color:rgb(245, 245, 245);
         padding: 20px 20px 0 20px;
       }
 
-      &__field__delivery__upper {
-        display: flex;
-        padding: 20px 20px 0px 20px;
-      }
-
       &__field__delivery__lower {
         padding: 20px;
         position: relative;
-      }
-
-      &__field__delivery__prefecture_code__upper {
-        display: flex;
-        padding: 0px 20px 0px 20px;
       }
 
       &__field__delivery__prefecture_code__lower {
@@ -385,5 +374,13 @@ $border-color:rgb(245, 245, 245);
         margin-left: 20px;
         color: red;
       }
+
+      .select {
+        display: block;
+      }
+      .fa, .fas, .far, .fal, .fad, .fab {
+        display: flex;
+      }
+
   }
 }

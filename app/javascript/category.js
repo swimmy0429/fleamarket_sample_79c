@@ -1,3 +1,4 @@
+console.log("change1)")
 document.addEventListener("turbolinks:load"
 , function () {
 console.log('change2');
@@ -8,6 +9,7 @@ $(function(){
     return html
   }
   function appendChildrenBox(insertHTML){
+    console.log('change4');
     var childSelectHtml = "";
     childSelectHtml = `<div class="child_" id="children_wrapper">
                         <select id="child__category" name="item[category_id]" class="serect_field">
@@ -16,6 +18,7 @@ $(function(){
                         </select>
                       </div>`;
     $('.append__category').append(childSelectHtml);
+    console.log('change5');
   }
   function appendGrandchildrenBox(insertHTML){
     var grandchildSelectHtml = "";
@@ -39,6 +42,7 @@ $(function(){
         dataType: 'json'
       })
       .done(function(children){
+        console.log(children)
         $('#children_wrapper').remove();
         $('#grandchildren_wrapper').remove();
         $('#item_category_id2').remove();
@@ -47,6 +51,7 @@ $(function(){
         children.forEach(function(child){
           insertHTML += appendOption(child);
         });
+        console.log(insertHTML)
         appendChildrenBox(insertHTML);
       })
       .fail(function(){
