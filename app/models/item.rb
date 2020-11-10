@@ -16,15 +16,14 @@ class Item < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :item_condition
   belongs_to_active_hash :category
+  belongs_to_active_hash :delivery_type
+  belongs_to :seller, class_name: "User"
+  belongs_to :buyer, class_name: "User", optional: true
   
-  # 他の機能の実装のため保存
-  # belongs_to_active_hash :delivery_type
   # belongs_to :brand
   # belongs_to :user, foreign_key: 'user_id'
   # enum trading_status: { waiting: 0, working: 1, completed: 2 }
-
-  belongs_to :seller, class_name: "User"
-  belongs_to :buyer, class_name: "User", optional: true
+ 
   # Gem：jp_prefectureを使用して都道府県コードを取得
 
   extend ActiveHash::Associations::ActiveRecordExtensions

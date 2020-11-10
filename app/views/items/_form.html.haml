@@ -138,7 +138,7 @@
             .tile 配送方法
             .tiel.require 必須
           .Item__box__field__delivery__lower  
-            = f.text_field :delivery_type_id, class: 'Form__collection', placeholder: '選択してください'
+            = f.collection_select :delivery_type_id, DeliveryType.all, :id, :name, {prompt:"選択してください"}, {class:"Form__collection"}
             -# = f.hidden_field :seller_id, :value => current_user.id
             .p.arrow
               v
