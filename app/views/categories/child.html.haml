@@ -7,7 +7,8 @@
     - breadcrumb :grandchild_category
   = render "items/breadcrumbs"
 .category_main
-  .main__pic5__box__lists
+  = "#{@category.name}の商品一覧"
+  .main__pic5__box__lists2
     -@item_images_top.each_with_index do |item_image,index|
       .main__pic5__box__lists__list
         -if @items[index].present?

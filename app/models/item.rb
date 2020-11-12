@@ -36,9 +36,12 @@ class Item < ApplicationRecord
   validates :shipping_charge_players_id, presence: true
   validates :prefecture_code, presence: true
   validates :item_condition_id, presence: true
+
   validates :size_id, presence: true
   validates :preparation_day_id, presence: true
   validates :delivery_type_id, presence: true
+
+
 
   belongs_to :seller, class_name: "User", foreign_key: "seller_id", optional: true
   # belongs_to :seller, class_name: "user" = （Itemに紐づく） Userモデルをsellerと定義する。　
