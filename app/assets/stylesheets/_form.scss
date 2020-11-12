@@ -24,11 +24,21 @@ $border-color:rgb(245, 245, 245);
   position: absolute;
   right: 50px;
   top: 35px;
-  transform: scaleX(2.0);
   color: lightgray;
   pointer-events: none;
   overflow: hidden;
 }
+
+.arrow__category {
+  margin-top: 10px;
+  position: absolute;
+  right: 50px;
+  top: 35px;
+  color: lightgray;
+  pointer-events: none;
+  overflow: hidden;
+}
+
 
 .Form__collection {
   appearance: none;
@@ -62,22 +72,24 @@ $border-color:rgb(245, 245, 245);
 
   &__box {
     background-color: $section-color;
-    width: 700px;
+    width: 650px;
     margin: 4px auto;
     display: flex;
     flex-direction: column;
 
     &__field {
-      width: 700px;
+      width: 650px;
     }     
 
       &__field__title {
         display: flex;
-        padding: 20px;
+        position: relative;
+        align-items: center;
+        padding: 20px 20px 0 20px;
       }
 
       &__filed__numbers {
-        margin-left: 20px;
+        padding: 20px 20px 0 20px;
       }
 
       &__field__under {
@@ -89,15 +101,27 @@ $border-color:rgb(245, 245, 245);
           height: 150px;
           margin: 5px;
           position: relative;
-          // width: 100%;
           }
 
         #image-box {
           height: 320px;
           margin: 8px;
           }
+        
+        .inner-frame {
+          height: 30px;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+        }
 
           .js-remove {
+            display: flex;
+            justify-content: center;
+            color: blue;
+          }
+
+          .js-edit {
             display: flex;
             justify-content: center;
             color: blue;
@@ -138,6 +162,10 @@ $border-color:rgb(245, 245, 245);
                   height: 200px;
                   width: 200px;
                 }
+            
+            .js-file_group {
+              display: none;
+            }
 
             .js-file {
               display: none;
@@ -145,8 +173,8 @@ $border-color:rgb(245, 245, 245);
 
       &__field__name {
         background-color: white;
-        height: 150px;
-        width: 700px;
+        height: auto;
+        width: inherit;
         border-top: 4px solid $border-color;
         margin: 0 auto;
       }
@@ -159,9 +187,8 @@ $border-color:rgb(245, 245, 245);
         &__field__name__lower {
           display: inline-block;
           position: relative;
-          width: 660px;
-          margin-left: 20px;
-          
+          width: 100%;
+          padding: 0 20px;
         }
           .Form__name {
             border: 1px solid #ccc;
@@ -170,7 +197,7 @@ $border-color:rgb(245, 245, 245);
             font-family: inherit;
             font-size: inherit;
             height: 48px;
-            margin: 0;
+            margin-top: 20px;
             outline: none;
             padding: 0 16px;
             width: 100%;
@@ -185,11 +212,9 @@ $border-color:rgb(245, 245, 245);
           padding: 0 20px 20px 20px;
         }
 
-
         &__field__explain__lower {
-          margin-left: 20px;
-          width: 660px;
-          margin-bottom: 20px
+          padding: 0 20px;
+          width: 100%;
         }
     
         .Form__introduction {
@@ -199,7 +224,7 @@ $border-color:rgb(245, 245, 245);
           font-family: inherit;
           font-size: inherit;
           height: 150px;
-          margin: 0;
+          margin-top: 20px;
           outline: none;
           padding: 0 16px;
           width: 100%;
@@ -208,7 +233,7 @@ $border-color:rgb(245, 245, 245);
 
     &__field__detail {
       background-color: white;
-      width: 700px;
+      width: inherit;
       border-top: 4px solid whitesmoke;
       border-bottom: 2px solid whitesmoke;
       margin: 0 auto;
@@ -235,7 +260,7 @@ $border-color:rgb(245, 245, 245);
               font-size: 14px;
               height: 48px;
               line-height: 1;
-              margin: 20px 0 20px 0;
+              margin: 10px 0 10px 0;
               outline: none;
               padding: 0 56px 0 16px;
               width: 100%;
@@ -244,7 +269,7 @@ $border-color:rgb(245, 245, 245);
     &__field__delivery {
       background-color: white;
       height: auto;
-      width: 700px;
+      width: inherit;
       border-top: 2px solid whitesmoke;
       border-bottom: 2px solid whitesmoke;
       margin: 0 auto;
@@ -252,7 +277,7 @@ $border-color:rgb(245, 245, 245);
 
       &__field__delivery__outer {
         display: flex;
-        padding: 20px;
+        padding: 20px 20px 0 20px;
       }
 
       &__field__delivery__lower {
@@ -264,7 +289,7 @@ $border-color:rgb(245, 245, 245);
     &__field__price {
     background-color: white;
     height: 200px;
-    width: 700px;
+    width: inherit;
     border-top: 2px solid whitesmoke;
     border-bottom: 2px solid whitesmoke;
     margin: 0 auto;

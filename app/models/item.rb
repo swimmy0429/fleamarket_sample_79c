@@ -19,9 +19,10 @@ class Item < ApplicationRecord
   belongs_to_active_hash :delivery_type
   belongs_to :seller, class_name: "User"
   belongs_to :buyer, class_name: "User", optional: true
+  belongs_to :brand
+
+  belongs_to :user, foreign_key: 'user_id'
   
-  # belongs_to :brand
-  # belongs_to :user, foreign_key: 'user_id'
   # enum trading_status: { waiting: 0, working: 1, completed: 2 }
  
   # Gem：jp_prefectureを使用して都道府県コードを取得
@@ -29,23 +30,14 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
 
   validates :name, presence: true, length: { maximum: 40 }
-
   validates :introduction, presence: true, length: { maximum: 1000 }
-  
   validates :category_id, presence: true
-  
   validates :price, presence: true, length: { maximum: 9999999 }
-  
   validates :shipping_charge_players_id, presence: true
-  
   validates :prefecture_code, presence: true
-  
   validates :item_condition_id, presence: true
-  
-  # validates :size_id, presence: true
-  
+  validates :size_id, presence: true
   validates :preparation_day_id, presence: true
-  
   validates :delivery_type_id, presence: true
 
   belongs_to :seller, class_name: "User", foreign_key: "seller_id", optional: true

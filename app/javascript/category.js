@@ -13,7 +13,7 @@ $(function(){
     var childSelectHtml = "";
     childSelectHtml = `<div class="child_" id="children_wrapper">
                         <select id="child__category" name="item[category_id]" class="serect_field">
-                          <option value="">---</option>
+                          <option value="">選択してください</option>
                           ${insertHTML}
                         </select>
                       </div>`;
@@ -24,7 +24,7 @@ $(function(){
     var grandchildSelectHtml = "";
     grandchildSelectHtml = `<div class="child_" id="grandchildren_wrapper">
                               <select id="grandchild__category" name="item[category_id]" class="serect_field">
-                                <option value="">---</option>
+                                <option value="">選択してください</option>
                                 ${insertHTML}
                                 </select>
                             </div>`;
