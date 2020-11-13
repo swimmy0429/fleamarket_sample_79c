@@ -74,6 +74,7 @@ class ItemsController < ApplicationController
   end
 
   def set_category
+    binding.pry
     @category = Category.find(params[:id])
   end
 
