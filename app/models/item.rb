@@ -16,15 +16,15 @@ class Item < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :item_condition
   belongs_to_active_hash :category
-  
-  # 他の機能の実装のため保存
-  # belongs_to_active_hash :delivery_type
-  # belongs_to :brand
-  # belongs_to :user, foreign_key: 'user_id'
-  # enum trading_status: { waiting: 0, working: 1, completed: 2 }
-
+  belongs_to_active_hash :delivery_type
   belongs_to :seller, class_name: "User"
   belongs_to :buyer, class_name: "User", optional: true
+  belongs_to :brand
+
+  belongs_to :user, foreign_key: 'user_id'
+  
+  # enum trading_status: { waiting: 0, working: 1, completed: 2 }
+ 
   # Gem：jp_prefectureを使用して都道府県コードを取得
 
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -36,10 +36,12 @@ class Item < ApplicationRecord
   validates :shipping_charge_players_id, presence: true
   validates :prefecture_code, presence: true
   validates :item_condition_id, presence: true
-  # validates :size_id, presence: true
+
+  validates :size_id, presence: true
   validates :preparation_day_id, presence: true
   validates :delivery_type_id, presence: true
-  validates_length_of :item_images, minimum: 1
+
+
 
   belongs_to :seller, class_name: "User", foreign_key: "seller_id", optional: true
   # belongs_to :seller, class_name: "user" = （Itemに紐づく） Userモデルをsellerと定義する。　
