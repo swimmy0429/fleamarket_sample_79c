@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2020_10_31_071921) do
     t.bigint "buyer_id"
     t.datetime "deal_closed_date"
     t.string "ancestry"
-    t.integer "category"
+    t.integer "category_id"
     t.index ["ancestry"], name: "index_items_on_ancestry"
     t.index ["buyer_id"], name: "index_items_on_buyer_id"
     t.index ["seller_id"], name: "index_items_on_seller_id"
