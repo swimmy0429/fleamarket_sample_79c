@@ -14,6 +14,9 @@ module FleamarketSample79c
 
     config.action_view.field_error_proc = Proc.new do |html_tag, instance|
       %Q(<span class="has-error">#{html_tag}</span>).html_safe
+
+    # config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
+
     end
 
     # Settings in config/environments/* take precedence over those specified here.
