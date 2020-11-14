@@ -15,11 +15,18 @@ class ItemsController < ApplicationController
   def show
     @items_show = Item.where(id:params[:id])
     @item_images_detail = ItemImage.all.includes(:item).where(item_id:params[:id])
-    @nickname = Item.find(params[:id]).seller.nickname
     @category_id = @items_show.pluck(:category_id)[0]
     @category_parent = Category.find(@category_id).parent.parent
     @category_child = Category.find(@category_id).parent
     @category_grandchild = Category.find(@category_id)
+    
+    @nickname = Item.find(params[:id]).seller.nickname
+    @item_condition = ItemCondition.find(@items_show[0][:item_condition_id]).name
+    @preparation_day = PreparationDay.find(@items_show[0][:preparation_day_id]).name
+    @shipping_charge_player = ShippingChargePlayers.find(@items_show[0][:shipping_charge_players_id]).name
+    @size = Size.find(@items_show[0][:size_id]).name
+    @delivery_type = DeliveryType.find(@items_show[0][:delivery_type_id]).name
+    @prefecture = Prefecture.find(@items_show[0][:prefecture_code]).name
   end
 
   def new
