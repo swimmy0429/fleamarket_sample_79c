@@ -21,15 +21,7 @@ Rails.application.routes.draw do
   end
   resources :items, except: :show
 
-  resources :items do
-    resources :purchases, only: [:index] do
-      collection do
-        get 'done', to: 'purchases#done'
-        post 'pay', to: 'purchases#pay'
-      end
-    end
-  end
-
+  
   #ajax用のルーティングを定義
   resources :items do
     collection do
@@ -38,5 +30,13 @@ Rails.application.routes.draw do
       get 'get_category_grandchildren', defaults: { format: 'json'}
     end
   end
-
+  
+  resources :items do
+    resources :purchases, only: [:index] do
+      collection do
+        get 'done', to: 'purchases#done'
+        post 'pay', to: 'purchases#pay'
+      end
+    end
+  end
 end
