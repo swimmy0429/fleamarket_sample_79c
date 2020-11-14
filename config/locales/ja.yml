@@ -16,7 +16,7 @@ ja:
         shipping_charge_players_id: 配送料の負担
         size_id: サイズ
         brand_id: ブランド
-        delivery_type_id: 配送料の負担
+        delivery_type_id: 配送方法
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -134,7 +134,7 @@ ja:
       even: は偶数にしてください
       exclusion: は予約されています
       greater_than: は%{count}より大きい値にしてください
-      greater_than_or_equal_to: は%{count}以上の値にしてください
+      greater_than_or_equal_to: は%{count}円以上にしてください
       inclusion: は一覧にありません
       
       invalid: は不正な値です
