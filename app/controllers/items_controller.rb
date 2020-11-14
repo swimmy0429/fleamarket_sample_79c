@@ -10,7 +10,6 @@ class ItemsController < ApplicationController
     @item_images_top = ItemImage.includes(:item).group(:item_id)
     @item_images_top_last_five = @item_images_top.order(item_id: "DESC").limit(5)
     @items_last_five = @items.order(id: "DESC").limit(5)
-    # binding.pry
   end
 
   def show
@@ -36,6 +35,7 @@ class ItemsController < ApplicationController
     else
       render :new
     end
+    
   end
 
   def edit
@@ -65,15 +65,15 @@ class ItemsController < ApplicationController
     @parents = Category.where(ancestry: nil)
     # binding.pry
   end
-
+  
   def get_category_children
     @category_children = Category.find("#{params[:parent_id]}").children
   end
-
+  
   def get_category_grandchildren
     @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
-
+  
   def set_category
     @category = Category.find(params[:id])
   end

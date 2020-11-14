@@ -12,4 +12,5 @@
     = render "items/top-header"
     = yield
     = render "items/top-footer"
-    = render "items/top-camera"
+    -if current_user.present?
+      = render "items/top-camera"
