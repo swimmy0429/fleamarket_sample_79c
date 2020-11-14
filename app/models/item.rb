@@ -5,7 +5,8 @@ class Item < ApplicationRecord
   accepts_nested_attributes_for :item_images, allow_destroy: true
 
   # has_many :comments, dependent: :destroy
-  # has_many :favorites
+  has_many :favorites
+  has_many :users, through: :favorites
   # has_one :user_evaluation
 
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -24,15 +25,13 @@ class Item < ApplicationRecord
   belongs_to :user, foreign_key: 'user_id'
   
   # enum trading_status: { waiting: 0, working: 1, completed: 2 }
- 
-  # Gem：jp_prefectureを使用して都道府県コードを取得
 
   extend ActiveHash::Associations::ActiveRecordExtensions
 
   validates :name, presence: true, length: { maximum: 40 }
-  validates :introduction, presence: true, length: { maximum: 1000 }
+  validates :introduction, presence: true, length: {maximum: 1000 }
   validates :category_id, presence: true
-  validates :price, presence: true, length: { maximum: 9999999 }
+  validates :price, presence: true, numericality: {greater_than_or_equal_to: 50, less_than_or_equal_to: 9999999}
   validates :shipping_charge_players_id, presence: true
   validates :prefecture_code, presence: true
   validates :item_condition_id, presence: true

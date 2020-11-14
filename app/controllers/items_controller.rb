@@ -70,6 +70,7 @@ class ItemsController < ApplicationController
 
   def set_parents
     @parents = Category.where(ancestry: nil)
+    # binding.pry
   end
   
   def get_category_children

@@ -134,7 +134,7 @@
                 %li.alert= message
           .Item__box__field__title
             .tile 配送までの日数
-            .tiel.require 必須
+            .title.require 必須
           .Item__box__field__delivery__lower
             = f.collection_select :preparation_day_id, PreparationDay.all, :id, :name, {prompt:"選択してください"}, {class:"Form__collection"}
             .p.arrow
@@ -144,13 +144,16 @@
                 %li.alert= message
           .Item__box__field__title
             .tile 配送方法
-            .tiel.require 必須
+            .title.require 必須
           .Item__box__field__delivery__lower  
             = f.collection_select :delivery_type_id, DeliveryType.all, :id, :name, {prompt:"選択してください"}, {class:"Form__collection"}
-            -# = f.hidden_field :seller_id, :value => current_user.id
+            = f.hidden_field :seller_id, :value => current_user.id
             .p.arrow
               ﹀
             %ul
+              - @item.errors.full_messages_for(:delivery_type_id).each do |message|
+                %li.alert= message
+
         .Item__box__field__price
           .Item__box__field__price__outer
             .title 価格 （¥50〜9,999,999）
