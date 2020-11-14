@@ -39,4 +39,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :items do
+    post 'add' => 'favorites#create'
+    delete '/add' => 'favorites#destroy'
+  end
+
 end

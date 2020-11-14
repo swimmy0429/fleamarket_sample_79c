@@ -5,7 +5,8 @@ class Item < ApplicationRecord
   accepts_nested_attributes_for :item_images, allow_destroy: true
 
   # has_many :comments, dependent: :destroy
-  # has_many :favorites
+  has_many :favorites
+  has_many :users, through: :favorites
   # has_one :user_evaluation
 
   extend ActiveHash::Associations::ActiveRecordExtensions

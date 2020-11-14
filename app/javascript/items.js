@@ -7,7 +7,6 @@ document.addEventListener("turbolinks:load"
                   <input class="js-file" type="file"
                     name="item[item_images_attributes][${num}][src]"
                     id="item_item_images_attributes_${num}_src"><br>
-
                   </div>`;
     return html;
   }
@@ -16,9 +15,10 @@ document.addEventListener("turbolinks:load"
     const html = `<div class="image-box">
 
                     <img data-index="${index}" src="${url}" width="112px" height="112px">
+                    
                       <div class="js-remove">削除</div>
                       <div class="js-edit">編集</div>
-
+                      
                   </div>`;
     return html;
   }
