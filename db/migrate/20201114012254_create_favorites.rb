@@ -4,6 +4,8 @@ class CreateFavorites < ActiveRecord::Migration[6.0]
       t.references :user, null:false
       t.references :item, null:false
 
+      t.index [:user_id, :post_id ], unique: true
+
       t.timestamps
     end
   end
