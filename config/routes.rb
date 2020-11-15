@@ -34,5 +34,13 @@ Rails.application.routes.draw do
     delete '/add' => 'favorites#destroy'
   end
 
+  resources :items do
+    resources :purchases, only: [:index] do
+      collection do
+        get 'done', to: 'purchases#done'
+        post 'pay', to: 'purchases#pay'
+      end
+    end
+  end
   resources :searches,only:[:index]
 end
