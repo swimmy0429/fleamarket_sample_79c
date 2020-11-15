@@ -36,4 +36,5 @@ Rails.application.routes.draw do
     delete '/add' => 'favorites#destroy'
   end
 
+  resources :searches,only:[:index]
 end
