@@ -49,6 +49,9 @@ class Item < ApplicationRecord
   # belongs_to :buyer, class_name: "user" = （Itemに紐づく） Userモデルをbuyerと定義する。　
   # foreign_key: "seller_id" = user_idはItemレコードの『buyer_idカラム』のid番号を使う
 
-  
+  def self.search(search)
+    return Item.all unless search
+    Item.where(['name LIKE ?', "%#{search}%"])
+  end
   
 end
