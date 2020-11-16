@@ -31,9 +31,14 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :items do
-    post 'add' => 'favorites#create'
-    delete '/add' => 'favorites#destroy'
-  end
+  # マイページのルーティングにネスト
+  # resources :users, only: [:show, :edit, :update] do
+  # get :favorites, on: :collection
+  # end
+
+  # 記事詳細表示のルーティングにネスト
+  # resources :items, expect: [:index] do
+  # resource :favorites, only: [:create, :destroy]
+  # end
 
 end
