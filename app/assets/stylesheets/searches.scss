@@ -12,6 +12,8 @@
 }
 
 .detail_search{
+  background-color: white;
+  padding: 10px;
   &__group{
     &--checkbox{
       display: block;
@@ -48,4 +50,13 @@
 }
 .sort_input {
   width: 100%;
+}
+.search-result-head {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.search-result-number {
+  margin-bottom: 20px;
+  color: gray;
 }
