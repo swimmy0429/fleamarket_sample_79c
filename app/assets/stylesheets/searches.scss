@@ -2,3 +2,20 @@
   width: 100%;
   height: 560px;
 }
+.search-container {
+  display: flex;
+}
+
+.search-left {
+  padding: 20px;
+  margin: 0px 10px;
+  background-color: rgb(235, 233, 233);
+  height: 560px;
+}
+.detail_search__group--checkbox {
+  display: block;
+}
+
+.detail_search__group--label {
+  display: flex;
+}

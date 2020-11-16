@@ -19,7 +19,6 @@ class ItemsController < ApplicationController
     @category_parent = Category.find(@category_id).parent.parent
     @category_child = Category.find(@category_id).parent
     @category_grandchild = Category.find(@category_id)
-    
     @nickname = Item.find(params[:id]).seller.nickname
     @item_condition = ItemCondition.find(@items_show[0][:item_condition_id]).name
     @preparation_day = PreparationDay.find(@items_show[0][:preparation_day_id]).name
@@ -70,7 +69,6 @@ class ItemsController < ApplicationController
 
   def set_parents
     @parents = Category.where(ancestry: nil)
-    # binding.pry
   end
   
   def get_category_children

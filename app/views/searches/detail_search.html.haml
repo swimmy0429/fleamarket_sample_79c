@@ -10,25 +10,27 @@
             %span.search-result-head-text
               の検索結果
           .search-result-number
-            ="1-#{@searched_item.count}件表示"
+            ="1-#{@products.count}件表示"
         -else
           %h2.search-result-nil
-            新着商品
+            検索結果
+          .search-result-number
+            ="1-#{@products.count}件表示"
         .items-box-content
           -@searched_item_images_top.each_with_index do |item_image,index|
             .main__pic5__box__lists__list
-              -if @searched_item[index][:buyer_id].present? 
+              -if @product_buyer_price_name_id[index][0].present? 
                 .main__pic5__box__lists__list_photo__sold
                   .main__pic5__box__lists__list_photo__sold__inner
                     SOLD
-              =link_to image_tag("#{item_image.src}",width:"220px",height:"150px"),item_path(id: item_image.item_id)
+              =link_to image_tag("#{item_image.src}",width:"220px",height:"150px"),item_path(id: @product_buyer_price_name_id[index][3])
               .main__pic5__box__lists__list__name
                 %h3.text 
-                  =@searched_item[index][:name]
+                  =@product_buyer_price_name_id[index][1]
                 %h4.data
                   %ul.ul
                     %li.li 
-                      =@searched_item[index][:price]
+                      =@product_buyer_price_name_id[index][2]
                     %li
                     = icon('fa', 'star')
                   %p.zei (税込)

@@ -45,4 +45,5 @@ Rails.application.routes.draw do
     end
   end
   resources :searches,only:[:index]
+  get  "searches/detail_search"  => "searches#detail_search"
 end
