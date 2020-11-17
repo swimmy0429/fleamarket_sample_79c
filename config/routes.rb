@@ -51,4 +51,5 @@ Rails.application.routes.draw do
   resource :favorites, only: [:create, :destroy]
   end
 
+  get  "searches/detail_search"  => "searches#detail_search"
 end
