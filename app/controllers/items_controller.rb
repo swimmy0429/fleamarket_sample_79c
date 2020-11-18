@@ -35,7 +35,14 @@ class ItemsController < ApplicationController
   end
 
   def create
+    
     @item = Item.new(item_params)
+    if @item.category.present?
+      if @item.category.parent.parent.present?
+        @children = @item.category.parent.siblings
+        @grandchildren = @item.category.siblings
+      end
+    end
     if @item.save
       redirect_to root_path
     else
@@ -46,11 +53,13 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-    @grandchild = @item.category
-    @child = @grandchild.parent
+    # @grandchild = @item.category
+    # @child = @grandchild.parent
     @parent  = @child.parent[:id]
-    @children = Category.find(@parent).children
-    @grandchildren = Category.find(@child[:id]).children
+    # @children = Category.find(@parent).children
+    # @grandchildren = Category.find(@child[:id]).children
+    @children = @item.category.parent.siblings
+    @grandchildren = @item.category.siblings
   end
 
   def update
