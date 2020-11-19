@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  # カードのルーティングは他と紐付いていません
-  # root "cards#new"
-  # resources :items, expcept: :show
+
   resources :cards, only: [:new, :show, :destroy, :create] do
     collection do
       post 'pay', to: 'cards#pay'

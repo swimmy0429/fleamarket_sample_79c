@@ -73,8 +73,8 @@
         =link_to item_path, method: :delete do
           %button.purchese__btn 削除
       -elsif current_user.present? && @items_show[0][:buyer_id].present? == false then
-        =link_to item_purchases_path(params[:id]) do
-          %button.purchese__btn 購入画面に進む
+        =link_to item_purchases_path(params[:id]),"data-turbolinks": false do
+          %button.purchese__btn 購入画面に進む 
       -else
         
       %div.option
