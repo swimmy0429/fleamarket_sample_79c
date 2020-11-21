@@ -30,11 +30,6 @@ Rails.application.routes.draw do
   end
 
   resources :items do
-    post 'add' => 'favorites#create'
-    delete '/add' => 'favorites#destroy'
-  end
-
-  resources :items do
     resources :purchases, only: [:index] do
       collection do
         get 'done', to: 'purchases#done'
@@ -43,5 +38,16 @@ Rails.application.routes.draw do
     end
   end
   resources :searches,only:[:index]
+
+  # マイページのルーティングにネスト
+  resources :users, only: [:show, :edit, :update] do
+  get :favorites, on: :collection
+  end
+
+  # 記事詳細表示のルーティングにネスト
+  resources :items, expect: [:index] do
+  resource :favorites, only: [:create, :destroy]
+  end
+
   get  "searches/detail_search"  => "searches#detail_search"
 end

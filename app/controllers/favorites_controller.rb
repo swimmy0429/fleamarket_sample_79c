@@ -1,24 +1,23 @@
 class FavoritesController < ApplicationController
 
+  before_action :set_item
+  before_action :authenticate_user!   # ログイン中のユーザーのみに許可（未ログインなら、ログイン画面へ移動）
+
+  # お気に入り登録
   def create
-    user=current_user
-    item=Item.find(params[:item_id])
-    if Favorite.create(user_id: user.id,post_id:post.id)
-      redirect_to item
-    else
-      redirect_to root_url
+    if @item.user_id != current_user.id # 投稿者本人以外に限定
+      @favorite = Favorite.create(user_id: current_user.id, item_id: @item.id)
     end
   end
 
+  # お気に入り削除
   def destroy
-    user=current_user
-    item=Item.find(params[:post_id])
-    if favorite=Favorite.find_by(user_id: user.id,post_id:item.id)
-      favorite.delete
-      redirect_to users_path(current_user)
-    else
-      redirect_to root_url
+    @favorite = Favorite.find_by(user_id: current_user.id, item_id: @item.id)
+    @favorite.destroy
+      
     end
-  end
 
+  private
+  def set_item
+    @item = Item.find(params[:item_id])
 end
