@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
   before_action :set_category, only: [:show]
   before_action :set_current_user_products,only:[:i_transaction,:i_exhibiting,:i_soldout]
   before_action :set_user,only:[:i_transaction,:i_exhibiting,:i_soldout]
+  before_action :set_item, only:[:show]
 
   def index
     @items = Item.all
@@ -26,6 +27,7 @@ class ItemsController < ApplicationController
     @size = Size.find(@items_show[0][:size_id]).name
     @delivery_type = DeliveryType.find(@items_show[0][:delivery_type_id]).name
     @prefecture = Prefecture.find(@items_show[0][:prefecture_code]).name
+    
   end
 
   def new
@@ -127,6 +129,7 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
 
 end
 

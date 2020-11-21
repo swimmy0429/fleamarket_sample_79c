@@ -48,7 +48,7 @@ Rails.application.routes.draw do
 
   # 記事詳細表示のルーティングにネスト
   resources :items, expect: [:index] do
-  resource :favorites, only: [:create, :destroy]
+    resource :favorites, only: [:create, :destroy]
   end
 
   get  "searches/detail_search"  => "searches#detail_search"

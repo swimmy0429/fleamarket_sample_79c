@@ -53,5 +53,9 @@ class Item < ApplicationRecord
     return Item.all unless search
     Item.where(['name LIKE ?', "%#{search}%"])
   end
+
+  def favorited_by?(user)
+    favorites.where(user_id: user.id).exists?
+  end
   
 end
