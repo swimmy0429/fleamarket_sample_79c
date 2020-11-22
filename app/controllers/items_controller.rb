@@ -27,7 +27,6 @@ class ItemsController < ApplicationController
     @size = Size.find(@items_show[0][:size_id]).name
     @delivery_type = DeliveryType.find(@items_show[0][:delivery_type_id]).name
     @prefecture = Prefecture.find(@items_show[0][:prefecture_code]).name
-    
   end
 
   def new
@@ -37,7 +36,6 @@ class ItemsController < ApplicationController
   end
 
   def create
-    
     @item = Item.new(item_params)
     if @item.category.present?
       if @item.category.parent.parent.present?
@@ -104,6 +102,10 @@ class ItemsController < ApplicationController
         @childrens = Category.find(params[:parent_id]).children
       end
     end
+  end
+
+  def favorites
+    @favorites = current_user.favorites_items.includes(:user).recent
   end
 
 

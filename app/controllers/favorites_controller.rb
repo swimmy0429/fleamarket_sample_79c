@@ -5,25 +5,27 @@ class FavoritesController < ApplicationController
 
   # お気に入り登録
   def create
-    # @favorite = Favorite.create(user_id: current_user.id, item_id: @item.id)
+    # if current_user.id != @item.user.id
+    # end
+      
     favorite = current_user.favorites.build(item_id: params[:item_id])
-    favorite.save
-    # redirect_to items_show_path
+    favorite.save!
+   
   end
 
   # お気に入り削除
   def destroy
-    # @favorite = Favorite.find_by(user_id: current_user.id, item_id:@item.id).destory
+ 
     favorite = Favorite.find_by(item_id: params[:item_id], user_id: current_user.id)
     favorite.destroy
-    # redirect_to items_show_path
+    
   end
 
-  # def show
-  #   @user = User.find(params[:id])
-  #   @items = @user.items
+  def index
+    @user = current_user
+    @favorites = Favorite.where(user_id: @user.id).all
+  end
 
-  #   @favorite_items = @user.favorites.map{|favorite| favorite.tweet}
 
   private
   def set_item
