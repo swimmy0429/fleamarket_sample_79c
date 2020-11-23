@@ -11,11 +11,13 @@ class FavoritesController < ApplicationController
   
   # お気に入り登録
   def create
-    # if current_user.id != @item.user.id
-    # end
+    
+    if current_user.id != @item.seller_id
       
     favorite = current_user.favorites.build(item_id: params[:item_id])
     favorite.save!
+
+    end
    
   end
 
@@ -27,14 +29,14 @@ class FavoritesController < ApplicationController
     
   end
 
-  #お気に入り一覧表へのルーティングでparentsが引っかかるため記述
+  
   private
 
   def set_item
     @item = Item.find(params[:item_id])
   end
 
-
+#お気に入り一覧表へのルーティングでparentsが引っかかるため記述
   def set_parents
     @parents = Category.where(ancestry: nil)
   end
