@@ -43,14 +43,20 @@ Rails.application.routes.draw do
 
   get  "searches/detail_search"  => "searches#detail_search"
 
-  # マイページのルーティングにネスト
-  # resources :users, only: [:show, :edit, :update] do
-  # get :favorites, on: :collection
-  # end
+ 
+  
 
-  resources :items, shallow: true do
+  resources :items do
     resource :favorites, only: [:create, :destroy]
-    get :favorites, on: :collection
+    member do
+      get :favorites
+    end
   end
 
+  resources :items do
+    resources :favorites, only: [:index]
+    member do
+      get :favorites
+    end
+  end
 end
