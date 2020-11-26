@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_14_012254) do
+ActiveRecord::Schema.define(version: 2020_11_26_105229) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 2020_11_14_012254) do
   end
 
   create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "item_id"
+    t.bigint "user_id", null: false
+    t.bigint "item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["item_id"], name: "index_favorites_on_item_id"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2020_11_14_012254) do
 
   create_table "item_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "url"
-    t.string "src"
+    t.string "src", default: "", null: false
     t.bigint "item_id", null: false
     t.index ["item_id"], name: "index_item_images_on_item_id"
   end
@@ -98,13 +98,13 @@ ActiveRecord::Schema.define(version: 2020_11_14_012254) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "post"
+    t.string "city"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "categories", "items"
-  add_foreign_key "favorites", "items"
-  add_foreign_key "favorites", "users"
   add_foreign_key "item_images", "items"
   add_foreign_key "items", "users", column: "buyer_id"
   add_foreign_key "items", "users", column: "seller_id"

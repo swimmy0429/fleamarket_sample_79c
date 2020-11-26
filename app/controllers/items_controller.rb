@@ -107,7 +107,7 @@ class ItemsController < ApplicationController
   end
 
   def favorites
-    @favorites = current_user.favorites_items.includes(:user)
+    @favorites = current_user.favorites
   end
 
 

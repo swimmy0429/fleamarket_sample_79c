@@ -1,5 +1,10 @@
-お気に入り
-
+.l-content
+  .l-chapter-container
+    .h2.l-chapter-head いいね！一覧
 - if @favorites.present?
   - @favorites.each do |favorite|
     = favorite.item.name
+    = favorite.item.price
+    = image_tag "#{favorite.item.item_images[0].src.url}", width: "50", height: '50'
+- else 
+  = redirect_to root_path

@@ -1,17 +1,16 @@
 class FavoritesController < ApplicationController
 
   before_action :set_parents
-  before_action :set_item
+  before_action :set_item, only: [:create,:destroy]
   before_action :authenticate_user!   # ログイン中のユーザーのみに許可（未ログインなら、ログイン画面へ移動）
   
   def index
-    @user = current_user
-    @favorites = Favorite.where(user_id: @user.id).all
+    @favorites = Favorite.where(user_id: params[:user_id]).all
   end
   
   # お気に入り登録
   def create
-    
+
     if current_user.id != @item.seller_id
       
     favorite = current_user.favorites.build(item_id: params[:item_id])
@@ -40,4 +39,7 @@ class FavoritesController < ApplicationController
   def set_parents
     @parents = Category.where(ancestry: nil)
   end
+
+  
+ 
 end

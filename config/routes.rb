@@ -9,7 +9,9 @@ Rails.application.routes.draw do
       post 'pay', to: 'cards#pay'
     end
   end
-  resources :users, only: :show
+  resources :users, only: :show do
+    resources :favorites, only: [:index]
+  end
   
   root 'items#index'
   resources :categories, only: [:index] do
@@ -48,15 +50,14 @@ Rails.application.routes.draw do
 
   resources :items do
     resource :favorites, only: [:create, :destroy]
-    member do
+    collection do
       get :favorites
     end
   end
 
-  resources :items do
-    resources :favorites, only: [:index]
-    member do
-      get :favorites
-    end
-  end
+  # resources :items do
+  #   collection do
+  #     get :favorites
+  #   end
+  # end
 end
