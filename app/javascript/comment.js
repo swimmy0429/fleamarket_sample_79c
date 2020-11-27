@@ -125,10 +125,11 @@ $(function(){
     var url =`/comments/${index}/restore`
     $.ajax({
       url: url,
-      type: "get",
+      type: "GET",
       dataType: 'json',
     })
     .done(function(comment_data){
+      console.log(comment_data)
       if (comment_data.item_seller.id == comment_data.user_id){   // 出品者とコメントユーザーが同じ場合
         var html = new_comment(comment_data);
         $(`.comment_one_block[data-index=${index}]`).replaceWith(html)
