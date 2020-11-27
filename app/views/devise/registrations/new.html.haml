@@ -67,11 +67,10 @@
             = f.text_field :send_first_name_kana, autofocus: true, placeholder: "例）タロウ", class: "fieldinput"
 
 
-        .field
-          = f.label :prefectures, "都道府県", class: "fieldtitle"
+        .field 
+          %span.Prefectures 都道府県
           %span.form-require "必須"
-          %br/
-          = f.text_field :post, autofocus: true, placeholder: "例）東京都", class: "fieldinput"
+          = f.collection_select :prefecture_code, Prefecture.all, :id, :name, {prompt:"選択してください"}, {class:"Form__collection"}
 
         .field
           = f.label :post, "郵便番号", class: "fieldtitle"
@@ -103,6 +102,10 @@
           %br/
           = f.text_field :phone, autofocus: true, placeholder: "例)080-※※※※-※※※※", class: "fieldinput"
         
+        .field 
+          %span.Prefectures 都道府県
+          %span.form-require "必須"
+          = f.collection_select :prefecture_code, Prefecture.all, :id, :name, {prompt:"選択してください"}, {class:"Form__collection"}
 
         .actions
           = f.submit "新規会員登録へ", class: "actionsinput"
