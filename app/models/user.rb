@@ -21,4 +21,6 @@ class User < ApplicationRecord
 
   has_many :favorites, dependent: :destroy
   has_many :items, through: :favorites
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :prefecture
 end
