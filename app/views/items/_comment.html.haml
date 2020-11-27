@@ -9,9 +9,9 @@
                 出品者によりこのコメントは削除されました。
                 - if comment.item.seller == current_user    # 出品者とログインユーザーが等しい場合
                   .comment_restore{data:{index: comment.id}} 
-                    = link_to "復元する",restore_comment_path(comment.id)
+                    = link_to "復元する",restore_comment_path(comment.id),class:"fukugen"
                   .comment_delete.complete_delete{data:{index: comment.id}}     
-                    = link_to '完全に削除する', comment_path(comment.id) ,method: :delete
+                    = link_to '完全削除', comment_path(comment.id) ,method: :delete
             - else   # 削除されていない場合
               .comment_content
                 = comment.comment
@@ -37,9 +37,9 @@
                 出品者によりこのコメントは削除されました。
                 - if comment.item.seller == current_user    # 出品者とログインユーザーが等しい場合
                   .comment_restore{data:{index: comment.id}} 
-                    = link_to "復元する",restore_comment_path(comment.id)
+                    = link_to "復元する",restore_comment_path(comment.id),class:"fukugen"
                   .comment_delete.complete_delete{data:{index: comment.id}}     
-                    = link_to '完全に削除する', comment_path(comment.id) ,method: :delete
+                    = link_to '完全削除', comment_path(comment.id) ,method: :delete
             - else    # 削除されていない場合
               .comment_content_other
                 = comment.comment

@@ -16,9 +16,7 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @comment = Comment.find(params[:id])
     @comment.update(delete_check:1)
-    redirect_to item_path(@comment.item.id)
   end
 
   def restore

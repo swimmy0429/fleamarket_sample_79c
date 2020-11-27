@@ -79,10 +79,10 @@ $(function(){
     `
     出品者によりこのコメントは削除されました。
     <div class="comment_restore" data-index=${index}>
-      <a href="/comments/${index}/restore">復元する</a>
+      <a href="/comments/${index}/restore" class="fukugen">復元する</a>
     </div>
     <div class="comment_delete complete_delete" data-index=${index}>
-      <a class="complete_delete" rel="nofollow" data-method="delete" href="/comments/${index}">完全に削除する</a>
+      <a class="complete_delete" rel="nofollow" data-method="delete" href="/comments/${index}">完全削除</a>
     </div>
     `
   
@@ -125,7 +125,7 @@ $(function(){
     var url =`/comments/${index}/restore`
     $.ajax({
       url: url,
-      type: "GET",
+      type: "get",
       dataType: 'json',
     })
     .done(function(comment_data){

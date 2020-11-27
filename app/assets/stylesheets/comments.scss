@@ -88,8 +88,21 @@
   background-color: white;
   width: 60px;
   font-size: small;
+  text-align: center;
+  height: 20px;
 }
 
 a {
   text-decoration: none;
+}
+
+
+.comment_restore {
+  font-size: small;
+  text-align: center;
+  width: 60px;
+  color: #3CCACE;
+  background-color: white;
+  height: 20px;
+  margin-bottom: 5px;
 }
