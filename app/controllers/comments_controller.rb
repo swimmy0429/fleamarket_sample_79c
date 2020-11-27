@@ -23,13 +23,16 @@ class CommentsController < ApplicationController
     @comment.update(delete_check:0)
     @seller_of_item = User.find(@comment.item.seller_id)
     respond_to do |format|
-      format.json
-    end
+    format.json
   end
+end
 
   def destroy
-    @comment = Comment.find(params[:id])
-    @comment.destroy
+    if @comment.destroy
+      flash[:alert] = "コメントを削除しました"
+    else
+      flash[:alert] = "削除できませんでした"
+    end
     redirect_to item_path(@comment.item.id)
   end
 
