@@ -46,6 +46,64 @@
           %span.form-require "必須"
           %br/
           = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワードをもう一度入力ください", class: "fieldinput"
+
+
+
+        %h6.SendAccountInformationinput 商品送付先情報入力
+        .field
+          = f.label :send_first_name, "送付先のお名前（漢字）", class: "fieldtitle"
+          %span.form-require "必須"
+          %br/
+          .fieldsidebyside
+            = f.text_field :send_family_name, autofocus: true, placeholder: "例）山田", class: "fieldinput"
+            = f.text_field :send_first_name, autofocus: true, placeholder: "例）太郎", class: "fieldinput"       
+
+        .field
+          = f.label :send_family_name_kana, "送付先のお名前（カナ）", class: "fieldtitle"
+          %span.form-require "必須"
+          %br/
+          .fieldsidebyside
+            = f.text_field :send_family_name_kana, autofocus: true, placeholder: "例）ヤマダ", class: "fieldinput"
+            = f.text_field :send_first_name_kana, autofocus: true, placeholder: "例）タロウ", class: "fieldinput"
+
+
+        .field
+          = f.label :prefectures, "都道府県", class: "fieldtitle"
+          %span.form-require "必須"
+          %br/
+          = f.text_field :post, autofocus: true, placeholder: "例）東京都", class: "fieldinput"
+
+        .field
+          = f.label :post, "郵便番号", class: "fieldtitle"
+          %span.form-require "必須"
+          %br/
+          = f.text_field :post, autofocus: true, placeholder: "例）165-※※※※", class: "fieldinput"
+
+        .field
+          = f.label :city, "市区町村", class: "fieldtitle"
+          %span.form-require "必須"
+          %br/
+          = f.text_field :city, autofocus: true, placeholder: "例）中野区", class: "fieldinput"
+
+        .field
+          = f.label :address, "番地", class: "fieldtitle"
+          %span.form-require "必須"
+          %br/
+          = f.text_field :address, autofocus: true, placeholder: "例)○丁目○番地", class: "fieldinput"
+
+        .field
+          = f.label :apartment, "マンション・アパート名", class: "fieldtitle"
+          %span.form-require "任意"
+          %br/
+          = f.text_field :apartment, autofocus: true, placeholder: "例)○○○○ ○号", class: "fieldinput"
+
+        .field
+          = f.label :phone, "電話番号", class: "fieldtitle"
+          %span.form-require "任意"
+          %br/
+          = f.text_field :phone, autofocus: true, placeholder: "例)080-※※※※-※※※※", class: "fieldinput"
+        
+
         .actions
           = f.submit "新規会員登録へ", class: "actionsinput"
       = render "devise/shared/links"
