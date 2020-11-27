@@ -9,5 +9,4 @@
         .header__inner__bar__registration__Rogin
         = link_to "クレジットカードを登録する",new_card_path, class:"my__page__function2"
         .header__inner__bar__registration__favorite
-        = link_to "お気に入りリスト", user_favorites_path(@user.id)
-        -# -binding.pry
+        = link_to "お気に入りリスト", user_favorites_path(@user.id), class:"my__page__function3"
