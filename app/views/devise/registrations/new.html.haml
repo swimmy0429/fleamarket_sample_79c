@@ -6,31 +6,31 @@
         = render "devise/shared/error_messages", resource: resource
         .field
           = f.label :nickname, "ニックネーム", class: "fieldtitle"
-          %span.form-require "必須"
+          %span.form-require 必須
           %br/
           = f.text_field :nickname, autofocus: true, placeholder: "例）フリマタロウ", class: "fieldinput"
         .field
           = f.label :first_name, "お名前（漢字）", class: "fieldtitle"
-          %span.form-require "必須"
+          %span.form-require 必須
           %br/
           .fieldsidebyside
             = f.text_field :family_name, autofocus: true, placeholder: "例）山田", class: "fieldinput"
             = f.text_field :first_name, autofocus: true, placeholder: "例）太郎", class: "fieldinput"
         .field
           = f.label :family_name_kana, "お名前（カナ）", class: "fieldtitle"
-          %span.form-require "必須"
+          %span.form-require 必須
           %br/
           .fieldsidebyside
             = f.text_field :family_name_kana, autofocus: true, placeholder: "例）ヤマダ", class: "fieldinput"
             = f.text_field :first_name_kana, autofocus: true, placeholder: "例）タロウ", class: "fieldinput"
         .field
           = f.label :birth_year_month_day, "生年月日", class: "fieldtitle"
-          %span.form-require "必須"
+          %span.form-require 必須
           %br/
           = f.date_field :birth_year_month_day, autofocus: true, class: "fieldinput"
         .field
           = f.label :email, "Eメールアドレス", class: "fieldtitle"
-          %span.form-require "必須"
+          %span.form-require 必須
           %br/
           = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "例）techcamp79c@tec.com", class: "fieldinput"
         .field
@@ -38,12 +38,12 @@
           - if @minimum_password_length
             %em
               （英数 #{@minimum_password_length} 文字以上）
-          %span.form-require "必須"
+          %span.form-require 必須
           %br/
           = f.password_field :password, autocomplete: "new-password", placeholder: "例）Teccamp", class: "fieldinput"
         .field
           = f.label :password_confirmation, "パスワード（確認用）", class: "fieldtitle"
-          %span.form-require "必須"
+          %span.form-require 必須
           %br/
           = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワードをもう一度入力ください", class: "fieldinput"
         .actions

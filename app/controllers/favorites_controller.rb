@@ -22,10 +22,12 @@ class FavoritesController < ApplicationController
 
   # お気に入り削除
   def destroy
+
     
     favorite = Favorite.find_by(item_id: params[:item_id], user_id: current_user.id)
     favorite.destroy
-    
+
+   
   end
 
   
@@ -39,7 +41,5 @@ class FavoritesController < ApplicationController
   def set_parents
     @parents = Category.where(ancestry: nil)
   end
-
-  
  
 end
