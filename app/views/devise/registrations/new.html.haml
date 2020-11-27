@@ -102,10 +102,6 @@
           %br/
           = f.text_field :phone, autofocus: true, placeholder: "例)080-※※※※-※※※※", class: "fieldinput"
         
-        .field 
-          %span.Prefectures 都道府県
-          %span.form-require "必須"
-          = f.collection_select :prefecture_code, Prefecture.all, :id, :name, {prompt:"選択してください"}, {class:"Form__collection"}
 
         .actions
           = f.submit "新規会員登録へ", class: "actionsinput"
