@@ -7,9 +7,6 @@
         = link_to "ログアウト",destroy_user_session_path, method: :delete, class:"my__page__function"
         .header__inner__bar__registration
         .header__inner__bar__registration__Rogin
-        = link_to "クレジットカードを登録する",new_card_path, class:"my__page__function2" ,"data-turbolinks": false
-      
-      
-      - if @favorite_list.present? # お気に入り機能
-        - @favorite_list.each do |item|
-          = item.name
+        = link_to "クレジットカードを登録する",new_card_path, class:"my__page__function2"
+        .header__inner__bar__registration__favorite
+        = link_to "いいね！一覧", user_favorites_path(@user.id), class:"my__page__function3"
