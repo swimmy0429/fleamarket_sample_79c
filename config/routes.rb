@@ -53,9 +53,11 @@ Rails.application.routes.draw do
     end
   end
 
-  # resources :items do
-  #   collection do
-  #     get :favorites
-  #   end
-  # end
+  get  "searches/detail_search"  => "searches#detail_search"
+
+  resources :comments, only:[:create,:update,:destroy] do
+    member do
+      get 'restore'
+      end
+    end
 end
