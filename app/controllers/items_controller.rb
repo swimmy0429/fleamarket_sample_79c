@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
   before_action :set_category, only: [:show]
   before_action :set_current_user_products,only:[:i_transaction,:i_exhibiting,:i_soldout]
   before_action :set_user,only:[:i_transaction,:i_exhibiting,:i_soldout]
+  before_action :set_item, only:[:show]
 
   def index
     @items = Item.all
@@ -39,7 +40,6 @@ class ItemsController < ApplicationController
   end
 
   def create
-    
     @item = Item.new(item_params)
     if @item.category.present?
       if @item.category.parent.parent.present?
@@ -108,6 +108,10 @@ class ItemsController < ApplicationController
     end
   end
 
+  def favorites
+    @favorites = current_user.favorites
+  end
+
 
   def p_exhibiting #出品中のアクション
 
@@ -131,6 +135,7 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
 
 end
 

@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 2020_11_26_142308) do
   end
 
   create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "item_id"
+    t.bigint "user_id", null: false
+    t.bigint "item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["item_id"], name: "index_favorites_on_item_id"
@@ -99,8 +99,8 @@ ActiveRecord::Schema.define(version: 2020_11_26_142308) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "post"
     t.string "city"
+    t.string "post"
     t.string "address"
     t.string "apartment"
     t.string "phone"
