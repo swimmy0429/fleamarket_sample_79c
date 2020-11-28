@@ -7,7 +7,9 @@ Rails.application.routes.draw do
       post 'pay', to: 'cards#pay'
     end
   end
-  resources :users, only: :show
+  resources :users, only: :show do
+    resources :favorites, only: [:index]
+  end
   
   root 'items#index'
   resources :categories, only: [:index] do
@@ -39,15 +41,21 @@ Rails.application.routes.draw do
   end
   resources :searches,only:[:index]
 
-  # マイページのルーティングにネスト
-  resources :users, only: [:show, :edit, :update] do
-  get :favorites, on: :collection
-  end
-
-  # 記事詳細表示のルーティングにネスト
-  resources :items, expect: [:index] do
-  resource :favorites, only: [:create, :destroy]
-  end
-
   get  "searches/detail_search"  => "searches#detail_search"
+
+ 
+  
+
+  resources :items do
+    resource :favorites, only: [:create, :destroy]
+    collection do
+      get :favorites
+    end
+  end
+
+  # resources :items do
+  #   collection do
+  #     get :favorites
+  #   end
+  # end
 end
