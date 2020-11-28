@@ -11,8 +11,6 @@ class ItemsController < ApplicationController
     @item_images_top = ItemImage.includes(:item).group(:item_id)
     @item_images_top_last_five = @item_images_top.order(item_id: "DESC").limit(5)
     @items_last_five = @items.order(id: "DESC").limit(5)
-
-    @items_favorite = Item.all.includes(:user)
   end
 
   def show
